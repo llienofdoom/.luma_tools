@@ -50,6 +50,15 @@ if [ "$1" != "" ]; then
           cd ~
         ;;
         #############################################################
+        update )
+          pushd .
+          cd $IJ_LOCAL_REPO
+          git fetch --all
+          git reset --hard origin/master
+          git pull
+          popd
+        ;;
+        #############################################################
         ex | explore )
           if [[ $IJ_OS == "cyg" ]]; then explorer .; fi;
           if [[ $IJ_OS == "mac" ]]; then open .;     fi;
