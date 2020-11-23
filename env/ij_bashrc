@@ -77,7 +77,7 @@ if [[ -f $current_shot_file ]]; then
         export IJ_SHOT_PATH=$IJ_LUMA_PROJ_ROOT/shots/act$ac/sc$sc/sh$sh
         cd $IJ_SHOT_PATH
         export IJ_CURRENT_PATH=$IJ_SHOT_PATH
-        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_SHOT\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_SHOT\[$(tput sgr0)\]\[\033[38;5;15m\]] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "
     elif [[ $IJ_TYPE == 'asset' ]]; then
         asset=$(echo $vars | cut -d' ' -f3)
         atype=$(echo $asset | cut -d'_' -f1)
@@ -88,7 +88,7 @@ if [[ -f $current_shot_file ]]; then
         export IJ_ASST_PATH=$IJ_LUMA_PROJ_ROOT/assets/$atype/$asset
         cd $IJ_ASST_PATH
         export IJ_CURRENT_PATH=$IJ_ASST_PATH
-        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_ASST\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_ASST\[$(tput sgr0)\]\[\033[38;5;15m\]] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "
     fi
 else
   echo -e "No shot or asset has been set. Please do so before continuing."
