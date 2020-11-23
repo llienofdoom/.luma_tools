@@ -24,6 +24,7 @@ export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_REL
 popd
 
 export OCIO=$ocio_root/aces_1.2/config.ocio
+export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt/luma_i/assets/chr/tools:&"
 
 case "$IJ_USER" in 
     nvermaak | rob )
