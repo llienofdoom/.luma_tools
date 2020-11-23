@@ -26,7 +26,7 @@ if   [[ $1 == "shot"   ]]; then
         export IJ_SHOT=$ac-$sc-$sh
         echo $IJ_CJOB $IJ_TYPE $ac $sc $sh > $current_shot_file
         cd $IJ_SHOT_PATH
-        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_SHOT\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "        
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_SHOT\[$(tput sgr0)\]\[\033[38;5;15m\]] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "        
     else
         echo "That shot does not exist. Please check your command."
     fi
@@ -49,7 +49,7 @@ elif [[ $1 ==  "asset" ]]; then
         echo $IJ_CJOB $IJ_TYPE $IJ_ASST > $current_shot_file
         cd $assetpath
         export IJ_SHOT_PATH=$assetpath
-        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_ASST\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "        
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_ASST\[$(tput sgr0)\]\[\033[38;5;15m\]] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "        
     else
         echo "That asset does not exist. Please check your command."
     fi
