@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ $IJ_OS == "mac" ]]; then export djv_root=/Applications/DJV.app/Contents/Resources; fi
+if [[ $IJ_OS == "lin" ]]; then export djv_root=/opt/djv/1.3.0; fi
+
+export LD_LIBRARY_PATH=$djv_root/lib:$LD_LIBRARY_PATH
+
+$djv_root/bin/djv_view.sh $@

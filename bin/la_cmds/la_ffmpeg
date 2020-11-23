@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+ffmpeg -framerate 24 -i "L/ijm_ac01_sc05_sh010_V00_L_comp_v01.%04d.exr" -framerate 24 -i "R/ijm_ac01_sc05_sh010_V00_R_comp_v01.%04d.exr" -filter_complex "hstack,stereo3d=sbs2l:arcg" test.mp4

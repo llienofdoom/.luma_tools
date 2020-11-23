@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [[ $IJ_OS == "mac" ]]; then export mrv_root=/Applications/mrViewer.app/Contents/MacOS; fi
+if [[ $IJ_OS == "lin" ]]; then export mrv_root="/usr/bin"; fi
+
+$mrv_root/mrViewer $@

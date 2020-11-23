@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+import os
+from termcolor import cprint
+
+root = os.environ['IJ_LUMA_PROJ_ROOT']
+
+acts = os.listdir( root + os.sep + 'shots' )
+
+for act in sorted(acts):
+    if 'act' in act:
+        cprint('\n# %s' % act, 'yellow')
+        scenes = os.listdir( root + os.sep + 'shots' + os.sep + act )
+        for scene in sorted(scenes):
+            if 'sc' in scene:
+                cprint('\t%s' % scene, 'yellow')
+                shots = os.listdir( root + os.sep + 'shots' + os.sep + act + os.sep + scene )
+                for shot in sorted(shots):
+                    if 'sh' in shot:
+                        print '\t%s : %s : %s' % (act[3:], scene[2:], shot[2:])

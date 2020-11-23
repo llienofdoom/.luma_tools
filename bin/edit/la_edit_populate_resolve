@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+import DaVinciResolveScript as bmd
+
+resolve = bmd.scriptapp('Resolve')
+pm      = resolve.GetProjectManager()
+
+pm.GotoRootFolder()
+proj = pm.CreateProject('ij_luma_TMP')
+
+proj.SetSetting('timelineFrameRate'              , '24'    )
+proj.SetSetting('timelinePlaybackFrameRate'      , '24'    )
+proj.SetSetting('timelineOutputResolutionWidth'  , '1920'  )
+proj.SetSetting('timelineOutputResolutionHeight' , '1080'  )
+proj.SetSetting('timelinePixelAspectRatio'       , 'square')
+proj.SetSetting('timelineOutputPixelAspectRatio' , 'square')
+proj.SetSetting('colorScienceMode'   , 'davinciYRGB'       )
+proj.SetSetting('colorSpaceTimeline' , 'Rec.709 Gamma 2.4' )
+
+# proj.SetSetting('colorScienceMode'                , 'acescc'             )
+# proj.SetSetting('colorAcesIDT'                    , 'No Input Transform' )
+# proj.SetSetting('colorAcesNodeLUTProcessingSpace' , 'acesccAp1'          )
+# proj.SetSetting('colorAcesODT'                    , 'No Output Transform')
+
+ms = resolve.GetMediaStorage()
+mp = proj.GetMediaPool()
+
+files = ms.GetFiles("/Users/llien/Desktop/test")
+clips = ms.AddItemsToMediaPool(files)
+
+tl = mp.CreateEmptyTimeline('edit')
+
+for clip in clips.itervalues():
+    clip.GetMetadata()
+    clip_in  = 10
+    clip_out = 20
+    clip.SetClipProperty('In' , clip_in )
+    clip.SetClipProperty('Out', clip_out)
+    mp.AppendToTimeline(clip)
+
+# clips = clips.values()
+# for clip in clips:
+    # clip.GetMetadata()
+    # print clip
+    # clip_in  = 10
+    # clip_out = 20
+    # clip.SetClipProperty('In' , clip_in )
+    # clip.SetClipProperty('Out', clip_out)
+    # mp.AppendToTimeline(clip)

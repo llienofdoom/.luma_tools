@@ -1,0 +1,29 @@
+#!/bin/bash
+
+export LC_ALL=C
+unset LANGUAGE
+
+if [[ $IJ_OS == "mac" ]]; then export OCIO=/mnt/luma_h/SITE/ocio/aces_1.2/config.ocio; fi
+if [[ $IJ_OS == "lin" ]]; then export OCIO=/opt/OpenColorIO-Configs/aces_1.2/config.ocio; fi
+
+cwd=$IJ_ASST_PATH;
+img_dir=$cwd/img/render
+latest=$(ls -dt $img_dir/*/ | head -1)
+
+echo "Converting to ACES..."
+for i in $latest/*.exr; do
+    oiiotool --threads 0 --colorconvert "ACES - ACEScg" "Output - sRGB" $i --ch R,G,B -o $i.jpg
+done
+
+filename=$(ls $latest/*.exr | head -1)
+filename=$(echo $filename | cut -d. -f 1)
+basename=$(basename $filename)
+outputname=$img_dir/$basename.mp4
+
+echo "Exporting MP4..."
+ffmpeg -y -hide_banner -loglevel panic -r 24 -gamma 2.2 -i "$filename.%04d.exr.jpg" -pix_fmt yuv420p -c:v libx264 -crf 25 $outputname
+
+echo "Cleaning up..."
+rm $latest/*.jpg
+
+echo "DONE!"

@@ -1,0 +1,56 @@
+#!/bin/bash
+
+current_shot_file=$IJ_LOCAL_REPO/config/current_shot_file
+if [[ ! -f $current_shot_file ]]; then
+    echo "Creating config file... "
+    mkdir -p $(dirname $current_shot_file)
+    touch $current_shot_file
+fi
+
+#####################################################################
+if   [[ $1 == "shot"   ]]; then
+    ac=$(echo $2 | cut -d'-' -f1)
+    sc=$(echo $2 | cut -d'-' -f2)
+    sh=$(echo $2 | cut -d'-' -f3)
+    ac=$(printf "%02d" $ac)
+    sc=$(printf "%03d" $sc)
+    sh=$(printf "%04d" $sh)
+
+    shot=$ac-$sc-$sh
+    echo "Setting shot to" $shot
+    export IJ_SHOT_PATH=$IJ_LUMA_PROJ_ROOT/shots/act$ac/sc$sc/sh$sh
+    echo "in" $IJ_SHOT_PATH
+    if [[ -d $IJ_SHOT_PATH ]]; then
+        export IJ_CJOB='ij'
+        export IJ_TYPE='shot'
+        export IJ_SHOT=$ac-$sc-$sh
+        echo $IJ_CJOB $IJ_TYPE $ac $sc $sh > $current_shot_file
+        cd $IJ_SHOT_PATH
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_SHOT\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "        
+    else
+        echo "That shot does not exist. Please check your command."
+    fi
+
+#####################################################################
+elif [[ $1 ==  "asset" ]]; then
+    asset=$2
+    atype=$(echo $asset | cut -d'_' -f1)
+    if [[ $atype == "chr" ]]; then
+        atype="$atype/render"
+    fi
+
+    echo "Setting asset to" $asset
+    assetpath=$IJ_LUMA_PROJ_ROOT/assets/$atype/$asset
+    echo "in" $assetpath
+    if [[ -d $assetpath ]]; then
+        export IJ_CJOB='ij'
+        export IJ_TYPE='asset'
+        export IJ_ASST=$asset
+        echo $IJ_CJOB $IJ_TYPE $IJ_ASST > $current_shot_file
+        cd $assetpath
+        export IJ_SHOT_PATH=$assetpath
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_ASST\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "        
+    else
+        echo "That asset does not exist. Please check your command."
+    fi
+fi

@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+import os
+import sys
+from termcolor import cprint
+
+arg = ''
+try:
+    arg = sys.argv[1]
+except Exception:
+    arg = ['chr', 'env', 'hrs', 'lgt', 'prp', 'wrd']
+
+root = os.environ['IJ_LUMA_PROJ_ROOT']
+
+atypes = os.listdir( root + os.sep + 'assets' )
+
+for atype in sorted(atypes):
+    # if 'prp' or 'env' or 'chr' or 'hrs' or 'lgt' or 'wrd' in atype:
+    # if atype in ['chr', 'env', 'hrs', 'lgt', 'prp', 'wrd']:
+    if atype in arg:
+        cprint('\n# %s' % atype, 'yellow')
+        if ('chr' in atype):
+            assets = os.listdir( root + os.sep + 'assets' + os.sep + atype + os.sep + 'render' )
+        else:
+            assets = os.listdir( root + os.sep + 'assets' + os.sep + atype )
+        for asset in sorted(assets):
+            if atype in asset:
+                print '\t%s' % asset

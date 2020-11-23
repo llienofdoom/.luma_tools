@@ -1,0 +1,137 @@
+#!/bin/bash
+
+function usage
+{
+    echo "#####################################################################"
+    echo "Welcome, to the LAB of tomorrow!"
+    echo "###########################################################"
+    echo "usage: lab [arg] [value]"
+    echo ""
+    echo "args:"
+    echo "  on                  : setup the luma lab environment";
+    echo "  off                 : disable the luma lab environment";
+    echo ""
+    echo "  update              : update the tools from the global repo";
+    echo "  ex | explore        : open a file browser where you are";
+    echo "  home                : go to shot/asset root folder";
+    echo ""
+    echo "  ls | list_shots     : list the available shots";
+    echo "  la | list_assets    : list the available assets, one of ";
+    echo "                        ['chr', 'env', 'hrs', 'lgt', 'prp', 'wrd']";
+    echo ""
+    echo "  ss | set_shot       : sets the current shot  : la ss 1-5-130";
+    echo "  sa | set_asset      : sets the current asset : la sa prp_car1_1";
+    echo ""
+    echo "  mgear               : stupid hack to get maya to play along";
+    echo ""
+    echo "  animatic            : view the animatic video";
+    echo "  makett              : generate a turntable of the selected asset";
+    echo "  viewtt              : view turntable of selected asset";
+    echo "  shotPrep            : export abc from maya, and setup houdini";
+    echo "  mayaExportAnim      : export animation to alembic from maya";
+    echo "  houAssemble         : create a shot assembly file as a base";
+    echo "  viewmono            : view exported mono sequence";
+    echo "  viewstereo          : view exported stereo sequence";
+    echo "  viewmonosc          : view mono scene. : lab viewmonosc 25";
+    echo ""
+    echo "  h | help            : This message";
+    echo "#####################################################################"
+}
+
+if [ "$1" != "" ]; then
+  case "$1" in
+        #############################################################
+        on )
+          . $IJ_LOCAL_REPO/env/ij_bashrc
+        ;;
+        #############################################################
+        off )
+          export PS1='\[\e[1;33m\]\u@\h \W\$\[\e[0m\] '
+          cd ~
+        ;;
+        #############################################################
+        ex | explore )
+          if [[ $IJ_OS == "cyg" ]]; then explorer .; fi;
+          if [[ $IJ_OS == "mac" ]]; then open .;     fi;
+          # if [[ $IJ_OS == "lin" ]]; then nautilus .; fi;
+          if [[ $IJ_OS == "lin" ]]; then gio open .; fi;
+        ;;
+        #############################################################
+        home )
+          cd $IJ_SHOT_PATH;
+        ;;
+        #############################################################
+        ls | list_shots )
+          python $IJ_LOCAL_REPO/bin/la_cmds/la_shots_list;
+        ;;
+        #############################################################
+        la | list_assets )
+          python $IJ_LOCAL_REPO/bin/la_cmds/la_assets_list $2;
+        ;;
+        #############################################################
+        ss | set_shot )
+          . $IJ_LOCAL_REPO/bin/la_cmds/la_set shot $2;
+          . $IJ_LOCAL_REPO/env/ij_bashrc
+        ;;
+        #############################################################
+        sa | set_asset )
+          . $IJ_LOCAL_REPO/bin/la_cmds/la_set asset $2;
+          . $IJ_LOCAL_REPO/env/ij_bashrc
+        ;;
+        #############################################################
+        animatic )
+          la_djv $IJ_SHOT_PATH/img/animatic/*_animatic.mp4
+        ;;
+        #############################################################
+        mgear )
+          la_maya /mnt/luma_i/assets/chr/rig/ij_chr_alejandro/50/characters_ij_chr_alejandro_50.mb
+        ;;
+        #############################################################
+        makett )
+          $IJ_LOCAL_REPO/bin/la_cmds/la_ffmpegTT;
+        ;;
+        #############################################################
+        viewtt )
+          latest_mp4=$(ls -td $IJ_ASST_PATH/img/render/*.mp4)
+          la_djv $latest_mp4
+        ;;
+        #############################################################
+        shotPrep )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim.py;
+          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
+        ;;
+        #############################################################
+        mayaExportAnim )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim.py;
+        ;;
+        #############################################################
+        houAssemble )
+          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
+        ;;
+        #############################################################
+        viewstereo )
+          latest=$(ls -td $IJ_SHOT_PATH/img/camera/* | head -1)
+          latest=$(ls $latest/stereo*.jpg | head -1)
+          la_djv $latest
+        ;;
+        #############################################################
+        viewmono )
+          latest=$(ls -td $IJ_SHOT_PATH/img/camera/* | head -1)
+          latest=$(ls $latest/mono*.jpg | head -1)
+          la_djv $latest
+        ;;
+        #############################################################
+        viewmonosc )
+          python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene.py $2;
+        ;;
+        #############################################################
+      -h | --help | h | help )
+          usage;
+        ;;
+      * )
+          usage;
+        ;;
+  esac
+else
+    usage;
+fi

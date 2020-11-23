@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export OCIO=/opt/OpenColorIO-Configs/aces_1.2/config.ocio
+
+/opt/Nuke12.1v1/Nuke12.1 $@
+

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export OCIO=/opt/OpenColorIO-Configs/aces_1.2/config.ocio
+
+/opt/resolve/bin/resolve

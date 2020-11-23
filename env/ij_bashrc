@@ -1,0 +1,101 @@
+#!/bin/bash
+
+orig_path=$(pwd)
+
+#####################################################################
+# echo -e "Checking OS..."
+os=$(uname -s)
+if [[ $os == *"CYGWIN"* ]]; then export IJ_OS="cyg"; fi
+if [[ $os == *"Darwin"* ]]; then export IJ_OS="mac"; fi
+if [[ $os == *"Linux"*  ]]; then export IJ_OS="lin"; fi
+
+#####################################################################
+# echo -e "Setting up standard aliases..."
+if [[ $IJ_OS == "mac" ]]; then alias ll='ls -lhGF'; else alias ll='ls -lh --color=auto'; fi;
+alias la='ll -a'
+alias df='df -h'
+alias du='du -h'
+alias lab='. la_cmd'
+# alias nv_seqview='/mnt/luma_i/_tools/nv_seqview/nv_seqview_lin'
+_la_completions()
+{
+  COMPREPLY=($(compgen -W "
+  on 
+  off 
+  update
+  ex explore 
+  home 
+  ls list_shots 
+  la list_assets 
+  ss set_shot 
+  sa set_asset 
+  mgear
+  animatic
+  makett
+  viewtt
+  shotPrep
+  mayaExportAnim
+  houAssemble
+  viewmono
+  viewstereo
+  viewmonosc
+  help" "${COMP_WORDS[1]}"))
+}
+complete -F _la_completions lab
+
+#####################################################################
+# echo -e "Setting up ROOT project folders..."
+export LUMA_PROJECTS_ROOT=/mnt
+export IJ_ORIG_PROJ_ROOT=/job
+export IJ_LUMA_PROJ_ROOT=$LUMA_PROJECTS_ROOT/luma_i
+# if [[ $IJ_OS == "cyg" ]]; then export IJ_LUMA_PROJ_ROOT=$(cygpath -w $IJ_LUMA_PROJ_ROOT); fi
+export JOB=$IJ_LUMA_PROJ_ROOT
+export IJ_TOOLS_ROOT=$IJ_LUMA_PROJ_ROOT/_tools/luma_tools
+export IJ_LOCAL_REPO=~/.luma_tools
+export IJ_DATE=$(date "+%Y-%m-%d")
+export PATH=/usr/local/bin:$PATH
+export PATH=$IJ_TOOLS_ROOT/bin:$PATH
+export PATH=$IJ_LOCAL_REPO/bin:$PATH
+
+#####################################################################
+# echo -e "Getting previous console settings..."
+current_shot_file=$IJ_LOCAL_REPO/config/current_shot_file
+export IJ_CJOB='NOT SET'
+export IJ_TYPE='NOT SET'
+export IJ_SHOT='NOT SET'
+export IJ_ASST='NOT SET'
+export IJ_CURRENT_PATH=''
+if [[ -f $current_shot_file ]]; then
+    vars=$( < $current_shot_file)
+    export IJ_CJOB=$(echo $vars | cut -d' ' -f1)
+    export IJ_TYPE=$(echo $vars | cut -d' ' -f2)
+    if [[ $IJ_TYPE == 'shot' ]]; then
+        ac=$(echo $vars | cut -d' ' -f3)
+        sc=$(echo $vars | cut -d' ' -f4)
+        sh=$(echo $vars | cut -d' ' -f5)
+        export IJ_SHOT=$ac-$sc-$sh
+        export IJ_SHOT_PATH=$IJ_LUMA_PROJ_ROOT/shots/act$ac/sc$sc/sh$sh
+        cd $IJ_SHOT_PATH
+        export IJ_CURRENT_PATH=$IJ_SHOT_PATH
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_SHOT\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "
+    elif [[ $IJ_TYPE == 'asset' ]]; then
+        asset=$(echo $vars | cut -d' ' -f3)
+        atype=$(echo $asset | cut -d'_' -f1)
+        if [[ $atype == "chr" ]]; then
+            atype="$atype/render"
+        fi
+        export IJ_ASST=$asset
+        export IJ_ASST_PATH=$IJ_LUMA_PROJ_ROOT/assets/$atype/$asset
+        cd $IJ_ASST_PATH
+        export IJ_CURRENT_PATH=$IJ_ASST_PATH
+        export PS1="\n[\[$(tput sgr0)\]\[\033[38;5;11m\]luma ij [$IJ_TYPE] $IJ_ASST\[$(tput sgr0)\]\[\033[38;5;15m\]] [$IJ_VENV] [\W]\n[\[$(tput sgr0)\]\[\033[38;5;6m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;2m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]]\\$\[$(tput sgr0)\] "
+    fi
+else
+  echo -e "No shot or asset has been set. Please do so before continuing."
+fi
+# echo "#########################################################################"
+
+# open paths opened from right click menu correctly.
+if [[ ! $orig_path == ~ ]]; then cd $IJ_CURRENT_PATH; fi;
+
+if [[ -z "$IJ_USER" ]]; then export IJ_USER=$USER; fi
