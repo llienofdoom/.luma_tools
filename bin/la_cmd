@@ -30,6 +30,7 @@ function usage
     echo "  shotPrep            : export abc from maya, and setup houdini";
     echo "  mayaExportAnim      : export animation to alembic from maya";
     echo "  houAssemble         : create a shot assembly file as a base";
+    echo "  makeprev            : make preview : mono or stereo";
     echo "  viewmono            : view exported mono sequence";
     echo "  viewstereo          : view exported stereo sequence";
     echo "  viewmonosc          : view mono scene. : lab viewmonosc 25";
@@ -117,6 +118,10 @@ if [ "$1" != "" ]; then
         #############################################################
         houAssemble )
           la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
+        ;;
+        #############################################################
+        makeprev )
+          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreatePreview.py $2;
         ;;
         #############################################################
         viewstereo )

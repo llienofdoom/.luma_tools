@@ -36,6 +36,7 @@ _la_completions()
   shotPrep
   mayaExportAnim
   houAssemble
+  makeprev
   viewmono
   viewstereo
   viewmonosc

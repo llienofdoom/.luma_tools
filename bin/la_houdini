@@ -25,6 +25,7 @@ popd
 
 export OCIO=$ocio_root/aces_1.2/config.ocio
 export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt/luma_i/assets/chr/tools:&"
+export HOUDINI_OTLSCAN_PATH=/mnt/luma_i/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
 
 case "$IJ_USER" in 
     nvermaak | rob )
