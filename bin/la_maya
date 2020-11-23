@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PIXAR_LICENSE_FILE=9010@192.168.35.28
+unset OCIO
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
@@ -9,12 +9,9 @@ then
     export RMANTREE=/Applications/Pixar/RenderManProServer-21.8
     export RFMTREE=/Applications/Pixar/RenderManForMaya-21.8-maya2016.5
     export MAYA_MODULE_PATH=/opt/pixar/RenderManForMaya-21.8-maya2016.5:$MAYA_MODULE_PATH
-    export RFM_DO_NOT_CREATE_MODULE_FILE=1
-
+    
     # MGEAR
     export MAYA_MODULE_PATH=~/Library/Preferences/Autodesk/maya/modules:$MAYA_MODULE_PATH
-
-    $MAYA_LOCATION/bin/maya $@
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
@@ -23,14 +20,19 @@ then
     export RMANTREE=/opt/pixar/RenderManProServer-21.8
     export RFMTREE=/opt/pixar/RenderManForMaya-21.8-maya2016.5
     export MAYA_MODULE_PATH=/opt/pixar/RenderManForMaya-21.8-maya2016.5:$MAYA_MODULE_PATH
-    export RFM_DO_NOT_CREATE_MODULE_FILE=1
 
     # MGEAR
     export MAYA_MODULE_PATH=/mnt/luma_i/_tools/maya/mgear/release:$MAYA_MODULE_PATH
-
-    $MAYA_LOCATION/bin/maya $@
 fi
 
-# . ~/.luma/maya_env/common.env
-# . ~/.luma/maya_env/insidejob_movie.env
-# . ~/.luma/maya_env/insidejob_movie_luma.env
+export PIXAR_LICENSE_FILE=9010@192.168.35.28
+export RFM_DO_NOT_CREATE_MODULE_FILE=1
+export MAYA_SHELF_PATH=/job/common/maya/shelves/
+export MAYA_DISABLE_CIP=1
+export MAYA_DISABLE_CER=1
+
+# Some FC stuff
+export PATH=/job/insidejob_movie/common/bin:$MAYA_LOCATION/bin:$PATH
+export PYTHONPATH=/job/common/maya/scripts:$PYTHONPATH
+
+$MAYA_LOCATION/bin/maya $@
