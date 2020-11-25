@@ -2,3 +2,8 @@
 
 
 ffmpeg -framerate 24 -i "L/ijm_ac01_sc05_sh010_V00_L_comp_v01.%04d.exr" -framerate 24 -i "R/ijm_ac01_sc05_sh010_V00_R_comp_v01.%04d.exr" -filter_complex "hstack,stereo3d=sbs2l:arcg" test.mp4
+
+
+
+
+ffmpeg -y -r 24 -start_number 31 -i stereo_L.%04d.jpg -r 24 -start_number 31 -i stereo_R.%04d.jpg -filter_complex "[0:v]crop=960:1080,scale=960:1080[L];[1:v]crop=960:1080,scale=960:1080[R];[L][R]hstack[outv]" -map "[outv]" ~/Desktop/stereo.mp4

@@ -125,8 +125,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         viewstereo )
-          latest=$(ls -td $IJ_SHOT_PATH/img/camera/* | head -1)
-          latest=$(ls $latest/stereo*.jpg | head -1)
+          latest=$IJ_SHOT_PATH/img/camera/stereo.mp4
           la_djv $latest
         ;;
         #############################################################
