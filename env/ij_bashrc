@@ -35,11 +35,13 @@ _la_completions()
   viewtt
   shotPrep
   mayaExportAnim
+  mayaExportAnimLookDev
   houAssemble
   makeprev
   viewmono
   viewstereo
   viewmonosc
+  viewstereosc
   help" "${COMP_WORDS[1]}"))
 }
 complete -F _la_completions lab

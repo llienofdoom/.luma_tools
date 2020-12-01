@@ -29,11 +29,13 @@ function usage
     echo "  viewtt              : view turntable of selected asset";
     echo "  shotPrep            : export abc from maya, and setup houdini";
     echo "  mayaExportAnim      : export animation to alembic from maya";
+    echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
     echo "  makeprev            : make preview : mono or stereo";
     echo "  viewmono            : view exported mono sequence";
     echo "  viewstereo          : view exported stereo sequence";
     echo "  viewmonosc          : view mono scene. : lab viewmonosc 25";
+    echo "  viewstereosc        : view mono scene. : lab viewstereosc 25";
     echo ""
     echo "  h | help            : This message";
     echo "#####################################################################"
@@ -116,6 +118,10 @@ if [ "$1" != "" ]; then
           la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim.py;
         ;;
         #############################################################
+        mayaExportAnimLookDev )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim_forLookDev.py;
+        ;;
+        #############################################################
         houAssemble )
           la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
         ;;
@@ -136,7 +142,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         viewmonosc )
-          python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene.py $2;
+          python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene_mono.py $2;
+        ;;
+        #############################################################
+        viewstereosc )
+          python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene_stereo.py $2;
         ;;
         #############################################################
       -h | --help | h | help )
