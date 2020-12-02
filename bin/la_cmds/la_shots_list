@@ -1,7 +1,17 @@
 #!/usr/bin/env python
 
+
 import os
+import sys
+import glob
 from termcolor import cprint
+
+
+arg = ''
+try:
+    arg = 'sc%03d' % int(sys.argv[1])
+except Exception:
+    arg = '*'
 
 root = os.environ['IJ_LUMA_PROJ_ROOT']
 
@@ -9,12 +19,14 @@ acts = os.listdir( root + os.sep + 'shots' )
 
 for act in sorted(acts):
     if 'act' in act:
-        cprint('\n# %s' % act, 'yellow')
-        scenes = os.listdir( root + os.sep + 'shots' + os.sep + act )
+        # cprint('# %s' % act, 'green')
+        # scenes = os.listdir( root + os.sep + 'shots' + os.sep + act )
+        scenes = glob.glob( root + os.sep + 'shots' + os.sep + act + os.sep + arg )
         for scene in sorted(scenes):
+            scene = os.path.basename(scene)
             if 'sc' in scene:
-                cprint('\t%s' % scene, 'yellow')
+                cprint('*%s %s' % (act, scene), 'yellow')
                 shots = os.listdir( root + os.sep + 'shots' + os.sep + act + os.sep + scene )
                 for shot in sorted(shots):
                     if 'sh' in shot:
-                        print '\t%s : %s : %s' % (act[3:], scene[2:], shot[2:])
+                        print ' sh%s' % shot[2:]

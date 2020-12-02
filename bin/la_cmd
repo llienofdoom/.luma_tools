@@ -24,18 +24,19 @@ function usage
     echo ""
     echo "  mgear               : stupid hack to get maya to play along";
     echo ""
-    echo "  animatic            : view the animatic video";
+    echo "  ani | animatic      : view the animatic video";
     echo "  makett              : generate a turntable of the selected asset";
     echo "  viewtt              : view turntable of selected asset";
     echo "  shotPrep            : export abc from maya, and setup houdini";
     echo "  mayaExportAnim      : export animation to alembic from maya";
     echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
-    echo "  makeprev            : make preview : mono or stereo";
-    echo "  viewmono            : view exported mono sequence";
-    echo "  viewstereo          : view exported stereo sequence";
-    echo "  viewmonosc          : view mono scene. : lab viewmonosc 25";
-    echo "  viewstereosc        : view mono scene. : lab viewstereosc 25";
+    echo "  mp | makeprev       : make preview : mono or stereo and filename";
+    echo "  vm | viewmono       : view exported mono sequence";
+    echo "  vs | viewstereo     : view exported stereo sequence";
+    echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
+    echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
+    echo "  fa | fromaces       : convert exrf from aces to srgb, lab fa [filename].";
     echo ""
     echo "  h | help            : This message";
     echo "#####################################################################"
@@ -75,7 +76,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         ls | list_shots )
-          python $IJ_LOCAL_REPO/bin/la_cmds/la_shots_list;
+          python $IJ_LOCAL_REPO/bin/la_cmds/la_shots_list $2;
         ;;
         #############################################################
         la | list_assets )
@@ -92,7 +93,7 @@ if [ "$1" != "" ]; then
           . $IJ_LOCAL_REPO/env/ij_bashrc
         ;;
         #############################################################
-        animatic )
+        ani | animatic )
           la_djv $IJ_SHOT_PATH/img/animatic/*_animatic.mp4
         ;;
         #############################################################
@@ -126,27 +127,31 @@ if [ "$1" != "" ]; then
           la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
         ;;
         #############################################################
-        makeprev )
-          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreatePreview.py $2;
+        mp | makeprev )
+          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreatePreview.py $2 $3;
         ;;
         #############################################################
-        viewstereo )
+        vs | viewstereo )
           latest=$IJ_SHOT_PATH/img/camera/stereo.mp4
           la_djv $latest
         ;;
         #############################################################
-        viewmono )
+        vm | viewmono )
           latest=$(ls -td $IJ_SHOT_PATH/img/camera/* | head -1)
           latest=$(ls $latest/mono*.jpg | head -1)
           la_djv $latest
         ;;
         #############################################################
-        viewmonosc )
+        vms | viewmonosc )
           python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene_mono.py $2;
         ;;
         #############################################################
-        viewstereosc )
+        vss | viewstereosc )
           python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene_stereo.py $2;
+        ;;
+        #############################################################
+        fa | fromaces )
+          $IJ_LOCAL_REPO/bin/la_cmds/la_aces_convert $2;
         ;;
         #############################################################
       -h | --help | h | help )

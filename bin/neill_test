@@ -1,0 +1,12 @@
+#!/bin/bash
+
+ffmpeg -y \\
+-r 24 -start_number 501 -i img/camera/act01_sc001_sh0020_camera_v02/stereo_L.%04d.jpg \\
+-r 24 -start_number 501 -i img/camera/act01_sc001_sh0020_camera_v02/stereo_R.%04d.jpg \\
+-filter_complex " \\
+[0:v]crop=1920:1080,scale=960:1080[L];[L]drawtext='fontcolor=white:font=sans-serif:fontsize=90:x=20:y=20:text=testL'[LT]; \\
+[1:v]crop=1920:1080,scale=960:1080[R];[R]drawtext='fontcolor=white:font=sans-serif:fontsize=90:x=20:y=20:text=testR'[RT]; \\
+[LT][RT]hstack[outv] \\
+"  \\
+-map "[outv]" \\
+$HIP/img/camera/stereo.mp4

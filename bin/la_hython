@@ -18,8 +18,8 @@ cd $houdini_root
 . houdini_setup_bash
 
 # ARNOLD
-HTOA=$arnold_root"/htoa-5.5.0.0_r5b05c8c_houdini-18.5.351/htoa-5.5.0.0_r5b05c8c_houdini-18.5.351"
-export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE};${HTOA};${HFS}/houdini"
+# HTOA=$arnold_root"/htoa-5.5.0.0_r5b05c8c_houdini-18.5.351/htoa-5.5.0.0_r5b05c8c_houdini-18.5.351"
+# export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE};${HTOA};${HFS}/houdini"
 
 popd
 

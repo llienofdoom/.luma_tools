@@ -30,21 +30,21 @@ _la_completions()
   ss set_shot 
   sa set_asset 
   mgear
-  animatic
+  ani animatic
   makett
   viewtt
   shotPrep
   mayaExportAnim
   mayaExportAnimLookDev
   houAssemble
-  makeprev
-  viewmono
-  viewstereo
-  viewmonosc
-  viewstereosc
+  mp makeprev
+  vm viewmono
+  vs viewstereo
+  vms viewmonosc
+  vss viewstereosc
   help" "${COMP_WORDS[1]}"))
 }
-complete -F _la_completions lab
+# complete -F _la_completions lab
 
 #####################################################################
 # echo -e "Setting up ROOT project folders..."

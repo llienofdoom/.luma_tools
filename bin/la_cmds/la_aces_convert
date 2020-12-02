@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ $IJ_OS == "mac" ]]; then export OCIO=/mnt/luma_h/SITE/ocio/aces_1.2/config.ocio; fi
+if [[ $IJ_OS == "lin" ]]; then export OCIO=/opt/OpenColorIO-Configs/aces_1.2/config.ocio; fi
+
+inputname=$1
+basename=$"${inputname%.*}"
+oiiotool --colorconvert "ACES - ACEScg" "Utility - Linear - sRGB" -ch R,G,B $inputname -o $basename.jpg
