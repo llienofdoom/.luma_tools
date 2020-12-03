@@ -14,7 +14,13 @@ if   [[ $1 == "shot"   ]]; then
     sh=$(echo $2 | cut -d'-' -f3)
     ac=$(printf "%02d" $ac)
     sc=$(printf "%03d" $sc)
-    sh=$(printf "%04d" $sh)
+    # dealing with abc shots...
+    if [[ "$sh" =~ [a-z] ]]; 
+    then
+        n=${sh:0:3}; l=${sh:3:1}; sh=$(printf "%04d%s" $n $l )
+    else
+        sh=$(printf "%04d" $sh )
+    fi
 
     shot=$ac-$sc-$sh
     echo "Setting shot to" $shot

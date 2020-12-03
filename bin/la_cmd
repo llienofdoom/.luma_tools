@@ -28,6 +28,7 @@ function usage
     echo "  makett              : generate a turntable of the selected asset";
     echo "  viewtt              : view turntable of selected asset";
     echo "  shotPrep            : export abc from maya, and setup houdini";
+    echo "  maya2hou            : shotPrep batch mode";
     echo "  mayaExportAnim      : export animation to alembic from maya";
     echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
@@ -113,6 +114,10 @@ if [ "$1" != "" ]; then
         shotPrep )
           la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim.py;
           la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
+        ;;
+        #############################################################
+        maya2hou )
+          python $IJ_LOCAL_REPO/bin/la_cmds/la_maya2hou.py $2;
         ;;
         #############################################################
         mayaExportAnim )
