@@ -2,7 +2,6 @@ import os
 import sys
 import glob
 import json
-import subprocess
 
 # INITIAL #####################################################################
 shots_root = '/mnt/luma_i/shots'
@@ -33,11 +32,20 @@ num = len(list_of_shots)
 
 c=1
 for cur in list_of_shots:
+    print '*' * 80
+    print '[%04d/%04d] - %s' % (c, num, cur)
+    print '*' * 80
     act = cur.split('/')[4][3:].lstrip('0')
     scn = cur.split('/')[5][2:].lstrip('0')
     sht = cur.split('/')[6][2:].lstrip('0')
 
-    cmd = 'la_cmd ss %s-%s-%s;' % (act, scn, sht)
-    cmd += 'la_cmd shotPrep;'
+    end = cur.find('/img')
+    ij_shot_path = cur[:end]
+
+    os.environ['IJ_SHOT']      = '%s-%s-%s' % ( cur.split('/')[4][3:], cur.split('/')[5][2:], cur.split('/')[6][2:])
+    os.environ['IJ_SHOT_PATH'] = ij_shot_path
+    print os.environ['IJ_SHOT'], os.environ['IJ_SHOT_PATH']
+    cmd = 'la_cmd shotPrep;'
     # os.system(cmd)
-    subprocess.call(cmd, shell=True)
+    c += 1
+    print '\n' * 2
