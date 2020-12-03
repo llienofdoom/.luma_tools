@@ -7,7 +7,7 @@ import json
 shots_root = '/mnt/luma_i/shots'
 list_of_shots = ''
 if len(sys.argv) != 2:
-    print '1Please specify either [ ALL ] or [ ##-###-#### ].'
+    print 'Please specify either [ ALL ] or [ ##-###-#### ].'
     exit()
 else:
     if 'all' in sys.argv[1].lower():
@@ -26,9 +26,17 @@ else:
             path = shots_root + '/%s/%s/%s/img/animatic/*.mp4' % (a, c, s)
             list_of_shots = glob.glob(path)
         else:
-            print '2Please specify either [ ALL ] or [ ##-###-#### ].'
+            print 'Please specify either [ ALL ] or [ ##-###-#### ].'
             exit()
 num = len(list_of_shots)
-print num
-for i in list_of_shots:
-    print i
+
+c=1
+for cur in list_of_shots:
+    act = cur.split('/')[4][3:].lstrip('0')
+    scn = cur.split('/')[5][2:].lstrip('0')
+    sht = cur.split('/')[6][2:].lstrip('0')
+
+    cmd = 'la_cmd ss %s-%s-%s;' % (act, scn, sht)
+    os.system(cmd)
+    cmd = 'la_cmd shotPrep;'
+    os.system(cmd)

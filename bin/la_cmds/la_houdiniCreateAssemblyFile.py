@@ -14,12 +14,12 @@ bits = os.environ['IJ_SHOT'].split('-')
 name = 'act%s_sc%s_sh%s_assembly.hip' % (bits[0], bits[1], bits[2])
 hip_file_path = root + os.sep + name
 print '*' * 80
-if os.path.exists(hip_file_path):
-    do_it = raw_input('File already exists. Do you want to overwrite? (y|n) : ')
-    if 'y' in do_it:
-        print 'Overwriting...'
-    else:
-        exit()
+# if os.path.exists(hip_file_path):
+#     do_it = raw_input('File already exists. Do you want to overwrite? (y|n) : ')
+#     if 'y' in do_it:
+#         print 'Overwriting...'
+#     else:
+#         exit()
 
 print 'Building scene...'
 shot_builder_hda  = '/mnt/luma_i/assets/gen/tools/shot_builder_hda/ij_shot_builder.hda'
@@ -40,8 +40,8 @@ stereo_camera.parm('shot_builder').set(shot_builder.path())
 print 'Saving HIP file...'
 hou.hipFile.save(hip_file_path)
 
-print 'Exporting Mono View'
-stereo_camera.parm('execute4').pressButton()
+# print 'Exporting Mono View'
+# stereo_camera.parm('execute4').pressButton()
 
 # print 'Exporting Stereo View'
 # stereo_camera.parm('execute2').pressButton()
