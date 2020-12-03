@@ -39,7 +39,7 @@ for cur in list_of_shots:
 
     cmd = 'la_cmd ss %s-%s-%s;' % (act, scn, sht)
     # os.system(cmd)
-    subprocess.call( cmd.split(), shell=True )
+    subprocess.call( cmd, shell=True )
     cmd = 'la_cmd shotPrep;'
     # os.system(cmd)
-    subprocess.call( cmd.split(), shell=True )
+    subprocess.call( cmd, shell=True )
