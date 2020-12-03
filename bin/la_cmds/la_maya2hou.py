@@ -46,6 +46,6 @@ for cur in list_of_shots:
     os.environ['IJ_SHOT_PATH'] = ij_shot_path
     print os.environ['IJ_SHOT'], os.environ['IJ_SHOT_PATH']
     cmd = 'la_cmd shotPrep;'
-    # os.system(cmd)
+    os.system(cmd)
     c += 1
     print '\n' * 2
