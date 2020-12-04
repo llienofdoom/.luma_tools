@@ -35,7 +35,7 @@ cmds.loadPlugin('weightDriver')
 
 geos = cmds.ls('*:*geo_set')
 
-print '\n*10'
+print '\n' * 2
 
 print 'Exporting...'
 for geo in geos:
