@@ -47,7 +47,7 @@ for geo in geos:
     for i in children:
         geoToExport += '-root %s ' % i
 
-    command  = '-frameRange %d %d' % (f_start - 60, f_end)
+    command  = '-frameRange %d %d' % (f_start - 70, f_end)
     command += ' -uvWrite'
     command += ' -writeColorSets'
     command += ' -writeFaceSets'
