@@ -1,4 +1,5 @@
 import os
+import sys
 import glob
 import json
 
@@ -39,27 +40,31 @@ print '\n' * 2
 
 print 'Exporting...'
 for geo in geos:
-    name = geo.split(':')[0]
-    print 'Exporting', name
-    path = root + os.sep + 'geo' + os.sep + name + '.abc'
-    children = cmds.pickWalk(geo, direction='down')
-    geoToExport = ''
-    for i in children:
-        is_visible = cmds.getAttr(i + '.visibility')
-        if is_visible:
-            geoToExport += '-root %s ' % i
+    try:
+        name = geo.split(':')[0]
+        print 'Exporting', name
+        path = root + os.sep + 'geo' + os.sep + name + '.abc'
+        children = cmds.pickWalk(geo, direction='down')
+        geoToExport = ''
+        for i in children:
+            is_visible = cmds.getAttr(i + '.visibility')
+            if is_visible:
+                geoToExport += '-root %s ' % i
 
-    command  = '-frameRange %d %d' % (f_start, f_end)
-    command += ' -uvWrite'
-    command += ' -writeColorSets'
-    command += ' -writeFaceSets'
-    command += ' -wholeFrameGeo'
-    command += ' -worldSpace'
-    command += ' -writeVisibility'
-    command += ' -writeCreases'
-    command += ' -writeUVSets'
-    command += ' -dataFormat ogawa '
-    command += geoToExport 
-    command += ' -file %s' % path
-    # print command
-    cmds.AbcExport ( j=command )
+        command  = '-frameRange %d %d' % (f_start, f_end)
+        command += ' -uvWrite'
+        command += ' -writeColorSets'
+        command += ' -writeFaceSets'
+        command += ' -wholeFrameGeo'
+        command += ' -worldSpace'
+        command += ' -writeVisibility'
+        command += ' -writeCreases'
+        command += ' -writeUVSets'
+        command += ' -dataFormat ogawa '
+        command += geoToExport 
+        command += ' -file %s' % path
+        # print command
+        cmds.AbcExport ( j=command )
+    except Exception:
+        error = sys.exc_info()[0]
+        print 'Error on export.', error
