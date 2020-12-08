@@ -137,7 +137,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         mp | makeprev )
-          la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreview.py $2 $3;
+          time la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreview.py $2 $3;
         ;;
         #############################################################
         vs | viewstereo )
