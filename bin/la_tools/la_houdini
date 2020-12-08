@@ -27,16 +27,14 @@ export OCIO=$ocio_root/aces_1.2/config.ocio
 export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt/luma_i/assets/chr/tools:&"
 export HOUDINI_OTLSCAN_PATH=/mnt/luma_i/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
 
-case "$IJ_USER" in
-    nvermaak)
+case "$IJ_USER" in 
+    rob | mark )
+        houdinifx $@;
+        ;;
+    nvermaak | neill )
         export DELIGHT=~/software/3delight-2.3.9
         . $DELIGHT/.3delight_bash;
         export HOUDINI_PATH=$DELIGHT/Linux-x86_64/houdini/18.5:$HOUDINI_PATH
-        ;;
-esac
-
-case "$IJ_USER" in 
-    nvermaak | neill | rob | mark )
         houdinifx $@;
         ;;
     * )
