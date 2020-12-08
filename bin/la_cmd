@@ -141,7 +141,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         vs | viewstereo )
-          latest=$IJ_SHOT_PATH/img/camera/stereo.mp4
+          latest=$IJ_SHOT_PATH/img/camera/$IJ_SHOT_NAME\_stereo.mp4
           la_djv $latest
         ;;
         #############################################################
