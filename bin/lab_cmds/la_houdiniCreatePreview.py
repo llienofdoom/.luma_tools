@@ -2,7 +2,7 @@ import sys
 import os
 
 if len(sys.argv) != 3:
-    print 'Please type either mono or stereo, followed by the hipfile.'
+    print 'Please type either mono(m) or stereo(s) or both(b), followed by the hipfile.'
     exit()
 
 if os.environ['IJ_OS'] == 'mac':
@@ -34,20 +34,35 @@ if os.path.exists(hip_file_path):
     print 'Done. Moving along...'
 
     if ('mono' in sys.argv[1]) or ('m' in sys.argv[1]):
-        print '\tExporting Mono preview'
-        print '\t\tJPGS'
+        print 'Exporting Mono preview'
+        print '\tJPGS'
         stereo_camera.parm('execute4').pressButton()
-        print '\t\tMP4'
+        print '\tMP4'
         stereo_camera.parm('execute6').pressButton()
-        print '\t\tCLEANUP'
+        print '\tCLEANUP'
         stereo_camera.parm('execute7').pressButton()
     elif ('stereo' in sys.argv[1]) or ('s' in sys.argv[1]):
-        print '\tExporting Stereo preview'
-        print '\t\tJPGS'
+        print 'Exporting Stereo preview'
+        print '\tJPGS'
         stereo_camera.parm('execute2').pressButton()
-        print '\t\tMP4'
+        print '\tMP4'
         stereo_camera.parm('execute').pressButton()
-        print '\t\tCLEANUP'
+        print '\tCLEANUP'
+        stereo_camera.parm('execut5').pressButton()
+    elif ('both' in sys.argv[1]) or ('b' in sys.argv[1]):
+        print 'Exporting Mono preview'
+        print '\tJPGS'
+        stereo_camera.parm('execute4').pressButton()
+        print '\tMP4'
+        stereo_camera.parm('execute6').pressButton()
+        print '\tCLEANUP'
+        stereo_camera.parm('execute7').pressButton()
+        print 'Exporting Stereo preview'
+        print '\tJPGS'
+        stereo_camera.parm('execute2').pressButton()
+        print '\tMP4'
+        stereo_camera.parm('execute').pressButton()
+        print '\tCLEANUP'
         stereo_camera.parm('execut5').pressButton()
     else:
         exit()
