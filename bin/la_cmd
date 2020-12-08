@@ -32,7 +32,7 @@ function usage
     echo "  mayaExportAnim      : export animation to alembic from maya";
     echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
-    echo "  mp | makeprev       : make preview : mono or stereo and filename";
+    echo "  mp | makeprev       : make preview : mono(m) or stereo(s) and filename";
     echo "  vm | viewmono       : view exported mono sequence";
     echo "  vs | viewstereo     : view exported stereo sequence";
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";

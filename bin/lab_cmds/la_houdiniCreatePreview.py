@@ -27,19 +27,19 @@ if os.path.exists(hip_file_path):
         print 'Exporting Mono View'
         stereo_camera = hou.node('/obj/ij_stereo_camera_rig')
         stereo_camera.parm('execute4').pressButton()
+        stereo_camera.parm('execute6').pressButton()
+        stereo_camera.parm('execute7').pressButton()
 
     elif ('stereo' in sys.argv[1]) or ('s' in sys.argv[1]):
-        do_seq = raw_input('Do you want to create the sequence as well? (y|N) :')
         print 'Exporting STEREO view...'
         print 'Opening HIP file...'
         hou.hipFile.load(hip_file_path, suppress_save_prompt=True, ignore_load_warnings=True)
         print 'Exporting Stereo View'
         stereo_camera = hou.node('/obj/ij_stereo_camera_rig')
-        if do_seq == 'y':
-            print 'Exporting Sequence...'
-            stereo_camera.parm('execute2').pressButton()
         print 'Exporting MP4...'
+        stereo_camera.parm('execute2').pressButton()
         stereo_camera.parm('execute').pressButton()
+        stereo_camera.parm('execut5').pressButton()
     else:
         exit()
 
