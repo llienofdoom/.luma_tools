@@ -20,27 +20,33 @@ name = sys.argv[2]
 hip_file_path = root + os.sep + name
 print '*' * 80
 if os.path.exists(hip_file_path):
-    if ('mono' in sys.argv[1]) or ('m' in sys.argv[1]):
-        print 'Exporting MONO view...'
-        print 'Opening HIP file...'
-        hou.hipFile.load(hip_file_path, suppress_save_prompt=True, ignore_load_warnings=True)
-        print 'Exporting Mono View'
-        stereo_camera = hou.node('/obj/ij_stereo_camera_rig')
-        stereo_camera.parm('execute4').pressButton()
-        stereo_camera.parm('execute6').pressButton()
-        stereo_camera.parm('execute7').pressButton()
+    print 'Opening HIP file...'
+    hou.hipFile.load(hip_file_path, suppress_save_prompt=True, ignore_load_warnings=True)
+    print 'Done loading file.'
+    print 'Updating camera rig HDA...'
+    stereo_camera   = hou.node('/obj/ij_stereo_camera_rig')
+    stereo_hda_path = stereo_camera.type().definition().libraryFilePath()
+    stereo_def      = hou.hda.definitionsInFile(stereo_hda_path)[-1]
+    stereo_hda_name = stereo_def.nodeTypeName()
+    stereo_camera.changeNodeType(stereo_hda_name)
+    print 'Done. Moving along...'
 
+    if ('mono' in sys.argv[1]) or ('m' in sys.argv[1]):
+        print '\tExporting Mono preview'
+        print '\t\tJPGS'
+        stereo_camera.parm('execute4').pressButton()
+        print '\t\tMP4'
+        stereo_camera.parm('execute6').pressButton()
+        print '\t\tCLEANUP'
+        stereo_camera.parm('execute7').pressButton()
     elif ('stereo' in sys.argv[1]) or ('s' in sys.argv[1]):
-        print 'Exporting STEREO view...'
-        print 'Opening HIP file...'
-        hou.hipFile.load(hip_file_path, suppress_save_prompt=True, ignore_load_warnings=True)
-        print 'Exporting Stereo View'
-        stereo_camera = hou.node('/obj/ij_stereo_camera_rig')
-        print 'Exporting MP4...'
+        print '\tExporting Stereo preview'
+        print '\t\tJPGS'
         stereo_camera.parm('execute2').pressButton()
+        print '\t\tMP4'
         stereo_camera.parm('execute').pressButton()
+        print '\t\tCLEANUP'
         stereo_camera.parm('execut5').pressButton()
     else:
         exit()
-
 print 'Done.'
