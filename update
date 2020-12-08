@@ -3,6 +3,7 @@
 git add .
 git commit
 git checkout master
+pit pull
 git merge neill_dev
 git push
 git checkout neill_dev
