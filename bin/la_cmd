@@ -142,13 +142,14 @@ if [ "$1" != "" ]; then
         #############################################################
         vs | viewstereo )
           latest=$IJ_SHOT_PATH/img/camera/$IJ_SHOT_NAME\_stereo.mp4
-          la_djv $latest
+          if [[ $IJ_OS == "mac" ]]; then open $latest; fi
+          if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
         ;;
         #############################################################
         vm | viewmono )
-          latest=$(ls -td $IJ_SHOT_PATH/img/camera/* | head -1)
-          latest=$(ls $latest/mono*.jpg | head -1)
-          la_djv $latest
+          latest=$IJ_SHOT_PATH/img/camera/$IJ_SHOT_NAME\_mono.mp4
+          if [[ $IJ_OS == "mac" ]]; then open $latest; fi
+          if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
         ;;
         #############################################################
         vms | viewmonosc )
