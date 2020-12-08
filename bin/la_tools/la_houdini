@@ -32,9 +32,7 @@ case "$IJ_USER" in
         houdinifx $@;
         ;;
     nvermaak | neill )
-        export DELIGHT=~/software/3delight-2.3.9
-        . $DELIGHT/.3delight_bash;
-        export HOUDINI_PATH=$DELIGHT/Linux-x86_64/houdini/18.5:$HOUDINI_PATH
+        source ~/software/3delight-2.3.9/.3delight_bash;
         houdinifx $@;
         ;;
     * )
