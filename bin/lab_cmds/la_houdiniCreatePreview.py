@@ -63,7 +63,7 @@ if os.path.exists(hip_file_path):
         print '\tMP4'
         stereo_camera.parm('execute').pressButton()
         print '\tCLEANUP'
-        stereo_camera.parm('execut5').pressButton()
+        stereo_camera.parm('execute5').pressButton()
     else:
         exit()
 print 'Done.'
