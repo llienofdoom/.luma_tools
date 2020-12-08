@@ -4,6 +4,6 @@ git add .
 git commit
 git checkout master
 pit pull
-git merge neill_dev
+git merge $IJ_USER
 git push
-git checkout neill_dev
+git checkout $IJ_USER
