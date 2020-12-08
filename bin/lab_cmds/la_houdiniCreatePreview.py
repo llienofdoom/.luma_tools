@@ -29,7 +29,8 @@ if os.path.exists(hip_file_path):
     stereo_def      = hou.hda.definitionsInFile(stereo_hda_path)[-1]
     stereo_hda_name = stereo_def.nodeTypeName()
     stereo_camera   = stereo_camera.changeNodeType(stereo_hda_name)
-    stereo_camera   = stereo_camera.matchCurrentDefinition()
+    stereo_camera.matchCurrentDefinition()
+    stereo_camera   = hou.node('/obj/ij_stereo_camera_rig')
     print 'Done. Moving along...'
 
     if ('mono' in sys.argv[1]) or ('m' in sys.argv[1]):
