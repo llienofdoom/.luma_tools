@@ -73,7 +73,12 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         home )
-          cd $IJ_SHOT_PATH;
+          if [[ $IJ_TYPE == 'asset' ]]; then
+            cd $IJ_ASST_PATH;
+          fi
+          if [[ $IJ_TYPE == 'shot' ]]; then
+            cd $IJ_SHOT_PATH;
+          fi
         ;;
         #############################################################
         ls | list_shots )
