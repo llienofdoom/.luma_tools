@@ -57,8 +57,8 @@ export IJ_TOOLS_ROOT=$IJ_LUMA_PROJ_ROOT/_tools/.luma_tools
 export IJ_LOCAL_REPO=~/.luma_tools
 export IJ_DATE=$(date "+%Y-%m-%d")
 export PATH=/usr/local/bin:$PATH
-export PATH=$IJ_TOOLS_ROOT/bin:$PATH
 export PATH=$IJ_LOCAL_REPO/bin:$PATH
+export PATH=$IJ_LOCAL_REPO/bin/la_tools:$PATH
 
 #####################################################################
 # echo -e "Getting previous console settings..."

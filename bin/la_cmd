@@ -68,7 +68,6 @@ if [ "$1" != "" ]; then
         ex | explore )
           if [[ $IJ_OS == "cyg" ]]; then explorer .; fi;
           if [[ $IJ_OS == "mac" ]]; then open .;     fi;
-          # if [[ $IJ_OS == "lin" ]]; then nautilus .; fi;
           if [[ $IJ_OS == "lin" ]]; then gio open .; fi;
         ;;
         #############################################################
@@ -82,20 +81,20 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         ls | list_shots )
-          python $IJ_LOCAL_REPO/bin/la_cmds/la_shots_list $2;
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_shots_list $2;
         ;;
         #############################################################
         la | list_assets )
-          python $IJ_LOCAL_REPO/bin/la_cmds/la_assets_list $2;
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_assets_list $2;
         ;;
         #############################################################
         ss | set_shot )
-          . $IJ_LOCAL_REPO/bin/la_cmds/la_set shot $2;
+          . $IJ_LOCAL_REPO/bin/lab_cmds/la_set shot $2;
           . $IJ_LOCAL_REPO/env/ij_bashrc
         ;;
         #############################################################
         sa | set_asset )
-          . $IJ_LOCAL_REPO/bin/la_cmds/la_set asset $2;
+          . $IJ_LOCAL_REPO/bin/lab_cmds/la_set asset $2;
           . $IJ_LOCAL_REPO/env/ij_bashrc
         ;;
         #############################################################
@@ -108,7 +107,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         makett )
-          $IJ_LOCAL_REPO/bin/la_cmds/la_ffmpegTT;
+          $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpegTT;
         ;;
         #############################################################
         viewtt )
@@ -117,28 +116,28 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         shotPrep )
-          la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim.py;
-          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
+          la_mayapy $IJ_LOCAL_REPO/bin/lab_cmds/la_mayaExportGeoFromAnim.py;
+          la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreateAssemblyFile.py;
         ;;
         #############################################################
         maya2hou )
-          python $IJ_LOCAL_REPO/bin/la_cmds/la_maya2hou.py $2;
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_maya2hou.py $2;
         ;;
         #############################################################
         mayaExportAnim )
-          la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim.py;
+          la_mayapy $IJ_LOCAL_REPO/bin/lab_cmds/la_mayaExportGeoFromAnim.py;
         ;;
         #############################################################
         mayaExportAnimLookDev )
-          la_mayapy $IJ_LOCAL_REPO/bin/la_cmds/la_mayaExportGeoFromAnim_forLookDev.py;
+          la_mayapy $IJ_LOCAL_REPO/bin/lab_cmds/la_mayaExportGeoFromAnim_forLookDev.py;
         ;;
         #############################################################
         houAssemble )
-          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreateAssemblyFile.py;
+          la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreateAssemblyFile.py;
         ;;
         #############################################################
         mp | makeprev )
-          la_hython $IJ_LOCAL_REPO/bin/la_cmds/la_houdiniCreatePreview.py $2 $3;
+          la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreview.py $2 $3;
         ;;
         #############################################################
         vs | viewstereo )
@@ -153,15 +152,15 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         vms | viewmonosc )
-          python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene_mono.py $2;
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_mono.py $2;
         ;;
         #############################################################
         vss | viewstereosc )
-          python $IJ_LOCAL_REPO/bin/la_cmds/la_mrviewer_scene_stereo.py $2;
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_stereo.py $2;
         ;;
         #############################################################
         fa | fromaces )
-          $IJ_LOCAL_REPO/bin/la_cmds/la_aces_convert $2;
+          $IJ_LOCAL_REPO/bin/lab_cmds/la_aces_convert $2;
         ;;
         #############################################################
       -h | --help | h | help )
@@ -174,4 +173,3 @@ if [ "$1" != "" ]; then
 else
     usage;
 fi
-
