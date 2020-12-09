@@ -59,7 +59,7 @@ for cur in list_of_shots:
         hip_file = hip_file[-1]
         cmd = 'la_cmd mp %s %s;' % (sys.argv[1].lower(), hip_file)
         print cmd
-        # os.system(cmd)
+        os.system(cmd)
         c += 1
         print '\n' * 2
     else:
