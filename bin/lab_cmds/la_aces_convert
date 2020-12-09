@@ -5,4 +5,4 @@ if [[ $IJ_OS == "lin" ]]; then export OCIO=/opt/OpenColorIO-Configs/aces_1.2/con
 
 inputname=$1
 basename=$"${inputname%.*}"
-oiiotool $inputname --iscolorspace "ACES - ACEScg" --tocolorspace "Output - sRGB" -o $basename.jpg
+oiiotool $inputname --iscolorspace "ACES - ACEScg" --tocolorspace "Output - sRGB" -ch R,G,B -o $basename.jpg
