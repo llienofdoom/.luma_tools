@@ -54,10 +54,13 @@ for cur in list_of_shots:
     os.chdir(os.environ['IJ_SHOT_PATH'])
 
     hip_file_search = './%s_%s' % (os.environ['IJ_SHOT_NAME'], hip_type)
-    hip_file = glob.glob(hip_file_search)[-1]
-
-    cmd = 'la_cmd mp %s %s;' % (sys.argv[1].lower(), hip_file)
-    # print cmd
-    os.system(cmd)
-    c += 1
-    print '\n' * 2
+    hip_file = glob.glob(hip_file_search)
+    if len(hip_file) > 0:
+        hip_file = hip_file[-1]
+        cmd = 'la_cmd mp %s %s;' % (sys.argv[1].lower(), hip_file)
+        print cmd
+        # os.system(cmd)
+        c += 1
+        print '\n' * 2
+    else:
+        continue
