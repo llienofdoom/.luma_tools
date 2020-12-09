@@ -38,7 +38,7 @@ function usage
     echo "  vs | viewstereo     : view exported stereo sequence";
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
     echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
-    echo "  se | seqedit        : generate scene video : lab se 25";
+    echo "  se | seqedit        : generate scene video : lab se (m)(s) (ass)(cam)(ren) 25";
     echo "  fa | fromaces       : convert exrf from aces to srgb, lab fa [filename].";
     echo ""
     echo "  h | help            : This message";
@@ -167,7 +167,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         se | seqedit )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_seqedit.py $2;
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_seqedit.py $2 $3 $4;
         ;;
         #############################################################
         fa | fromaces )
