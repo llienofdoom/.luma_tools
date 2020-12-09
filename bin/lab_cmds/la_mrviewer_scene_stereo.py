@@ -11,7 +11,7 @@ if len(sys.argv) == 2:
         scene_folder = scene_folder[0]
         for (dirpath, dirnames, filenames) in os.walk(scene_folder):
             for shot in dirnames:
-                shot_path = scene_folder + os.sep + shot + os.sep + 'img/camera/stereo.mp4'
+                shot_path = scene_folder + os.sep + shot + os.sep + 'img/camera/act*_sc*_sh*_stereo.mp4'
                 vid = glob.glob(shot_path)
                 if len(vid) > 0:
                     vid = vid[0]
