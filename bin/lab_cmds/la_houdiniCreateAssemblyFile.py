@@ -40,8 +40,8 @@ stereo_camera.parm('shot_builder').set(shot_builder.path())
 print 'Saving HIP file...'
 hou.hipFile.save(hip_file_path)
 
-print 'Exporting Mono View'
-stereo_camera.parm('execute4').pressButton()
+# print 'Exporting Mono View'
+# stereo_camera.parm('execute4').pressButton()
 
 # print 'Exporting Stereo View'
 # stereo_camera.parm('execute2').pressButton()
