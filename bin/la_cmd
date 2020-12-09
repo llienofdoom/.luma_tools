@@ -33,6 +33,7 @@ function usage
     echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
     echo "  mp | makeprev       : make preview : mono(m), stereo(s) or both(b) and filename";
+    echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
     echo "  vm | viewmono       : view exported mono sequence";
     echo "  vs | viewstereo     : view exported stereo sequence";
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
@@ -137,7 +138,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         mp | makeprev )
-          /usr/bin/time --format="%E" la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreview.py $2 $3;
+          la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreview.py $2 $3;
+        ;;
+        #############################################################
+        mps | makeprevs )
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreviews.py $2 $3 $4;
         ;;
         #############################################################
         vs | viewstereo )
