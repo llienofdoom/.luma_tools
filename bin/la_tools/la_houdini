@@ -33,7 +33,7 @@ export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_REL
 export QLIB=$houdini_tools/qLib-0.2.185
 export QOTL=$QLIB/otls
 
-export HOUDINI_OTLSCAN_PATH=$QOTL/base:$QOTL/future:$QOTL/experimental:$HOUDINI_OTLSCAN_PATH:&
+export HOUDINI_OTLSCAN_PATH=$QOTL/base:$QOTL/future:$QOTL/experimental:$HOUDINI_OTLSCAN_PATH
 export HOUDINI_PATH=$QLIB:$HOUDINI_PATH
 
 case "$IJ_USER" in 
