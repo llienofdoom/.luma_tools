@@ -2,13 +2,13 @@
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export houdini_root=/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources;
+    export houdini_root=/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources
     export arnold_root=~/htoa
     export ocio_root=/mnt/luma_h/SITE/ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export houdini_root=/opt/houdini/hfs18.5.351;
+    export houdini_root=/opt/houdini/hfs18.5.408
     export arnold_root=/opt/htoa
     export ocio_root=/opt/OpenColorIO-Configs
 fi
@@ -18,11 +18,13 @@ cd $houdini_root
 . houdini_setup_bash
 
 # ARNOLD
-# HTOA=$arnold_root"/htoa-5.5.0.0_r5b05c8c_houdini-18.5.351/htoa-5.5.0.0_r5b05c8c_houdini-18.5.351"
-# export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE};${HTOA};${HFS}/houdini"
+HTOA=$arnold_root"/htoa-5.5.0.1_r45f2926_houdini-18.5.408/htoa-5.5.0.1_r45f2926_houdini-18.5.408"
+export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE}:${HTOA}:${HFS}/houdini:&"
 
 popd
 
 export OCIO=$ocio_root/aces_1.2/config.ocio
+export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt/luma_i/assets/chr/tools:&"
+export HOUDINI_OTLSCAN_PATH=/mnt/luma_i/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
 
 hython $@
