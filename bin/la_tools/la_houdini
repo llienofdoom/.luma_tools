@@ -41,8 +41,8 @@ case "$IJ_USER" in
         houdinifx $@
         ;;
     nvermaak | neill )
-        . /home/neill@luma.local/software/3delight-2.3.9/.3delight_bash
-        export HOUDINI_PATH=$HOUDINI_PATH:/home/neill@luma.local/software/3delight-2.3.9/Linux-x86_64/houdini/18.5
+        # . /home/neill@luma.local/software/3delight-2.3.9/.3delight_bash
+        # export HOUDINI_PATH=$HOUDINI_PATH:/home/neill@luma.local/software/3delight-2.3.9/Linux-x86_64/houdini/18.5
         houdinifx $@
         ;;
     * )
