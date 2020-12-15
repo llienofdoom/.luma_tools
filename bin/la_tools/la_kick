@@ -17,4 +17,4 @@ export OCIO=$ocio_root/aces_1.2/config.ocio
 HTOA=$arnold_root"/htoa-5.5.0.1_r45f2926_houdini-18.5.408/htoa-5.5.0.1_r45f2926_houdini-18.5.408"
 export PATH=$HTOA/scripts/bin:$PATH
 
-kick $@
+kick -dw -dp -nostdin -sl $@
