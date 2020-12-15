@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    export arnold_root=~/htoa
+    export ocio_root=/mnt/luma_h/SITE/ocio
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    export arnold_root=/opt/htoa
+    export ocio_root=/opt/OpenColorIO-Configs
+fi
+
+export OCIO=$ocio_root/aces_1.2/config.ocio
+
+# ARNOLD
+HTOA=$arnold_root"/htoa-5.5.0.1_r45f2926_houdini-18.5.408/htoa-5.5.0.1_r45f2926_houdini-18.5.408"
+export PATH=$HTOA/scripts/bin:$PATH
+
+kick $@
