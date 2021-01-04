@@ -17,6 +17,7 @@ if   [[ $1 == "shot"   ]]; then
     # dealing with abc shots...
     if [[ "$sh" =~ [a-z] ]]; 
     then
+        len=${#sh}; echo $len;
         n=${sh:0:3}; echo $n; 
         l=${sh:3:1}; echo $l;
         sh=$(printf "%04d%s" $n $l )
