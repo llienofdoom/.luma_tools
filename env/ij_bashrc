@@ -59,6 +59,7 @@ export IJ_DATE=$(date "+%Y-%m-%d")
 export PATH=/usr/local/bin:$PATH
 export PATH=$IJ_LOCAL_REPO/bin:$PATH
 export PATH=$IJ_LOCAL_REPO/bin/la_tools:$PATH
+if [[ $IJ_OS == "lin" ]]; then export PATH=/opt/opencue/cuegui:$PATH; fi
 
 #####################################################################
 # echo -e "Getting previous console settings..."
