@@ -2,15 +2,15 @@
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export 3dcoat_home=''
+    export coat_home=''
     export ocio_root=/mnt/luma_h/SITE/ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export 3dcoat_home='/opt/3dcoat/3DCoat-4.8.23'
+    export coat_home='/opt/3dcoat/3DCoat-4.8.23'
     export ocio_root=/opt/OpenColorIO-Configs
 fi
 
 export OCIO=$ocio_root/aces_1.2/config.ocio
 
-3d-coat-64 $@
+$coathome/3d-coat-64 $@
