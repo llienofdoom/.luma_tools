@@ -60,6 +60,7 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$IJ_LOCAL_REPO/bin:$PATH
 export PATH=$IJ_LOCAL_REPO/bin/la_tools:$PATH
 if [[ $IJ_OS == "lin" ]]; then export PATH=/opt/opencue/cuegui:$PATH; fi
+if [[ $IJ_OS == "lin" ]]; then alias pureref='/opt/pureref/PureRef-1.11.1_x64.Appimage'; fi
 
 #####################################################################
 # echo -e "Getting previous console settings..."
