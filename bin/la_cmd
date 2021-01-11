@@ -39,7 +39,8 @@ function usage
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
     echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
     echo "  se | seqedit        : generate scene video : lab se (m)(s) (ass)(cam)(ren) 25";
-    echo "  fa | fromaces       : convert exrf from aces to srgb, lab fa [filename].";
+    echo "  editUpdate | eu     : update shots for edit : lab eu (a)";
+    echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
     echo ""
     echo "  h | help            : This message";
     echo "#####################################################################"
