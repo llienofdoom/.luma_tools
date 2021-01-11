@@ -13,4 +13,4 @@ fi
 
 export OCIO=$ocio_root/aces_1.2/config.ocio
 
-$coathome/3d-coat-64 $@
+$coat_home/3d-coat-64 $@
