@@ -53,10 +53,11 @@ export IJ_ORIG_PROJ_ROOT=/job
 export IJ_LUMA_PROJ_ROOT=$LUMA_PROJECTS_ROOT/luma_i
 # if [[ $IJ_OS == "cyg" ]]; then export IJ_LUMA_PROJ_ROOT=$(cygpath -w $IJ_LUMA_PROJ_ROOT); fi
 export JOB=$IJ_LUMA_PROJ_ROOT
-export IJ_TOOLS_ROOT=$IJ_LUMA_PROJ_ROOT/_tools/.luma_tools
+export IJ_TOOLS_ROOT=$IJ_LUMA_PROJ_ROOT/_tools/luma_tools
 export IJ_LOCAL_REPO=~/.luma_tools
 export IJ_DATE=$(date "+%Y-%m-%d")
 export PATH=/usr/local/bin:$PATH
+export PATH=$IJ_TOOLS_ROOT/bin:$IJ_TOOLS_ROOT/bin/la_tools:$PATH
 export PATH=$IJ_LOCAL_REPO/bin:$PATH
 export PATH=$IJ_LOCAL_REPO/bin/la_tools:$PATH
 if [[ $IJ_OS == "lin" ]]; then export PATH=/opt/opencue/cuegui:$PATH; fi
