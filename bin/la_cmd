@@ -27,6 +27,9 @@ function usage
     echo "  ani | animatic      : view the animatic video";
     echo "  makett              : generate a turntable of the selected asset";
     echo "  viewtt              : view turntable of selected asset";
+    echo ""
+    echo "  makevid | mv        : generate an mp4 from a sequence. NOT ACES YET.";
+    echo ""
     echo "  shotPrep            : export abc from maya, and setup houdini";
     echo "  maya2hou            : shotPrep batch mode";
     echo "  mayaExportAnim      : export animation to alembic from maya";
@@ -116,6 +119,10 @@ if [ "$1" != "" ]; then
         viewtt )
           latest_mp4=$(ls -td $IJ_ASST_PATH/img/render/*.mp4)
           la_djv $latest_mp4
+        ;;
+        #############################################################
+        makevid | mv )
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makevid.py $2;
         ;;
         #############################################################
         shotPrep )
