@@ -14,7 +14,7 @@ if len(sys.argv) == 2:
     cmd += ' -start_number %d' % first_frame
     cmd += ' -i %s.%s.%s' % (search_pattern, '%04d', search_extention)
     cmd += ' -pix_fmt yuv420p -c:v libx264 -crf 25'
-    cmd += ' ../%s.mp4' % search_pattern
+    cmd += ' %s.mp4' % search_pattern
 
     os.system( cmd )
 else:
