@@ -14,6 +14,7 @@ function usage
     echo "  update              : update the tools from the global repo";
     echo "  ex | explore        : open a file browser where you are";
     echo "  home                : go to shot/asset root folder";
+    echo "  farm                : switch farm render on or off, ie lab farm on";
     echo ""
     echo "  ls | list_shots     : list the available shots";
     echo "  la | list_assets    : list the available assets, one of ";
@@ -84,6 +85,12 @@ if [ "$1" != "" ]; then
           if [[ $IJ_TYPE == 'shot' ]]; then
             cd $IJ_SHOT_PATH;
           fi
+        ;;
+        #############################################################
+        farm )
+          if [[ $2 == "on" ]]; then echo "FARM ON"; cueadmin -host $HOSTNAME -unlock; 
+          elif [[ $2 == "off" ]]; then echo "FARM OFF"; cueadmin -host $HOSTNAME -lock;
+          else echo "Please type lab farm [on | off]"; fi
         ;;
         #############################################################
         ls | list_shots )
