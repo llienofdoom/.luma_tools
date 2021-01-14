@@ -47,6 +47,7 @@ function usage
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
     echo ""
     echo "  h | help            : This message";
+    echo "  wiki                : Opens the luma wiki in a browser.";
     echo "#####################################################################"
 }
 
@@ -193,8 +194,13 @@ if [ "$1" != "" ]; then
           $IJ_LOCAL_REPO/bin/lab_cmds/la_aces_convert $2;
         ;;
         #############################################################
-      -h | --help | h | help )
+        -h | --help | h | help )
           usage;
+        ;;
+        #############################################################
+        wiki )
+          if [[ $IJ_OS == "mac" ]]; then open http://192.168.35.1:8090; fi
+          if [[ $IJ_OS == "lin" ]]; then firefox http://192.168.35.1:8090; fi
         ;;
       * )
           usage;
