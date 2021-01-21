@@ -48,6 +48,7 @@ function usage
     echo ""
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
+    echo "  edit_info     | esi : edits the shot infor file.";
     echo "#####################################################################"
 }
 
@@ -201,6 +202,10 @@ if [ "$1" != "" ]; then
         wiki )
           if [[ $IJ_OS == "mac" ]]; then open http://192.168.35.1:8090; fi
           if [[ $IJ_OS == "lin" ]]; then firefox http://192.168.35.1:8090; fi
+        ;;
+        #############################################################
+        edit_info | esi )
+          vim $IJ_SHOT_PATH/shot_info.json
         ;;
       * )
           usage;
