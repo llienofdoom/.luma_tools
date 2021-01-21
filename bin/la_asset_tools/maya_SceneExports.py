@@ -1,34 +1,78 @@
-import maya.standalone
-import sys
-import maya.cmds as cmds
 import json
 import os
+import sys
 import pprint
 import csv
 from sys import platform
 from shutil import copyfile
 import glob
 
+if len(sys.argv) != 4:
+    print "You're an idiot. Please RTFM."
+    sys.exit()
+
+scenefile          = ''
+outpath            = ''
+assetType          = ''
+doExportMatDict    = 0
+doExportShaderDict = 0
+doExportAlembic    = 0
+doExportAssetDict  = 0
+doExportAssetTex   = 0
+doExportRibDict    = 0
+
+ask = raw_input('Customize? : (Y/n)')
+if 'y' in ask.lower():
+    scenefile = sys.argv[1]
+    outpath   = sys.argv[2]
+    assetType = sys.argv[3]
+    print 'Please enter binary string for options. [doMat | doShad | doAlem | doAssDic | doAssTex | doRibDic]'
+    print '\teg : 101101.'
+    choice = raw_input('GO :')
+    doExportMatDict    = int(choice[0])
+    doExportShaderDict = int(choice[1])
+    doExportAlembic    = int(choice[2])
+    doExportAssetDict  = int(choice[3])
+    doExportAssetTex   = int(choice[4])
+    doExportRibDict    = int(choice[5])
+
+elif 'n' in ask.lower():
+    scenefile = sys.argv[1]
+    outpath   = sys.argv[2]
+    assetType = sys.argv[3]
+    doExportMatDict    = 1
+    doExportShaderDict = 1
+    doExportAlembic    = 1
+    doExportAssetDict  = 0
+    doExportAssetTex   = 0
+    doExportRibDict    = 1
+    
+else:
+    print 'do NOTHING'
+    sys.exit()
 
 print('\n===================================== RUNNING MAYA FROM COMMAND LINE ========================================')
 
+import maya.standalone
+import sys
+import maya.cmds as cmds
 maya.standalone.initialize()
 cmds.loadPlugin("AbcExport")
 # cmds.loadPlugin("RenderMan_for_Maya")
 
-# boobs scenefile outpath assetType 
+# boobs scenefile outpath assetType {domat(1) doshad(1) doalemb(1) doassdic(0) doasstex(0) doribdic(1)}
 
-pprint.pprint(sys.argv)
-scenefile = sys.argv[1]
-outpath = sys.argv[2]
-assetType = sys.argv[3]
+# pprint.pprint(sys.argv)
+# scenefile = sys.argv[1]
+# outpath = sys.argv[2]
+# assetType = sys.argv[3]
 
-doExportMatDict = int(sys.argv[4])
-doExportShaderDict = int(sys.argv[5])
-doExportAlembic = int(sys.argv[6])
-doExportAssetDict = int(sys.argv[7])
-doExportAssetTex = int(sys.argv[8])
-doExportRibDict = int(sys.argv[9])
+# doExportMatDict = int(sys.argv[4])
+# doExportShaderDict = int(sys.argv[5])
+# doExportAlembic = int(sys.argv[6])
+# doExportAssetDict = int(sys.argv[7])
+# doExportAssetTex = int(sys.argv[8])
+# doExportRibDict = int(sys.argv[9])
 
 
 #scenefile = r"U:/ij_luma/_tools/_dev/Stephen/testscenes/chr_ij_mst_norman_chr_9.mb"
