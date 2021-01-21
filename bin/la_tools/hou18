@@ -3,13 +3,11 @@
 if [[ $IJ_OS == "mac" ]]; 
 then 
     export houdini_root=/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources
-    export houdini_tools=''
     export ocio_root=/mnt/luma_h/SITE/ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
     export houdini_root=/opt/houdini/Houdini18.0.566
-    export houdini_tools=/opt/houdini/tools
     export ocio_root=/opt/OpenColorIO-Configs
 fi
 
@@ -22,13 +20,6 @@ popd
 export OCIO=$ocio_root/aces_1.2/config.ocio
 export HOUDINI_OTLSCAN_PATH="&"
 export HOUDINI_OTLSCAN_PATH=/mnt/luma_x/Pou/assets/la_peacock/hda:$HOUDINI_OTLSCAN_PATH
-
-# qLib
-export QLIB=$houdini_tools/qLib-0.2.185
-export QOTL=$QLIB/otls
-
-export HOUDINI_OTLSCAN_PATH=$QOTL/base:$QOTL/future:$QOTL/experimental:$HOUDINI_OTLSCAN_PATH
-export HOUDINI_PATH=$QLIB:$HOUDINI_PATH
 
 case "$IJ_USER" in 
     rob | mark | nvermaak | neill | llien )
