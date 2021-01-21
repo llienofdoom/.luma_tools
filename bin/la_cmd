@@ -164,7 +164,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         ass_tohip | ah )
-          la_hython$IJ_LOCAL_REPO/bin/la_asset_tools/hou_buildHip.py $2 $3;
+          la_hython $IJ_LOCAL_REPO/bin/la_asset_tools/hou_buildHip.py $2 $3;
         ;;
         #############################################################
         mp | makeprev )
