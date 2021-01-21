@@ -6,6 +6,12 @@ import shutil
 import hou
 from sys import platform
 
+if len(sys.argv) != 3:
+    print "You're an idiot. Please RTFM, and type lab ae [inputPath] [assetType]."
+    sys.exit()
+
+# boobs basefolder asset_type
+
 # geoname = "chr_ij_mst_zolthard_chr_9"
 # assetType = 'chr'
 # inpath = "U:/ij_luma/_tools/_dev/Stephen/testoutput/" + assetType + '/' + geoname+'/'
@@ -20,7 +26,7 @@ outpath = 'i:/_luma/ij_luma/_tools/_dev/Stephen/testoutput/' + assetType + '/' +
 inpath = sys.argv[1]
 # output arg isn't getting used. We build the scene in the same folder as the input
 #outpath = sys.argv[2]
-assetType = sys.argv[3]
+assetType = sys.argv[2]
 
 
 inpath = inpath.rstrip('/')

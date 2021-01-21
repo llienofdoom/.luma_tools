@@ -160,11 +160,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         ass_export | ae )
-          la_mayapy $IJ_LOCAL_REPO/bin/la_asset_tools/maya_SceneExports.py $2 $3 $4;
+          la_mayapy $IJ_LOCAL_REPO/bin/la_asset_tools/maya_SceneExports.py $2 $3;
         ;;
         #############################################################
         ass_tohip | ah )
-          echo "BOOBS"
+          la_hython$IJ_LOCAL_REPO/bin/la_asset_tools/hou_buildHip.py $2 $3;
         ;;
         #############################################################
         mp | makeprev )

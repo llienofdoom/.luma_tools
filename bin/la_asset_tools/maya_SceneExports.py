@@ -7,12 +7,12 @@ from sys import platform
 from shutil import copyfile
 import glob
 
-if len(sys.argv) != 4:
-    print "You're an idiot. Please RTFM."
+if len(sys.argv) != 3:
+    print "You're an idiot. Please RTFM, and type lab ae [scenefile] [assetType]."
     sys.exit()
 
 scenefile          = ''
-outpath            = ''
+outpath            = '/mnt/luma_i/assets/'
 assetType          = ''
 doExportMatDict    = 0
 doExportShaderDict = 0
@@ -21,14 +21,13 @@ doExportAssetDict  = 0
 doExportAssetTex   = 0
 doExportRibDict    = 0
 
-ask = raw_input('Customize? : (Y/n)')
+ask = raw_input('Customize? : (Y/n) : ')
 if 'y' in ask.lower():
     scenefile = sys.argv[1]
-    outpath   = sys.argv[2]
-    assetType = sys.argv[3]
+    assetType = sys.argv[2]
     print 'Please enter binary string for options. [doMat | doShad | doAlem | doAssDic | doAssTex | doRibDic]'
     print '\teg : 101101.'
-    choice = raw_input('GO :')
+    choice = raw_input('GO : ')
     doExportMatDict    = int(choice[0])
     doExportShaderDict = int(choice[1])
     doExportAlembic    = int(choice[2])
@@ -38,8 +37,7 @@ if 'y' in ask.lower():
 
 elif 'n' in ask.lower():
     scenefile = sys.argv[1]
-    outpath   = sys.argv[2]
-    assetType = sys.argv[3]
+    assetType = sys.argv[2]
     doExportMatDict    = 1
     doExportShaderDict = 1
     doExportAlembic    = 1
