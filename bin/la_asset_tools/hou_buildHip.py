@@ -5,7 +5,7 @@ import sys
 import shutil
 import hou
 from sys import platform
-
+###### HIII
 if len(sys.argv) != 3:
     print "You're an idiot. Please RTFM, and type lab ae [inputPath] [assetType]."
     sys.exit()
