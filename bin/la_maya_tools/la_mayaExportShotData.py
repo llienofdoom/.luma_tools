@@ -109,7 +109,7 @@ if len(env_geo_static) > 0:
     for i in env_geo_static:
         try:
             transform = cmds.listRelatives(i, parent=True, fullPath=True)[0]
-            transform = cmds.rename( transform, transform + '_' + str(random.random()).replace('.', '') )
+            transform = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
             export_string += ' -root %s ' % transform
         except:
             pass
@@ -129,7 +129,7 @@ if len(env_geo_anim) > 0:
     for i in env_geo_anim:
         try:
             transform = cmds.listRelatives(i, parent=True, fullPath=True)[0]
-            transform = cmds.rename( transform, transform + '_' + str(random.random()).replace('.', '') )
+            transform = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
             export_string += ' -root %s ' % transform
         except:
             pass
