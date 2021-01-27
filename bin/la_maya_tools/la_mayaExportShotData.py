@@ -20,6 +20,7 @@ print 'Opening fake file'
 cmds.file('/mnt/luma_i/assets/chr/rig/ij_chr_alejandro/50/characters_ij_chr_alejandro_50.mb', open=True, force=True, resetError=True)
 print 'Opening ', anim_file_path
 cmds.file(anim_file_path, open=True, force=True, resetError=True)
+cmds.loadPlugin('AbcExport')
 
 # The fun starts here... ######################################################
 print '\n' * 5
