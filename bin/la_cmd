@@ -36,6 +36,7 @@ function usage
     echo "  mayaExportAnim      : export animation to alembic from maya";
     echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
+    echo "  mesd                : Maya Export Shot Data. WIP";
     echo ""
     echo "  ass_export | ae     : export assets from maya.";
     echo "  ass_tohip | ah      : build hip for asset files of doom.";
@@ -161,6 +162,10 @@ if [ "$1" != "" ]; then
           la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreateAssemblyFile.py;
         ;;
         #############################################################
+        mesd )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaExportShotData.py;
+        ;;
+        #############################################################
         ass_export | ae )
           la_mayapy $IJ_LOCAL_REPO/bin/la_asset_tools/maya_SceneExports.py $2 $3;
         ;;
@@ -202,7 +207,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         eus | editUpdateSources )
-          python $IJ_LOCAL_REPO/bin/la_edit_cmds/la_editUpdateSources.py $2 $3;
+          python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources.py $2 $3;
         ;;
         #############################################################
         fa | fromaces )
