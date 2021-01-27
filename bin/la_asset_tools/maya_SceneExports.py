@@ -36,7 +36,7 @@ if 'y' in ask.lower():
     doExportRibDict    = int(choice[5])
 
 elif 'n' in ask.lower():
-    scenefile = sys.argv[1]
+    scenefile = sys.argv[1] # TODO : fix path calc to be more auto, and also not
     assetType = sys.argv[2]
     doExportMatDict    = 1
     doExportShaderDict = 1

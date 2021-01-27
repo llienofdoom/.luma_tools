@@ -71,6 +71,7 @@ if [ "$1" != "" ]; then
         update )
           pushd .
           cd $IJ_LOCAL_REPO
+          git checkout master
           git config pull.rebase false
           git fetch --all
           git reset --hard origin/master
