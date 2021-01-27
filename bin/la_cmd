@@ -40,6 +40,7 @@ function usage
     echo "  ass_export | ae     : export assets from maya.";
     echo "  ass_tohip | ah      : build hip for asset files of doom.";
     echo ""
+    echo "  edit_info     | esi : edits the shot infor file.";
     echo "  mp | makeprev       : make preview : mono(m), stereo(s) or both(b) and filename";
     echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
     echo "  vm | viewmono       : view exported mono sequence";
@@ -52,7 +53,7 @@ function usage
     echo ""
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
-    echo "  edit_info     | esi : edits the shot infor file.";
+    echo "  mon                 : Opens the luma monitor in a browser.";
     echo "#####################################################################"
 }
 
@@ -215,6 +216,11 @@ if [ "$1" != "" ]; then
         wiki )
           if [[ $IJ_OS == "mac" ]]; then open http://192.168.35.1:8090; fi
           if [[ $IJ_OS == "lin" ]]; then firefox http://192.168.35.1:8090; fi
+        ;;
+        #############################################################
+        mon )
+          if [[ $IJ_OS == "mac" ]]; then open http://192.168.35.1:3000/; fi
+          if [[ $IJ_OS == "lin" ]]; then firefox http://192.168.35.1:3000/; fi
         ;;
         #############################################################
         edit_info | esi )
