@@ -108,10 +108,13 @@ if len(env_geo_static) > 0:
     print 'Creating unique names...',
     for i in env_geo_static:
         try:
-            transform = cmds.listRelatives(i, parent=True, fullPath=True)[0]
-            transform = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
+            transform  = cmds.listRelatives(i, parent=True, fullPath=True)[0]
+            parentname = cmds.listRelatives(transform, parent=True, fullPath=True)[0].replace('|', '_').replace(':', '_')
+            transform  = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
+            transform  = cmds.rename( transform, transform.split(parentname)[-1][1:] )
             export_string += ' -root %s ' % transform
-        except:
+        except Exception as err:
+            # print err, '\nFailed at rename STATIC', i
             pass
     print 'Done. Exporting... ',
     cmd  = '-frameRange %d %d' % (frame_s, frame_s)
@@ -128,10 +131,13 @@ if len(env_geo_anim) > 0:
     print 'Creating unique names...',
     for i in env_geo_anim:
         try:
-            transform = cmds.listRelatives(i, parent=True, fullPath=True)[0]
-            transform = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
+            transform  = cmds.listRelatives(i, parent=True, fullPath=True)[0]
+            parentname = cmds.listRelatives(transform, parent=True, fullPath=True)[0].replace('|', '_').replace(':', '_')
+            transform  = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
+            transform  = cmds.rename( transform, transform.split(parentname)[-1][1:] )
             export_string += ' -root %s ' % transform
-        except:
+        except Exception as err:
+            # print err, '\nFailed at rename ANIMATED', i
             pass
     print 'Done. Exporting... ',
     cmd  = '-frameRange %d %d' % (frame_s - 1, frame_e + 1)
