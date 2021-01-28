@@ -74,7 +74,6 @@ except:
 env_geo_anim   = []
 env_geo_static = cmds.listRelatives(env_root, allDescendents=True, fullPath=True,  type='mesh')
 print '\t\tFound %d geos to export for the base environment.' % len(env_geo_static)
-# cmds.select(env_geo, replace=True)
 
 # GET geo for props ###########################################################
 print '\t\tContinuing with props...'
@@ -111,14 +110,14 @@ if len(env_geo_static) > 0:
             transform  = cmds.listRelatives(i, parent=True, fullPath=True)[0]
             parentname = cmds.listRelatives(transform, parent=True, fullPath=True)[0].replace('|', '_').replace(':', '_')
             transform  = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
-            transform  = cmds.rename( transform, transform.split(parentname)[-1][1:] )
+            # transform  = cmds.rename( transform, transform.split(parentname)[-1][1:] )
             export_string += ' -root %s ' % transform
         except Exception as err:
             # print err, '\nFailed at rename STATIC', i
             pass
     print 'Done. Exporting... ',
     cmd  = '-frameRange %d %d' % (frame_s, frame_s)
-    cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces -dataFormat ogawa '
+    cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets  -dataFormat ogawa '
     cmd += export_string
     cmd += ' -file %s' % os.path.join(abc_export_path, abc_static_name)
     cmds.AbcExport ( j=cmd )
@@ -134,14 +133,14 @@ if len(env_geo_anim) > 0:
             transform  = cmds.listRelatives(i, parent=True, fullPath=True)[0]
             parentname = cmds.listRelatives(transform, parent=True, fullPath=True)[0].replace('|', '_').replace(':', '_')
             transform  = cmds.rename( transform, transform.replace('|', '_').replace(':', '_') + '_' + str(random.random()).replace('.', '') )
-            transform  = cmds.rename( transform, transform.split(parentname)[-1][1:] )
+            # transform  = cmds.rename( transform, transform.split(parentname)[-1][1:] )
             export_string += ' -root %s ' % transform
         except Exception as err:
             # print err, '\nFailed at rename ANIMATED', i
             pass
     print 'Done. Exporting... ',
     cmd  = '-frameRange %d %d' % (frame_s - 1, frame_e + 1)
-    cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces -dataFormat ogawa '
+    cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets  -dataFormat ogawa '
     cmd += export_string
     cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
     cmds.AbcExport ( j=cmd )
@@ -150,6 +149,16 @@ print '\tDone with environment export!\n'
 
 # CHARS #######################################################################
 print '\tStarting on Characters...'
+# TODO all this
+
+# CHAR PROPS ##################################################################
+print '\tStarting on Character Props...'
+# TODO all this
+
+# CAMERA ######################################################################
+print '\tStarting on Camera...'
+# TODO all this
+
 # CLOSE UNDO CHUNK and RESET
 cmds.undoInfo( closeChunk=True )
 cmds.undo()
