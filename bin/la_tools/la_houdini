@@ -9,7 +9,7 @@ then
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export houdini_root=/opt/houdini/hfs18.5.408
+    export houdini_root=/opt/houdini/hfs18.5.462
     export houdini_tools=/opt/houdini/tools
     export arnold_root=/opt/htoa
     export ocio_root=/opt/OpenColorIO-Configs
@@ -27,7 +27,7 @@ export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt
 export HOUDINI_OTLSCAN_PATH=/mnt/luma_i/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
 
 # ARNOLD
-HTOA=$arnold_root"/htoa-5.5.0.1_r45f2926_houdini-18.5.408/htoa-5.5.0.1_r45f2926_houdini-18.5.408"
+HTOA=$arnold_root"/htoa-5.6.0.0_r370661f_houdini-18.5.462/htoa-5.6.0.0_r370661f_houdini-18.5.462"
 export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE}:${HTOA}:${HFS}/houdini:&"
 
 # qLib
@@ -49,4 +49,4 @@ case "$IJ_USER" in
     * )
         houdinicore $@
         ;;
-esac
+esac                                                                                           

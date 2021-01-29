@@ -4,7 +4,7 @@ import os
 if os.environ['IJ_OS'] == 'mac':
     hfs = '/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources'
 if os.environ['IJ_OS'] == 'lin':
-    hfs = '/opt/houdini/hfs18.5.351'
+    hfs = '/opt/houdini/hfs18.5.462'
 
 sys.path.append(hfs + "/houdini/python%d.%dlibs" % sys.version_info[:2])
 import hou
