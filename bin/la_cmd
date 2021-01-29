@@ -55,7 +55,6 @@ function usage
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
     echo "  mon                 : Opens the luma monitor in a browser.";
-    echo "  test                 : Opens the luma monitor in a browser.";
     echo "#####################################################################"
 }
 
