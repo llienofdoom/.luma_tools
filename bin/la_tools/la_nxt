@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    nxt_root=/Applications/nxt
+    export ocio_root=/mnt/luma_h/SITE/ocio
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    nxt_root=/opt/nxt
+    export ocio_root=/opt/OpenColorIO-Configs
+fi
+
+source $nxt_root/venv/bin/activate
+
+nxt $@
