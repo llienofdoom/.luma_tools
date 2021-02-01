@@ -1,18 +1,21 @@
 #!/bin/bash
 
+arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version)
 aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export coat_home=''
+    export arnold_root=~/htoa
     export ocio_root=/mnt/luma_h/SITE/ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export coat_home='/opt/3dcoat/3DCoat-4.8.23'
+    export arnold_root=/opt/htoa
     export ocio_root=/opt/OpenColorIO-Configs
 fi
 
 export OCIO=$ocio_root/$aces_version/config.ocio
 
-$coat_home/3d-coat-64 $@
+# ARNOLD
+HTOA=$arnold_root/$arnold_version/$arnold_version
+export PATH=$HTOA/scripts/bin:$PATH

@@ -1,21 +1,5 @@
 #!/bin/bash
 
-if [[ $IJ_OS == "mac" ]]; 
-then 
-    export arnold_root=~/htoa
-    export ocio_root=/mnt/luma_h/SITE/ocio
-fi
-if [[ $IJ_OS == "lin" ]]; 
-then 
-    export arnold_root=/opt/htoa
-    export ocio_root=/opt/OpenColorIO-Configs
-fi
+source $IJ_LOCAL_REPO/etc/arnold_env
 
-export OCIO=$ocio_root/aces_1.2/config.ocio
-
-# ARNOLD
-HTOA=$arnold_root/htoa-5.6.0.0_r370661f_houdini-18.5.462/htoa-5.6.0.0_r370661f_houdini-18.5.462
-export ARNOLD_PLUGIN_PATH=$HTOA/arnold/plugins
-export PATH=$HTOA/scripts/bin:$PATH
-
-kick -dw -dp -nostdin -sl $@
+kick -dw -dp -nostdin -sl -v 3 $@

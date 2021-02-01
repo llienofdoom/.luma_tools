@@ -1,0 +1,40 @@
+#!/bin/bash
+
+arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version)
+aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+houdini_version=$(cat $IJ_LOCAL_REPO/etc/houdini_version)
+
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    export houdini_root=/Applications/Houdini/Houdini$houdini_version/Frameworks/Houdini.framework/Versions/Current/Resources
+    export houdini_tools=''
+    export arnold_root=~/htoa
+    export ocio_root=/mnt/luma_h/SITE/ocio
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    export houdini_root=/opt/houdini/hfs$houdini_version
+    export houdini_tools=/opt/houdini/tools
+    export arnold_root=/opt/htoa
+    export ocio_root=/opt/OpenColorIO-Configs
+fi
+
+pushd .
+cd $houdini_root
+. houdini_setup_bash
+popd
+
+export OCIO=$ocio_root/$aces_version/config.ocio
+export HSITE="/mnt/luma_i/_tools/houdini"
+export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt/luma_i/assets/chr/tools:&"
+export HOUDINI_OTLSCAN_PATH=/mnt/luma_i/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
+
+# ARNOLD
+HTOA=$arnold_root/$arnold_version/$arnold_version
+export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE}:${HTOA}:${HFS}/houdini:&"
+
+# qLib
+export QLIB=$houdini_tools/qLib-0.2.185
+export QOTL=$QLIB/otls
+export HOUDINI_OTLSCAN_PATH=$QOTL/base:$QOTL/future:$QOTL/experimental:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_PATH=$QLIB:$HOUDINI_PATH

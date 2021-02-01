@@ -1,5 +1,16 @@
 #!/bin/bash
 
-export OCIO=/opt/OpenColorIO-Configs/aces_1.2/config.ocio
+aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 
-/opt/resolve/bin/resolve
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    export ocio_root=/mnt/luma_h/SITE/ocio
+    export OCIO=$ocio_root/$aces_version/config.ocio
+    /Applications/DaVinci\ Resolve/DaVinci\ Resolve.app/Contents/MacOS/Resolve $@
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    export ocio_root=/opt/OpenColorIO-Configs
+    export OCIO=$ocio_root/$aces_version/config.ocio
+    /opt/resolve/bin/resolve $@
+fi

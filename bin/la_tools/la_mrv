@@ -1,5 +1,7 @@
 #!/bin/bash
 
+aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+
 if [[ $IJ_OS == "mac" ]]; 
 then 
     export mrv_root=/Applications/mrViewer.app/Contents/MacOS;
@@ -10,6 +12,7 @@ then
     export mrv_root="/usr/bin";
     export ocio_root=/opt/OpenColorIO-Configs
 fi
-export OCIO=$ocio_root/aces_1.2/config.ocio
+
+export OCIO=$ocio_root/$aces_version/config.ocio
 
 $mrv_root/mrViewer $@

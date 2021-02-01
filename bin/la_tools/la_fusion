@@ -4,15 +4,17 @@ aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export coat_home=''
+    fusion_root="/Applications/Blackmagic Fusion 9/Fusion.app/Contents/MacOS"
     export ocio_root=/mnt/luma_h/SITE/ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export coat_home='/opt/3dcoat/3DCoat-4.8.23'
+    fusion_root=/opt/BlackmagicDesign/Fusion9
     export ocio_root=/opt/OpenColorIO-Configs
 fi
 
-export OCIO=$ocio_root/$aces_version/config.ocio
 
-$coat_home/3d-coat-64 $@
+export OCIO=$ocio_root/$aces_version/config.ocio
+export PATH=$fusion_root:$PATH
+
+Fusion $@

@@ -1,27 +1,25 @@
 #!/bin/bash
 
+aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export gaffer_root=
+    export gaffer_root=/Applications/Gaffer
     export ARNOLD_ROOT=
     export ocio_root=/mnt/luma_h/SITE/ocio
+    case "$IJ_USER" in nvermaak ) source /Applications/3Delight/.3delight_bash ;; esac
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
     export gaffer_root=/opt/gaffer/gaffer-0.59.1.0-linux-python2
     export ARNOLD_ROOT=/opt/htoa/arnold_6.2.0.0
     export ocio_root=/opt/OpenColorIO-Configs
+    case "$IJ_USER" in nvermaak ) source ~/software/3delight-2.4.1/.3delight_bash ;; esac
 fi
 
-export OCIO=$ocio_root/aces_1.2/config.ocio
+export OCIO=$ocio_root/$aces_version/config.ocio
 export PATH=$gaffer_root/bin:$ARNOLD_ROOT/bin:$PATH
 
-export GAFFERAPPLESEED_HIDE_UI=1
-
-case "$IJ_USER" in 
-    nvermaak | neill )
-        source ~/software/3delight-2.4.1/.3delight_bash
-        ;;
-esac         
+export GAFFERAPPLESEED_HIDE_UI=0
 
 gaffer $@
