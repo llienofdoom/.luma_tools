@@ -1,6 +1,13 @@
 #!/bin/bash
 
+export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
 export OCIO=/opt/OpenColorIO-Configs/aces_1.2/config.ocio
 
-/opt/Nuke12.1v1/Nuke12.1 $@
-
+case "$IJ_USER" in 
+    nvermaak | neill )
+        /opt/Nuke12.1v1/Nuke12.1 -nukex $@
+        ;;
+    * )
+        /opt/Nuke12.1v1/Nuke12.1 $@
+        ;;
+esac                                                                                           
