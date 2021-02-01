@@ -6,7 +6,7 @@ export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
 export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
 
 case "$IJ_USER" in 
-    nvermaak )
+    nvermaak | neill )
         /opt/Nuke12.1v1/Nuke12.1 -nukex $@
         ;;
     * )

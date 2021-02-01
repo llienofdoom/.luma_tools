@@ -17,4 +17,4 @@ fi
 export OCIO=$ocio_root/$aces_version/config.ocio
 export PATH=$fusion_root:$PATH
 
-Fusion $@
+$fusion_root/Fusion $@
