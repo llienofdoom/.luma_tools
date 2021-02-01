@@ -27,7 +27,7 @@ export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt
 export HOUDINI_OTLSCAN_PATH=/mnt/luma_i/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
 
 # ARNOLD
-HTOA=$arnold_root"/htoa-5.6.0.0_r370661f_houdini-18.5.462/htoa-5.6.0.0_r370661f_houdini-18.5.462"
+HTOA=$arnold_root/htoa-5.6.0.0_r370661f_houdini-18.5.462/htoa-5.6.0.0_r370661f_houdini-18.5.462
 export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE}:${HTOA}:${HFS}/houdini:&"
 
 # qLib

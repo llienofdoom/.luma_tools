@@ -85,6 +85,16 @@ for prop in props:
     else:
         print '\t\t\tSTATIC   - ' + prop
         env_geo_static.append(prop)
+
+# Check for GEO only ##########################################################
+print '\tChecking for Geo only...'
+for i in env_geo_anim:
+    rel = cmds.listRelatives(i, allDescendents=True, fullPath=True,  type='transform')
+    for j in rel:
+        if 'propgeo' in j:
+            print i, j
+            break
+
 # EXPORT ######################################################################
 abc_export_path = os.path.join(shot_root, 'geo', 'anim_export')
 print '\n\tWriting environment to %s:' % abc_export_path
@@ -107,7 +117,7 @@ cmd  = '-frameRange %d %d' % (frame_s, frame_s)
 cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
 cmd += export_string
 cmd += ' -file %s' % os.path.join(abc_export_path, abc_static_name)
-cmds.AbcExport ( j=cmd )
+# cmds.AbcExport ( j=cmd )
 print 'Done'
 # EXPORT ANIMATED #############################################################
 if len(env_geo_anim) > 0:
@@ -121,7 +131,7 @@ if len(env_geo_anim) > 0:
     cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
     cmd += export_string
     cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
-    cmds.AbcExport ( j=cmd )
+    # cmds.AbcExport ( j=cmd )
     print 'Done'
 print '\tDone with environment export!\n'
 

@@ -14,7 +14,8 @@ fi
 export OCIO=$ocio_root/aces_1.2/config.ocio
 
 # ARNOLD
-HTOA=$arnold_root"/htoa-5.6.0.0_r370661f_houdini-18.5.462/htoa-5.6.0.0_r370661f_houdini-18.5.462"
+HTOA=$arnold_root/htoa-5.6.0.0_r370661f_houdini-18.5.462/htoa-5.6.0.0_r370661f_houdini-18.5.462
+export ARNOLD_PLUGIN_PATH=$HTOA/arnold/plugins
 export PATH=$HTOA/scripts/bin:$PATH
 
 kick -dw -dp -nostdin -sl $@
