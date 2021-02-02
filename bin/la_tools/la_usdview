@@ -1,0 +1,21 @@
+#!/bin/bash
+
+aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    usd_root=
+    export ocio_root=/mnt/luma_h/SITE/ocio
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    usd_root=/opt/usd/USD
+    export ocio_root=/opt/OpenColorIO-Configs
+fi
+
+export OCIO=$ocio_root/$aces_version/config.ocio
+
+export PYTHONPATH=$usd_root/lib/python
+export PATH=$usd_root/bin:$PATH
+
+usdview $@
