@@ -25,9 +25,20 @@ cd $houdini_root
 popd
 
 export OCIO=$ocio_root/$aces_version/config.ocio
-export HSITE="/mnt/luma_i/_tools/houdini"
-export HOUDINI_OTLSCAN_PATH="/mnt/luma_i/assets/gen/tools/asset_lookdev_hda:/mnt/luma_i/assets/chr/tools:&"
-export HOUDINI_OTLSCAN_PATH=/mnt/luma_i/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
+export HSITE=$IJ_LUMA_PROJ_ROOT/_tools/houdini
+export HOUDINI_OTLSCAN_PATH="&"
+
+# IJ HDA's
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/chr/tools:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/chr/render/_MASTER:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/env/_MASTER:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/env/_tools:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/prp/tools:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/prp/_MASTER:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/asset_lookdev_hda:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/shot_builder_hda:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/stereo_camera_rig:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/scene_cam_reader:$HOUDINI_OTLSCAN_PATH
 
 # ARNOLD
 HTOA=$arnold_root/$arnold_version/$arnold_version
