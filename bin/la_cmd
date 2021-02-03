@@ -51,6 +51,7 @@ function usage
     echo "  se | seqedit        : generate scene video : lab se (m)(s) (ass)(cam)(ren) 25";
     echo "  editUpdateSources | eus : update shotsources  for edit : lab eu (a)(m)(s)(r) (SCENE or all)";
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
+    echo "  usc | update_scene_cams : update the per scene camera exports.";
     echo ""
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
@@ -212,6 +213,10 @@ if [ "$1" != "" ]; then
         #############################################################
         fa | fromaces )
           $IJ_LOCAL_REPO/bin/lab_cmds/la_aces_convert $2;
+        ;;
+        #############################################################
+        usc | update_scene_cams )
+          python3.7 $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_collect_scene_cams.py;
         ;;
         #############################################################
         -h | --help | h | help )
