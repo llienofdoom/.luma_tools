@@ -10,7 +10,7 @@ def find_shot_data():
     root = os.environ['JOB']
     shot_folder = os.path.join(root, 'shots')
     list_of_json_files = glob.glob(
-        os.path.join(shot_folder, 'act*', 'sc001', 'sh*', 'shot_info.json')
+        os.path.join(shot_folder, 'act*', 'sc*', 'sh*', 'shot_info.json')
     )
     return list_of_json_files
 ###############################################################################
@@ -63,7 +63,7 @@ def main():
                     if not os.path.exists(asset_cam_dir):
                         print('\t\t\tPath not created yet. Creating')
                         try:
-                            os.mkdir(asset_cam_dir)
+                            os.makedirs(asset_cam_dir)
                         except Exception as e:
                             print('ERROR : Failed to create camera_data folder in {}. Exiting. \n{}'.format(env_path, e))
                             sys.exit()
