@@ -64,8 +64,8 @@ def main():
                         print('\t\t\tPath not created yet. Creating')
                         try:
                             os.mkdir(asset_cam_dir)
-                        except:
-                            print('ERROR : Failed to create camera_data folder in {}. Exiting.'.format(env_path))
+                        except Exception as e:
+                            print('ERROR : Failed to create camera_data folder in {}. Exiting. \n{}'.format(env_path, e))
                             sys.exit()
                     else:
                         print('\t\t\tPath exists.')
