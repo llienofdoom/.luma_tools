@@ -32,11 +32,16 @@ cmds.undoInfo( openChunk=True )
 
 # PREP ########################################################################
 shot_root  = os.environ['IJ_SHOT_PATH']
-json_file  = open( os.path.join(shot_root, 'shot_info.json') )
+json_file  = open( os.path.join(shot_root, 'shot_info.json'), 'r' )
 json_data  = json.load( json_file )[0]
+json_file.close()
 chars      = json_data['assets']['chars']
 char_props = json_data['assets']['props']
 env        = json_data['assets']['env'  ]
+try:
+    env_extra = json_data['assets']['env_extra' ]
+except:
+    env_extra = ''
 frame_s    = int(json_data['clip_start'])
 frame_e    = int(json_data['clip_end'  ])
 print '\tWorking in %s' % shot_root
@@ -53,6 +58,16 @@ except:
     print 'Failed to get ENV root node.'
     sys.exit()
 print '\t\tLooked for %s, and got %s.' % (env, env_root)
+
+# ENV EXTRA ###################################################################
+env_extra_root = ''
+if env_extra != '':
+    try:
+        env_extra_root = cmds.ls(env_extra + '*')[0]
+    except:
+        print 'Failed to get ENV EXTRA root node.'
+        sys.exit()
+    print '\t\tLooked for extra %s, and got %s.' % (env_extra, env_extra_root)
 
 # LIST OF PROPS ###############################################################
 list_of_props = []
@@ -103,6 +118,8 @@ if len(env_geo_static) > 0:
     for i in env_geo_static:
         export_string += ' -root %s ' % i
 export_string += ' -root %s ' % env_root
+if env_extra_root != '':
+    export_string += ' -root %s ' % env_extra_root
 print 'Done. Exporting... ',
 cmd  = '-frameRange %d %d' % (frame_s, frame_s)
 cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
