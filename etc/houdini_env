@@ -10,6 +10,7 @@ then
     export houdini_tools=''
     export arnold_root=~/htoa
     export ocio_root=/mnt/luma_h/SITE/ocio
+    export AELIB=
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
@@ -17,6 +18,7 @@ then
     export houdini_tools=/opt/houdini/tools
     export arnold_root=/opt/htoa
     export ocio_root=/opt/OpenColorIO-Configs
+    export AELIB=/opt/houdini/tools/Aelib
 fi
 
 pushd .
@@ -49,3 +51,6 @@ export QLIB=$houdini_tools/qLib-0.2.185
 export QOTL=$QLIB/otls
 export HOUDINI_OTLSCAN_PATH=$QOTL/base:$QOTL/future:$QOTL/experimental:$HOUDINI_OTLSCAN_PATH
 export HOUDINI_PATH=$QLIB:$HOUDINI_PATH
+
+# AElib
+export HOUDINI_PATH=$AELIB:$HOUDINI_PATH
