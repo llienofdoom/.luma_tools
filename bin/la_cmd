@@ -216,7 +216,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         usc | update_scene_cams )
-          python3.7 $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_collect_scene_cams.py;
+          python3.7 $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_collect_scene_cams.py $2;
         ;;
         #############################################################
         -h | --help | h | help )

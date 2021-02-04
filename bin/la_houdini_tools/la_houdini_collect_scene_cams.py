@@ -14,18 +14,32 @@ def find_shot_data():
     )
     return list_of_json_files
 ###############################################################################
-def find_env_asset_paths():
+def find_env_asset_paths(choice):
     print('Collecting environment assets...')
     root = os.environ['JOB']
     asset_folder = os.path.join(root, 'assets', 'env')
     list_of_env_assets = glob.glob(
         os.path.join(asset_folder, 'env_ij_mst_*')
     )
-    return list_of_env_assets
+    other_folder = os.path.join(root, 'assets', 'env', '_env')
+    list_of_env_other = glob.glob(
+        os.path.join(other_folder, 'env_ij_env_*')
+    )
+    result = []
+    if choice == 'mst':
+        result = list_of_env_assets
+    elif choice == 'env':
+        result = list_of_env_other
+    else:
+        result = list_of_env_assets
+    return result
 
 ###############################################################################
 def main():
-    list_of_env_assets = find_env_asset_paths()
+    choice = ''
+    if len(sys.argv) == 2:
+        choice = sys.argv[1]
+    list_of_env_assets = find_env_asset_paths(choice)
     list_of_json_files = find_shot_data()
 
     print('Looping over shots...')
@@ -45,6 +59,7 @@ def main():
             # print('\t\tFailed to find environment. Skipping.')
             continue
         env = env.split('ij_env_')[-1]
+
         env_path = ''
         for asset in list_of_env_assets:
             if env in asset:

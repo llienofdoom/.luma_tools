@@ -4,7 +4,7 @@ aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    usd_root=
+    usd_root=/opt/usd/USD
     export ocio_root=/mnt/luma_h/SITE/ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
