@@ -5,6 +5,8 @@ unset LANGUAGE
 
 unset OCIO
 
+export MAYA_SKIP_USER_SETUP=1
+
 if [[ $IJ_OS == "mac" ]]; 
 then 
     export MAYA_LOCATION=/Applications/Autodesk/maya2016.5/Maya.app/Contents
