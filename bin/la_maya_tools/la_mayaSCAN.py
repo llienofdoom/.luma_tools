@@ -36,12 +36,18 @@ for root, _, files in os.walk(sys.argv[-1]):
             # a smart attacker hadn't hidden inside those nodes.  For demo purposes
             # I'm just ignoring them but that is a clear vulnerability
 
-            if len(scriptnodes) > 2:
-                # here's where you'd want to nuke and resave the file if you were really cleaning house,
-                # or you could loop through them applying your own safety test
-                logger.warning("file {} contains {} scriptnodes".format(abspath, len(scriptnodes) - 2 ))
-                file_list.append(abspath)
-
+            for node in scriptnodes:
+                if 'sceneconfigurationscriptnode' in node.lower():
+                    pass
+                elif 'uiconfigurationscriptnode' in node.lower():
+                    pass
+                elif 'igpucs' in node.lower():
+                    pass
+                else:
+                    # here's where you'd want to nuke and resave the file if you were really cleaning house,
+                    # or you could loop through them applying your own safety test
+                    logger.warning("file {} contains {} scriptnodes".format(abspath, len(scriptnodes) - 2 ))
+                    file_list.append(abspath)
 
 logger.info("scanned {} files".format(counter))
 if file_list:
