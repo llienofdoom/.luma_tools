@@ -236,6 +236,10 @@ if [ "$1" != "" ]; then
         edit_info | esi )
           vim $IJ_SHOT_PATH/shot_info.json
         ;;
+        #############################################################
+        maya_scan )
+          la_mayapy $$IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaSCAN.py $2;
+        ;;
       * )
           usage;
         ;;
