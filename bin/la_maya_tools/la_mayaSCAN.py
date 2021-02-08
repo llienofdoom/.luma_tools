@@ -2,7 +2,7 @@ import os
 import sys
 import datetime
 
-log_file = open('/mnt/luma_i/vaccine_check_log.txt', 'w')
+log_file = open('/mnt/luma_i/vaccine_check_log.txt', 'a+')
 date     = datetime.datetime.now()
 log_file.write('DATE : {}\n'.format(date))
 
