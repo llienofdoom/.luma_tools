@@ -23,17 +23,20 @@ for root, _, files in os.walk(sys.argv[-1]):
         if lower.endswith(".ma") or lower.endswith(".mb"):
             abspath = os.path.join(root, mayafile)
             log_file.write('scanning {}\n'.format(abspath))
-            cmds.file(abspath, open=True)
-            scriptnodes = cmds.ls(type='script')
+            try:
+                cmds.file(abspath, open=True)
+                scriptnodes = cmds.ls(type='script')
 
-            for node in scriptnodes:
-                if 'sceneconfigurationscriptnode' in node.lower():
-                    pass
-                elif 'uiconfigurationscriptnode' in node.lower():
-                    pass
-                elif 'igpucs' in node.lower():
-                    pass
-                else:
-                    log_file.write('file {} contains {} scriptnode.\n'.format(abspath, node ))
-
+                for node in scriptnodes:
+                    if 'sceneconfigurationscriptnode' in node.lower():
+                        pass
+                    elif 'uiconfigurationscriptnode' in node.lower():
+                        pass
+                    elif 'igpucs' in node.lower():
+                        pass
+                    else:
+                        log_file.write('file {} contains {} scriptnode.\n'.format(abspath, node ))
+            except Exception as e:
+                print('Maya File Error... {}'.format(e))
+                
 log_file.close()
