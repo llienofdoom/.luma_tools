@@ -1,40 +1,30 @@
 import os
 import sys
-import logging
+import datetime
 
-
-logger = logging.getLogger("mayascan")
-logger.setLevel(logging.INFO)
+log_file = open('/mnt/luma_i/vaccine_check_log.txt', 'w')
+date     = datetime.datetime.now()
+log_file.write('DATE : {}\n'.format(date))
 
 os.environ['MAYA_SKIP_USER_SETUP'] = "1"
-logger.info("usersetup disabled")
+log_file.write('userSetup disabled.\n')
 
 import maya.standalone
 maya.standalone.initialize()
-logger.info("maya initialized")
+log_file.write('maya initialized.\n')
 
 import maya.cmds as cmds
 cmds.optionVar(iv= ("fileExecuteSN", 0))
-logger.info("scriptnodes disabled")
-
-file_list = []
-counter = 0
+log_file.write('scriptnodes disabled\n')
 
 for root, _, files in os.walk(sys.argv[-1]):
     for mayafile in files:
         lower = mayafile.lower()
         if lower.endswith(".ma") or lower.endswith(".mb"):
-            counter += 1
             abspath = os.path.join(root, mayafile)
-            logger.info("scanning {}".format(abspath))
+            log_file.write('scanning {}\n'.format(abspath))
             cmds.file(abspath, open=True)
             scriptnodes = cmds.ls(type='script')
-            # almost all Maya files will contain two nodes named
-            # 'sceneConfigurationScriptNode' and 'uiConfigurationScriptNode'
-            # a proper job wouldd make sure that they contained only trivial MEL 
-            # but youd have to really inspect the contents to make sure
-            # a smart attacker hadn't hidden inside those nodes.  For demo purposes
-            # I'm just ignoring them but that is a clear vulnerability
 
             for node in scriptnodes:
                 if 'sceneconfigurationscriptnode' in node.lower():
@@ -44,14 +34,6 @@ for root, _, files in os.walk(sys.argv[-1]):
                 elif 'igpucs' in node.lower():
                     pass
                 else:
-                    # here's where you'd want to nuke and resave the file if you were really cleaning house,
-                    # or you could loop through them applying your own safety test
-                    logger.warning("file {} contains {} scriptnodes".format(abspath, len(scriptnodes) - 2 ))
-                    file_list.append(abspath)
+                    log_file.write('file {} contains {} scriptnode.\n'.format(abspath, node ))
 
-logger.info("scanned {} files".format(counter))
-if file_list:
-    logger.warning ("=" * 72)
-    logger.warning ("filenodes found in:")
-    for f in file_list:
-        logger.warning(f)
+log_file.close()
