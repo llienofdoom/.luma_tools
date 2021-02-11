@@ -73,7 +73,9 @@ for root, _, files in os.walk(sys.argv[-1]):
                         cmds.delete(node)
                 cmds.file(save=True, force=True)
             except:
+                infection_report = open(infection_report_file, 'a+')
                 infection_report.write('Failed to parse the maya file.\n')
+                infection_report.close()
 
 # Remove duplicate entries
 infected_file_list = list(dict.fromkeys(infected_file_list))
