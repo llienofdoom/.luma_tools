@@ -61,7 +61,7 @@ for root, _, files in os.walk(sys.argv[-1]):
                 infection_report.write('Scanning ' + str(abspath) + '\n')
                 infection_report.close()
                 logger.info('Scanning {}'.format(abspath))
-                cmds.file(abspath, open=True, executeScriptNodes=False, ignoreVersion=True, loadReferenceDepth=none)
+                cmds.file(abspath, open=True, executeScriptNodes=False, ignoreVersion=True, loadReferenceDepth=None)
                 scriptnodes = cmds.ls(type='script')
 
                 for node in scriptnodes:
