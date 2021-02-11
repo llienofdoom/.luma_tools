@@ -64,6 +64,9 @@ for root, _, files in os.walk(sys.argv[-1]):
                 cmds.file(abspath, open=True, executeScriptNodes=False, ignoreVersion=True, loadReferenceDepth=None)
                 scriptnodes = cmds.ls(type='script')
 
+                infection_report = open(infection_report_file, 'a+')
+                infection_report.write('\tStarting iteration over scriptnodes...\n')
+                infection_report.close()
                 for node in scriptnodes:
                     if 'breed_gene' in node.lower():
                         infected_file_list.append(str(abspath))
@@ -71,10 +74,16 @@ for root, _, files in os.walk(sys.argv[-1]):
                     if 'vaccine_gene' in node.lower():
                         infected_file_list.append(str(abspath))
                         cmds.delete(node)
-                cmds.file(save=True, force=True)
-            except:
                 infection_report = open(infection_report_file, 'a+')
-                infection_report.write('Failed to parse the maya file.\n')
+                infection_report.write('\tDone iteration over scriptnodes. Saving File...\n')
+                infection_report.close()
+                cmds.file(save=True, force=True)
+                infection_report = open(infection_report_file, 'a+')
+                infection_report.write('\tSaved. Next one.\n')
+                infection_report.close()
+            except Exception as e:
+                infection_report = open(infection_report_file, 'a+')
+                infection_report.write('Failed to parse the maya file. %s\n' % e)
                 infection_report.close()
 
 # Remove duplicate entries
