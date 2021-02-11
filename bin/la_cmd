@@ -238,7 +238,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         maya_scan )
-          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaSCAN.py $2;
+          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/maya_virus/la_mayaSCAN.py $2;
+        ;;
+        #############################################################
+        maya_clean )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/maya_virus/la_mayaCLEAN.py $2;
         ;;
       * )
           usage;
