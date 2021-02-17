@@ -154,6 +154,8 @@ if [ "$1" != "" ]; then
           lab mv $latest_jpg
           echo "Done. Cleaning up."
           rm *.jpg
+          mv *.mp4 ../
+          echo "Done!"
         ;;
         #############################################################
         shotPrep )
