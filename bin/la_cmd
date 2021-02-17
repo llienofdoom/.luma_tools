@@ -144,12 +144,16 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         mp4 )
-          for img in $2/*.exr; do
-            lab fa $img
+          echo "Starting conversion..."
+          for img in ./*.exr; do
+            echo "Converting" $img "to sRGB jpg."
+            # lab fa $img
           done
-          latest_jpg=$(ls -td $2/*.jpg)
+          echo "Done. Making mp4 video one folder above..."
+          latest_jpg=$(ls -td ./*.jpg | head -n1)
           lab mv $latest_jpg
-          rm $img/*.jpg
+          echo "Done. Cleaning up."
+          rm ./*.jpg
         ;;
         #############################################################
         shotPrep )
