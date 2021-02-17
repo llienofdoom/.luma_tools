@@ -148,8 +148,9 @@ if [ "$1" != "" ]; then
             echo $img
             # lab fa $img
           done
-          latest_jpg=$(ls -t $2/*.jpg)
-          echo lab mv $latest_jpg
+          latest_jpg=$(ls -td $2/*.jpg)
+          lab mv $latest_jpg
+          rm $img/*.jpg
         ;;
         #############################################################
         shotPrep )
