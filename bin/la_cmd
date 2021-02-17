@@ -30,6 +30,7 @@ function usage
     echo "  viewtt              : view turntable of selected asset";
     echo ""
     echo "  makevid | mv        : generate an mp4 from a sequence. NOT ACES YET.";
+    echo "  mp4                 : generate an mp4 from ACES EXR files. FOLDER ONLY NOW."
     echo ""
     echo "  shotPrep            : export abc from maya, and setup houdini";
     echo "  maya2hou            : shotPrep batch mode";
@@ -140,6 +141,15 @@ if [ "$1" != "" ]; then
         #############################################################
         makevid | mv )
           python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makevid.py $2;
+        ;;
+        #############################################################
+        mp4 )
+          for img in $2/*.exr; do
+            echo $img
+            # lab fa $img
+          done
+          latest_jpg=$(ls -td $2/*.jpg)
+          echo lab mv $latest_jpg
         ;;
         #############################################################
         shotPrep )
