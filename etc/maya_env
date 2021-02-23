@@ -32,7 +32,7 @@ fi
 
 export PIXAR_LICENSE_FILE=9010@192.168.35.28
 export RFM_DO_NOT_CREATE_MODULE_FILE=1
-export MAYA_SHELF_PATH=/job/common/maya/shelves/
+export MAYA_SHELF_PATH=/job/common/maya/shelves:/mnt/luma_i/_tools/maya/shelves
 export MAYA_DISABLE_CIP=1
 export MAYA_DISABLE_CER=1
 
