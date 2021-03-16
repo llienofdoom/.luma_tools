@@ -41,3 +41,9 @@ export MAYA_DISABLE_CER=1
 # Some FC stuff
 export PATH=/job/insidejob_movie/common/bin:$MAYA_LOCATION/bin:$PATH
 export PYTHONPATH=/job/common/maya/scripts:$PYTHONPATH
+
+# MAYA CRAP TO MAKE IT WORK BETTERER
+export MAYA_OPENCL_IGNORE_DRIVER_VERSION=1
+export MAYA_CM_DISABLE_ERROR_POPUPS=1
+export MAYA_COLOR_MGT_NO_LOGGING=1
+
