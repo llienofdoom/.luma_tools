@@ -31,7 +31,10 @@ def find_env_asset_paths(choice):
     elif choice == 'env':
         result = list_of_env_other
     else:
-        result = list_of_env_assets
+        list_of_folders = glob.glob(
+        os.path.join(root, 'assets', 'env', choice)
+        )
+        result = list_of_folders
     return result
 
 ###############################################################################

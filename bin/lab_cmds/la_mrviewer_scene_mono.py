@@ -11,14 +11,13 @@ if len(sys.argv) == 2:
         scene_folder = scene_folder[0]
         for (dirpath, dirnames, filenames) in os.walk(scene_folder):
             for shot in dirnames:
-                shot_path = scene_folder + os.sep + shot + os.sep + 'img/camera/*_assembly/mono.*.jpg'
-                frame = glob.glob(shot_path)
-                if len(frame) > 0:
-                    frame = frame[0]
+                shot_path = scene_folder + os.sep + shot + os.sep + 'img/camera/act*_sc*_sh*_mono.mp4'
+                vid = glob.glob(shot_path)
+                if len(vid) > 0:
+                    vid = vid[0]
                 else:
                     continue
-                frame = frame[:-8] + '%04d.jpg '
-                command += frame
+                command += vid + ' '
             break
         os.system(command)
 
