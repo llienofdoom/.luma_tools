@@ -47,3 +47,4 @@ export MAYA_OPENCL_IGNORE_DRIVER_VERSION=1
 export MAYA_CM_DISABLE_ERROR_POPUPS=1
 export MAYA_COLOR_MGT_NO_LOGGING=1
 export LD_LIBRARY_PATH=/usr/autodesk/maya2016.5/lib/
+export PATH=/usr/autodesk/maya/bin:$PATH
