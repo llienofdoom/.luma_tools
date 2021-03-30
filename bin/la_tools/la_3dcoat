@@ -1,5 +1,6 @@
 #!/bin/bash
 
+coat_version=$(cat $IJ_LOCAL_REPO/etc/3dcoat_version)
 aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 
 if [[ $IJ_OS == "mac" ]]; 
@@ -9,7 +10,7 @@ then
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export coat_home='/opt/3dcoat/3DCoat-4.8.23'
+    export coat_home='/opt/3dcoat/3DCoat-'$coat_version
     export ocio_root=/opt/OpenColorIO-Configs
 fi
 
