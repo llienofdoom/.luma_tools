@@ -5,7 +5,7 @@ unset LANGUAGE
 
 unset OCIO
 
-export MAYA_SKIP_USER_SETUP=1
+# export MAYA_SKIP_USER_SETUP=1
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
