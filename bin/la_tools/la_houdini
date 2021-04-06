@@ -3,7 +3,7 @@
 source $IJ_LOCAL_REPO/etc/houdini_env
 
 case "$IJ_USER" in 
-    rob | mark  | nvermaak | neill )
+    rob | mark  | nvermaak | neill | danielle )
         houdinifx $@
         ;;
     * )
