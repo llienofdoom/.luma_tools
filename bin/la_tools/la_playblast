@@ -1,3 +1,12 @@
 #!/bin/bash
 
-echo luma maya playblast fixer, fixing $1
+# name=$(basename $1)
+# folder=$(dirname $1)
+# base=${name%.*}
+# ext=${name#$base.}
+time=$(date "+%Y-%m-%d_%H-%M-%S")
+mp4_name=$IJ_SHOT_NAME\_playblast\_$time.mp4
+mp4_path=$IJ_SHOT_PATH/img/flip/$mp4_name
+
+ffmpeg -y -gamma 2.2 -i $1 -pix_fmt yuv420p -c:v libx264 -crf 25 $mp4_path
+la_mrv $mp4_path
