@@ -2,49 +2,47 @@
 
 export LC_ALL=C
 unset LANGUAGE
-
 unset OCIO
-
-# export MAYA_SKIP_USER_SETUP=1
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
     export MAYA_LOCATION=/Applications/Autodesk/maya2016.5/Maya.app/Contents
-
     export RMANTREE=/Applications/Pixar/RenderManProServer-21.8
     export RFMTREE=/Applications/Pixar/RenderManForMaya-21.8-maya2016.5
     export MAYA_MODULE_PATH=/opt/pixar/RenderManForMaya-21.8-maya2016.5:$MAYA_MODULE_PATH
-    
     # MGEAR
     export MAYA_MODULE_PATH=~/Library/Preferences/Autodesk/maya/modules:$MAYA_MODULE_PATH
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
     export MAYA_LOCATION=/usr/autodesk/maya2016.5
-
     export RMANTREE=/opt/pixar/RenderManProServer-21.8
     export RFMTREE=/opt/pixar/RenderManForMaya-21.8-maya2016.5
     export MAYA_MODULE_PATH=/opt/pixar/RenderManForMaya-21.8-maya2016.5:$MAYA_MODULE_PATH
-
     # MGEAR
     export MAYA_MODULE_PATH=/mnt/luma_i/_tools/maya/mgear/release:$MAYA_MODULE_PATH
 fi
-
+# Global
 export PIXAR_LICENSE_FILE=9010@192.168.35.28
 export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export MAYA_SCRIPT_PATH=/mnt/luma_i/_tools/maya/scripts
 export PYTHONPATH=/mnt/luma_i/_tools/maya/scripts:$PYTHONPATH
-export MAYA_SHELF_PATH=/job/common/maya/shelves:/mnt/luma_i/_tools/maya/shelves
-export MAYA_DISABLE_CIP=1
-export MAYA_DISABLE_CER=1
+export MAYA_SHELF_PATH=/job/common/maya/shelves:/mnt/luma_i/_tools/maya/shelves:$MAYA_SHELF_PATH
 
-# Some FC stuff
+# ng skin tools
+export MAYA_PLUG_IN_PATH=/mnt/luma_i/_tools/maya/ngskintools/1.8.2/plug-ins/2016.5:$MAYA_PLUG_IN_PATH
+export PYTHONPATH=/mnt/luma_i/_tools/maya/ngskintools/1.8.2/scripts:$PYTHONPATH
+
+# Some original FC stuff
 export PATH=/job/insidejob_movie/common/bin:$MAYA_LOCATION/bin:$PATH
 export PYTHONPATH=/job/common/maya/scripts:$PYTHONPATH
 
 # MAYA CRAP TO MAKE IT WORK BETTERER
+# export MAYA_SKIP_USER_SETUP=1
 export MAYA_OPENCL_IGNORE_DRIVER_VERSION=1
 export MAYA_CM_DISABLE_ERROR_POPUPS=1
 export MAYA_COLOR_MGT_NO_LOGGING=1
 export LD_LIBRARY_PATH=/usr/autodesk/maya2016.5/lib/
 export PATH=/usr/autodesk/maya/bin:$PATH
+export MAYA_DISABLE_CIP=1
+export MAYA_DISABLE_CER=1
