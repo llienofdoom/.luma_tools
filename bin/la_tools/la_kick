@@ -2,4 +2,4 @@
 
 source $IJ_LOCAL_REPO/etc/arnold_env
 
-kick -dw -dp -nostdin -sl -v 3 $@
+kick -dw -dp -nostdin -v 3 $@
