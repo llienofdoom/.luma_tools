@@ -24,6 +24,7 @@ then
 fi
 # Global
 export PIXAR_LICENSE_FILE=9010@192.168.35.28
+export ADSKFLEX_LICENSE_FILE=2080@192.168.35.28
 export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export MAYA_SCRIPT_PATH=/mnt/luma_i/_tools/maya/scripts
 export PYTHONPATH=/mnt/luma_i/_tools/maya/scripts:$PYTHONPATH
