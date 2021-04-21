@@ -19,4 +19,11 @@ export OCIO=$ocio_root/$aces_version/config.ocio
 # ARNOLD
 HTOA=$arnold_root/$arnold_version/$arnold_version
 export PATH=$HTOA/scripts/bin:$PATH
-export ADSKFLEX_LICENSE_FILE=2080@192.168.35.28
+case $(hostname -s) in
+  luma-film-borg*) 
+    export ADSKFLEX_LICENSE_FILE=2080@192.168.35.28;
+    ;;
+  *) 
+    echo;
+    ;;
+esac

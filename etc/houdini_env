@@ -45,7 +45,7 @@ export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/scene_cam_reader
 # ARNOLD
 HTOA=$arnold_root/$arnold_version/$arnold_version
 export HOUDINI_PATH="${HOME}/houdini${HOUDINI_MAJOR_RELEASE}.${HOUDINI_MINOR_RELEASE}:${HTOA}:${HFS}/houdini:&"
-export ADSKFLEX_LICENSE_FILE=2080@192.168.35.28
+# export ADSKFLEX_LICENSE_FILE=2080@192.168.35.28
 
 # qLib
 export QLIB=$houdini_tools/qLib-0.2.185
