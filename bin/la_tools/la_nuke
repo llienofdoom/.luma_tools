@@ -2,14 +2,24 @@
 
 aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 
-export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
-export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    export nuke_root=/Applications/Nuke12.0v5
+    # export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
+    # export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    export nuke_root=opt/Nuke12.0v5
+    export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
+    export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
+fi
 
 case "$IJ_USER" in 
     nvermaak | neill )
-        /opt/Nuke12.1v1/Nuke12.1 -nukex $@
+        $nuke_root/Nuke12.0 -nukex $@
         ;;
     * )
-        /opt/Nuke12.1v1/Nuke12.1 $@
+        $nuke_root/Nuke12.0 $@
         ;;
 esac                                                                                           
