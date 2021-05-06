@@ -1,0 +1,156 @@
+import os
+import sys
+import glob
+import json
+
+import maya.standalone
+from maya import cmds
+maya.standalone.initialize( name='python' )
+
+shot_root  = os.environ['IJ_SHOT_PATH']
+anim_file_path = glob.glob(shot_root + os.sep + '*_animation_v*.mb')
+if len(anim_file_path) != 0:
+    anim_file_path.sort()
+    anim_file_path = anim_file_path[-1]
+
+print 'Opening fake file'
+cmds.file('/mnt/luma_i/assets/chr/rig/ij_chr_alejandro/50/characters_ij_chr_alejandro_50.mb', open=True, force=True, resetError=True)
+print 'Opening ', anim_file_path
+cmds.file(anim_file_path, open=True, force=True, resetError=True)
+cmds.loadPlugin('AbcExport')
+
+# The fun starts here... ######################################################
+print '\n' * 5
+print '*' * 80
+print 'Starting Animation Shot Character Export... Good luck!'
+
+# OPEN UNDO CHUNK
+cmds.undoInfo( openChunk=True )
+
+shot_root  = os.environ['IJ_SHOT_PATH']
+json_file  = open( os.path.join(shot_root, 'shot_info.json'), 'r' )
+json_data  = json.load( json_file )[0]
+json_file.close()
+chars      = json_data['assets']['chars']
+frame_s    = int(json_data['clip_start'])
+frame_e    = int(json_data['clip_end'  ])
+char_roots      = cmds.ls('*IJ_CHR_*')
+rig_controllers = cmds.ls('*:*rig_controllers_set', sets=True)
+print '\tWorking in %s' % shot_root
+
+# cmds.delete( all=True, sc=True )
+
+for char in chars:
+    char_name = char.split('ij_chr_')[-1]
+    # if char_name != 'frankie':
+    #     continue
+    print '\t****************************************'
+    print '\tStarting export setup for', char_name
+
+    char_root = ''
+    for i in char_roots:
+        if char_name in i.lower():
+            char_root = i
+    print '\t\tFound root called %s' % char_root
+
+    ctl_set = ''
+    for i in rig_controllers:
+        if char_name in i.lower():
+            ctl_set = i
+    print '\t\tFound set called %s' % ctl_set
+
+    cmds.select(ctl_set, replace=True)
+    controllers = cmds.ls(sl=True)
+    global_ctl = ''
+    for i in controllers:
+        if 'global_C0_ctl' in i:
+            global_ctl = i
+    print '\t\tFound %d controllers' % len(controllers)
+    print '\t\tFound global controller %s' % global_ctl
+
+    curves = cmds.listConnections(controllers, type='animCurve')
+    print '\t\tFound %d animation curves' % len(curves)
+
+    print '\t\tSetting key on first frame...'
+    cmds.currentTime(frame_s)
+    cmds.setKeyframe()
+
+    print '\t\tRemoving all keys before start.'
+    cmds.cutKey(time=(-9999,frame_s-1))
+
+    print '\t\tSetting attributes for sim bind pose...'
+    cmds.currentTime(frame_s - 30)
+    cmds.select( global_ctl, d=True )
+    for i in cmds.ls(sl=True):
+        try:
+            cmds.setAttr(i + '.tx', 0)
+            cmds.setAttr(i + '.ty', 0)
+            cmds.setAttr(i + '.tz', 0)
+            cmds.setAttr(i + '.rx', 0)
+            cmds.setAttr(i + '.ry', 0)
+            cmds.setAttr(i + '.rz', 0)
+        except:
+            pass
+    cmds.select(ctl_set, replace=True)
+    cmds.setKeyframe()
+
+    print '\t\tSetting attributes for world bind pose...'
+    cmds.currentTime(frame_s - 60)
+    for i in cmds.ls(sl=True):
+        try:
+            cmds.setAttr(i + '.tx', 0)
+            cmds.setAttr(i + '.ty', 0)
+            cmds.setAttr(i + '.tz', 0)
+            cmds.setAttr(i + '.rx', 0)
+            cmds.setAttr(i + '.ry', 0)
+            cmds.setAttr(i + '.rz', 0)
+        except:
+            pass
+    cmds.setKeyframe()
+
+    print '\t\tGetting list of geos to include in export.'
+    geos_json_path = os.path.join( os.environ['IJ_LUMA_PROJ_ROOT'], 'assets', 'chr', 'render', '*'+char_name+'*', 'asset_data', 'export_geo.json' )
+    geos_json_file = glob.glob( geos_json_path )
+    if len(geos_json_file) > 0:
+        geos_json_file = geos_json_file[-1]
+        print '\t\tFound export_geo.json file here: %s' % geos_json_file
+        json_file       = open( geos_json_file, 'r' )
+        geos_json_data  = json.load( json_file )[0]
+        json_file.close()
+        export_geo = geos_json_data['export_geo']
+        print '\t\t%d geos to export.' % len(export_geo)
+
+        all_meshes    = cmds.listRelatives(char_root, allDescendents=True, fullPath=True, type='mesh')
+        needed_meshes = []
+        for i in all_meshes:
+            for j in export_geo:
+                if j in i:
+                    needed_meshes.append(i)
+        cmds.select(needed_meshes, replace=True)
+        cmds.pickWalk( direction='up' )
+
+        abc_export_path = os.path.join(shot_root, 'geo', 'anim_export')
+        if not os.path.exists(abc_export_path):
+            os.mkdir(abc_export_path)
+
+        abc_anim_name = 'anim_export_%s_anim.abc' % char_name
+        export_string = ''
+        for i in cmds.ls(sl=True, long=True):
+            export_string += ' -root %s ' % i
+        print '\t\tExporting ABC file...'
+        cmd  = '-frameRange %d %d' % (frame_s - 61, frame_e + 1)
+        cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
+        cmd += export_string
+        cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
+        cmds.AbcExport ( j=cmd )
+
+    else:
+        print 'ERROR! No export_geo.json file for %s.' % char_name
+        print 'All that waisted time, for NOTHING...'
+        print 'Carrying on with next character O_o\n\n'
+
+# CLOSE UNDO CHUNK and RESET
+cmds.undoInfo( closeChunk=True )
+# cmds.undo()
+cmds.currentTime(frame_s)
+print 'Done with export. If you see this, it worked. Cheers!'

@@ -33,11 +33,12 @@ function usage
     echo "  mp4                 : generate an mp4 from ACES EXR files. FOLDER ONLY NOW."
     echo ""
     echo "  shotPrep            : export abc from maya, and setup houdini";
-    echo "  maya2hou            : shotPrep batch mode";
-    echo "  mayaExportAnim      : export animation to alembic from maya";
-    echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
+    # echo "  maya2hou            : shotPrep batch mode";
+    # echo "  mayaExportAnim      : export animation to alembic from maya";
+    # echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
-    echo "  mesd                : Maya Export Shot Data. WIP";
+    echo "  mesd                : Maya Environment Shot Data. WIP";
+    echo "  mcsd                : Maya Character Shot Data. WIP";
     echo ""
     echo "  ass_export | ae     : export assets from maya.";
     echo "  ass_tohip | ah      : build hip for asset files of doom.";
@@ -46,9 +47,9 @@ function usage
     echo "  mp | makeprev       : make preview : mono(m), stereo(s) or both(b) and filename";
     echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
     echo "  vm | viewmono       : view exported mono sequence";
-    echo "  vs | viewstereo     : view exported stereo sequence";
+    # echo "  vs | viewstereo     : view exported stereo sequence";
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
-    echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
+    # echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
     echo "  se | seqedit        : generate scene video : lab se (m)(s) (ass)(cam)(ren) 25";
     echo "  editUpdateSources | eus : update shotsources  for edit : lab eu (a)(m)(s)(r) (SCENE or all)";
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
@@ -171,9 +172,9 @@ if [ "$1" != "" ]; then
           la_mayapy $IJ_LOCAL_REPO/bin/lab_cmds/la_mayaExportGeoFromAnim.py;
         ;;
         #############################################################
-        mayaExportAnimLookDev )
-          la_mayapy $IJ_LOCAL_REPO/bin/lab_cmds/la_mayaExportGeoFromAnim_forLookDev.py;
-        ;;
+        # mayaExportAnimLookDev )
+        #   la_mayapy $IJ_LOCAL_REPO/bin/lab_cmds/la_mayaExportGeoFromAnim_forLookDev.py;
+        # ;;
         #############################################################
         houAssemble )
           la_hython $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreateAssemblyFile.py;
@@ -181,6 +182,10 @@ if [ "$1" != "" ]; then
         #############################################################
         mesd )
           la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaExportShotData.py;
+        ;;
+        #############################################################
+        mcsd )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaChrExport.py;
         ;;
         #############################################################
         ass_export | ae )
@@ -199,11 +204,11 @@ if [ "$1" != "" ]; then
           python $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreviews.py $2 $3 $4;
         ;;
         #############################################################
-        vs | viewstereo )
-          latest=$IJ_SHOT_PATH/img/camera/$IJ_SHOT_NAME\_stereo.mp4
-          if [[ $IJ_OS == "mac" ]]; then open $latest; fi
-          if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
-        ;;
+        # vs | viewstereo )
+        #   latest=$IJ_SHOT_PATH/img/camera/$IJ_SHOT_NAME\_stereo.mp4
+        #   if [[ $IJ_OS == "mac" ]]; then open $latest; fi
+        #   if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
+        # ;;
         #############################################################
         vm | viewmono )
           latest=$IJ_SHOT_PATH/img/camera/$IJ_SHOT_NAME\_mono.mp4
@@ -215,9 +220,9 @@ if [ "$1" != "" ]; then
           python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_mono.py $2;
         ;;
         #############################################################
-        vss | viewstereosc )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_stereo.py $2;
-        ;;
+        # vss | viewstereosc )
+        #   python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_stereo.py $2;
+        # ;;
         #############################################################
         se | seqedit )
           python $IJ_LOCAL_REPO/bin/lab_cmds/la_seqedit.py $2 $3 $4;
