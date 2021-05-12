@@ -181,7 +181,8 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         mesd )
-          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaExportShotData.py;
+          # la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaExportShotData.py;
+          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaEnvExport.py;
         ;;
         #############################################################
         mcsd )
