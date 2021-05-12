@@ -31,8 +31,12 @@ if len(sys.argv) == 3:
         print 'Doing Render Output...'
         search_path += '/renders'
         search_type = 'render'
+    elif 'c' in sys.argv[1]:
+        print 'Doing Comp Output...'
+        search_path += '/comp'
+        search_type = 'comp'
     else:
-        print 'Boo Hoo! Please type lab eus [a|m|s|r] [SCENE NUMBER or ALL]'
+        print 'Boo Hoo! Please type lab eus [a|m|s|r|c] [SCENE NUMBER or ALL]'
         exit()
 
     print 'Looking in %s...' % search_path
@@ -49,4 +53,4 @@ if len(sys.argv) == 3:
             shutil.copyfile(vid, new_path)
             print 'Done.'
 else:
-    print 'Boo Hoo! Please type lab eus [a|m|s|r] [SCENE NUMBER or ALL]'
+    print 'Boo Hoo! Please type lab eus [a|m|s|r|c] [SCENE NUMBER or ALL]'
