@@ -126,7 +126,7 @@ for char in chars:
             for j in export_geo:
                 if j in i:
                     needed_meshes.append(i)
-                    print 'Found %s, adding.' % i
+                    # print 'Found %s, adding.' % i
         cmds.select(needed_meshes, replace=True)
         cmds.pickWalk( direction='up' )
 
