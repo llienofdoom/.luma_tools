@@ -35,8 +35,7 @@ chars      = json_data['assets']['chars']
 frame_s    = int(json_data['clip_start'])
 frame_e    = int(json_data['clip_end'  ])
 char_roots      = cmds.ls('*IJ_CHR_*')
-rig_controllers = cmds.ls('*:*rig_controllers_set', sets=True)
-print rig_controllers
+rig_controllers = cmds.ls('*ij_chr_*:rig_controllers_set', sets=True)
 print '\tWorking in %s' % shot_root
 
 # cmds.delete( all=True, sc=True )
@@ -56,9 +55,7 @@ for char in chars:
 
     ctl_set = ''
     for i in rig_controllers:
-        rig_check = '%s_rig:rig_controllers_set' % char_name
-        # if char_name in i.lower():
-        if rig_check in i.lower():
+        if char_name in i.lower():
             ctl_set = i
     print '\t\tFound set called %s' % ctl_set
 
