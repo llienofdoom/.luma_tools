@@ -55,7 +55,9 @@ for char in chars:
 
     ctl_set = ''
     for i in rig_controllers:
-        if char_name in i.lower():
+        rig_check = '%s_rig:rig_controllers_set' % char_name
+        # if char_name in i.lower():
+        if rig_check in i.lower():
             ctl_set = i
     print '\t\tFound set called %s' % ctl_set
 
