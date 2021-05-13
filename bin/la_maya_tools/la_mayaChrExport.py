@@ -36,6 +36,7 @@ frame_s    = int(json_data['clip_start'])
 frame_e    = int(json_data['clip_end'  ])
 char_roots      = cmds.ls('*IJ_CHR_*')
 rig_controllers = cmds.ls('*:*rig_controllers_set', sets=True)
+print rig_controllers
 print '\tWorking in %s' % shot_root
 
 # cmds.delete( all=True, sc=True )
