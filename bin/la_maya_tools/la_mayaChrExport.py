@@ -129,6 +129,8 @@ for char in chars:
             pass
     cmds.setKeyframe()
 
+    cmds.filterCurve( curves )
+
     print '\t\tGetting list of geos to include in export.'
     geos_json_path = os.path.join( os.environ['IJ_LUMA_PROJ_ROOT'], 'assets', 'chr', 'render', '*'+char_name+'*', 'asset_data', 'export_geo.json' )
     geos_json_file = glob.glob( geos_json_path )
