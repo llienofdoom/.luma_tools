@@ -78,8 +78,15 @@ for char in chars:
     print '\t\tRemoving all keys before start.'
     cmds.cutKey(time=(-9999,frame_s-1))
 
+print '\t\tSetting hold key...'
+    cmds.currentTime(frame_s - 1)
+    cmds.setKeyframe()
+
     print '\t\tSetting hold key...'
     cmds.currentTime(frame_s - 10)
+    cmds.setKeyframe()
+    print '\t\tSetting hold key...'
+    cmds.currentTime(frame_s - 11)
     cmds.setKeyframe()
 
     print '\t\tSetting attributes for sim bind pose...'
@@ -97,9 +104,15 @@ for char in chars:
             pass
     cmds.select(ctl_set, replace=True)
     cmds.setKeyframe()
+print '\t\tSetting hold key...'
+    cmds.currentTime(frame_s - 31)
+    cmds.setKeyframe()
 
     print '\t\tSetting hold key...'
     cmds.currentTime(frame_s - 50)
+    cmds.setKeyframe()
+    print '\t\tSetting hold key...'
+    cmds.currentTime(frame_s - 51)
     cmds.setKeyframe()
 
     print '\t\tSetting attributes for world bind pose...'
