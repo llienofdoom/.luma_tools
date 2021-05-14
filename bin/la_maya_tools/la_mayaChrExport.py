@@ -78,7 +78,7 @@ for char in chars:
     print '\t\tRemoving all keys before start.'
     cmds.cutKey(time=(-9999,frame_s-1))
 
-print '\t\tSetting hold key...'
+    print '\t\tSetting hold key...'
     cmds.currentTime(frame_s - 1)
     cmds.setKeyframe()
 
