@@ -104,7 +104,7 @@ print '\t\tSetting hold key...'
             pass
     cmds.select(ctl_set, replace=True)
     cmds.setKeyframe()
-print '\t\tSetting hold key...'
+    print '\t\tSetting hold key...'
     cmds.currentTime(frame_s - 31)
     cmds.setKeyframe()
 
