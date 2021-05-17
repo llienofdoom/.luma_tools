@@ -137,9 +137,9 @@ for prop in props:
 
     cmds.filterCurve( curves )
 
-    all_meshes    = cmds.listRelatives(prop_root, allDescendents=True, fullPath=True, type='mesh')
-    cmds.select(all_meshes, replace=True)
-    cmds.pickWalk( direction='up' )
+    # all_meshes    = cmds.listRelatives(prop_root, allDescendents=True, fullPath=True, type='mesh')
+    # cmds.select(all_meshes, replace=True)
+    # cmds.pickWalk( direction='up' )
 
     abc_export_path = os.path.join(shot_root, 'geo', 'anim_export')
     if not os.path.exists(abc_export_path):
