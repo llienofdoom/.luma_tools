@@ -146,9 +146,10 @@ for prop in props:
         os.mkdir(abc_export_path)
 
     abc_anim_name = 'anim_export_%s_anim.abc' % prop_name
-    export_string = ''
-    for i in cmds.ls(sl=True, long=True):
-        export_string += ' -root %s ' % i
+    # export_string = ''
+    # for i in cmds.ls(sl=True, long=True):
+    #     export_string += ' -root %s ' % i
+    export_string = ' -root %s' % prop_root
     print '\t\tExporting ABC file...'
     cmd  = '-frameRange %d %d' % (frame_s - 61, frame_e + 1)
     cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
