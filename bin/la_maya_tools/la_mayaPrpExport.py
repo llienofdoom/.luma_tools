@@ -74,8 +74,11 @@ for prop in props:
     print '\t\tFound %d controllers' % len(controllers)
     print '\t\tFound global controller %s' % global_ctl
 
-    curves = cmds.listConnections(controllers, type='animCurve')
-    print '\t\tFound %d animation curves' % len(curves)
+    try:
+        curves = cmds.listConnections(controllers, type='animCurve')
+        print '\t\tFound %d animation curves' % len(curves)
+    except Exception e:
+        print '\t\tFound NO animation curves'
 
     print '\t\tSetting key on first frame...'
     cmds.currentTime(frame_s)
