@@ -77,7 +77,7 @@ for prop in props:
     try:
         curves = cmds.listConnections(controllers, type='animCurve')
         print '\t\tFound %d animation curves' % len(curves)
-    except Exception e:
+    except:
         print '\t\tFound NO animation curves'
 
     print '\t\tSetting key on first frame...'
