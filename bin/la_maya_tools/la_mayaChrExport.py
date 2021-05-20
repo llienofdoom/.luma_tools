@@ -100,6 +100,10 @@ for char in chars:
             cmds.setAttr(i + '.rx', 0)
             cmds.setAttr(i + '.ry', 0)
             cmds.setAttr(i + '.rz', 0)
+            if 'shoulder_L0_ctl' in i:
+                cmds.setAttr(i + '.arm_L0_maxstretch', 1)
+            if 'shoulder_R0_ctl' in i:
+                cmds.setAttr(i + '.arm_R0_maxstretch', 1)
         except:
             pass
     cmds.select(ctl_set, replace=True)
@@ -125,6 +129,10 @@ for char in chars:
             cmds.setAttr(i + '.rx', 0)
             cmds.setAttr(i + '.ry', 0)
             cmds.setAttr(i + '.rz', 0)
+            if 'shoulder_L0_ctl' in i:
+                cmds.setAttr(i + '.arm_L0_maxstretch', 1)
+            if 'shoulder_R0_ctl' in i:
+                cmds.setAttr(i + '.arm_R0_maxstretch', 1)
         except:
             pass
     cmds.setKeyframe()
