@@ -72,7 +72,7 @@ else:
 list_of_props = []
 props         = []
 try:
-    list_of_props = cmds.ls('ij_prp_*')
+    list_of_props = cmds.ls('*ij_prp_*')
     if len(char_props) > 0:
         for prp in char_props:
             matching = fnmatch.filter(list_of_props, prp + '*')
