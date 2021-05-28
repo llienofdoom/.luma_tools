@@ -84,9 +84,28 @@ for char in chars:
 
     print '\t\tSetting hold key...'
     cmds.currentTime(frame_s - 10)
+    # UPDATE SHIT ###################################################
+    # update for switching from IK to FK on the arms, to stop
+    # intersections for use in sim export.
+    for i in cmds.ls(sl=True):
+        if 'shoulder_L0_ctl' in i:
+            cmds.setAttr(i + '.arm_L0_blend', 0)
+        if 'shoulder_R0_ctl' in i:
+            cmds.setAttr(i + '.arm_R0_blend', 0)
+    #################################################################
     cmds.setKeyframe()
+
     print '\t\tSetting hold key...'
     cmds.currentTime(frame_s - 11)
+    # UPDATE SHIT ###################################################
+    # update for switching from IK to FK on the arms, to stop
+    # intersections for use in sim export.
+    for i in cmds.ls(sl=True):
+        if 'shoulder_L0_ctl' in i:
+            cmds.setAttr(i + '.arm_L0_blend', 0)
+        if 'shoulder_R0_ctl' in i:
+            cmds.setAttr(i + '.arm_R0_blend', 0)
+    #################################################################
     cmds.setKeyframe()
 
     print '\t\tSetting attributes for sim bind pose...'
@@ -104,12 +123,29 @@ for char in chars:
                 cmds.setAttr(i + '.arm_L0_maxstretch', 1)
             if 'shoulder_R0_ctl' in i:
                 cmds.setAttr(i + '.arm_R0_maxstretch', 1)
+            # UPDATE SHIT ###################################################
+            # update for switching from IK to FK on the arms, to stop
+            # intersections for use in sim export.
+            if 'shoulder_L0_ctl' in i:
+                cmds.setAttr(i + '.arm_L0_blend', 0)
+            if 'shoulder_R0_ctl' in i:
+                cmds.setAttr(i + '.arm_R0_blend', 0)
+            #################################################################
         except:
             pass
     cmds.select(ctl_set, replace=True)
     cmds.setKeyframe()
     print '\t\tSetting hold key...'
     cmds.currentTime(frame_s - 31)
+    # UPDATE SHIT ###################################################
+    # update for switching from IK to FK on the arms, to stop
+    # intersections for use in sim export.
+    for i in cmds.ls(sl=True):
+        if 'shoulder_L0_ctl' in i:
+            cmds.setAttr(i + '.arm_L0_blend', 0)
+        if 'shoulder_R0_ctl' in i:
+            cmds.setAttr(i + '.arm_R0_blend', 0)
+    #################################################################
     cmds.setKeyframe()
 
     print '\t\tSetting hold key...'
@@ -133,6 +169,14 @@ for char in chars:
                 cmds.setAttr(i + '.arm_L0_maxstretch', 1)
             if 'shoulder_R0_ctl' in i:
                 cmds.setAttr(i + '.arm_R0_maxstretch', 1)
+            # UPDATE SHIT ###################################################
+            # update for switching from IK to FK on the arms, to stop
+            # intersections for use in sim export.
+            if 'shoulder_L0_ctl' in i:
+                cmds.setAttr(i + '.arm_L0_blend', 1)
+            if 'shoulder_R0_ctl' in i:
+                cmds.setAttr(i + '.arm_R0_blend', 1)
+            #################################################################
         except:
             pass
     cmds.setKeyframe()
