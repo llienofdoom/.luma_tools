@@ -19,6 +19,10 @@ if len(sys.argv) == 3:
         print 'Doing Animatics...'
         search_path += '/animatic'
         search_type = 'animatic'
+    elif 'f' in sys.argv[1]:
+        print 'Doing Anim Flip Files...'
+        search_path += '/flip'
+        search_type = 'animation'
     elif 'm' in sys.argv[1]:
         print 'Doing Mono Assembly...'
         search_path += '/camera'
@@ -36,11 +40,11 @@ if len(sys.argv) == 3:
         search_path += '/comp'
         search_type = 'comp'
     else:
-        print 'Boo Hoo! Please type lab eus [a|m|s|r|c] [SCENE NUMBER or ALL]'
+        print 'Boo Hoo! Please type lab eus [a|f|m|s|r|c] [SCENE NUMBER or ALL]'
         exit()
 
     print 'Looking in %s...' % search_path
-    search_path += '/act*_sc*_sh*_%s.mp4' % search_type
+    search_path += '/act*_sc*_sh*_%s*.mp4' % search_type
     video_files  = glob.glob(search_path)
     if len(video_files) != 0:
         for vid in video_files:
@@ -53,4 +57,4 @@ if len(sys.argv) == 3:
             shutil.copyfile(vid, new_path)
             print 'Done.'
 else:
-    print 'Boo Hoo! Please type lab eus [a|m|s|r|c] [SCENE NUMBER or ALL]'
+    print 'Boo Hoo! Please type lab eus [a|f|m|s|r|c] [SCENE NUMBER or ALL]'
