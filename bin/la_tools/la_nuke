@@ -4,7 +4,7 @@ aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 if [[ $IJ_TESTING == "1" ]]; 
 then 
     nuke_version=$(cat $IJ_LOCAL_REPO/etc/nuke_version_testing)
-    nuke_command="Nuke13.0"
+    nuke_command="Nuke12.0"
 else
     nuke_version=$(cat $IJ_LOCAL_REPO/etc/nuke_version)
     nuke_command="Nuke12.0"
