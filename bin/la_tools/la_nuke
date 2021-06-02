@@ -1,17 +1,25 @@
 #!/bin/bash
 
 aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+if [[ $IJ_TESTING == "1" ]]; 
+then 
+    nuke_version=$(cat $IJ_LOCAL_REPO/etc/nuke_version_testing)
+    nuke_command="Nuke13.0"
+else
+    nuke_version=$(cat $IJ_LOCAL_REPO/etc/nuke_version)
+    nuke_command="Nuke12.0"
+fi
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export nuke_root=/Applications/Nuke12.0v5/Nuke12.0v5.app/Contents/MacOS
+    export nuke_root=/Applications/Nuke$nuke_version/Nuke$nuke_version.app/Contents/MacOS
     export NUKE_PATH=/opt/nuke_plugs:$NUKE_PATH
     export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
     export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export nuke_root=/opt/Nuke12.0v5
+    export nuke_root=/opt/Nuke$nuke_version
     export NUKE_PATH=/opt/nuke_plugs:$NUKE_PATH
     export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
     export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
@@ -19,9 +27,9 @@ fi
 
 case "$IJ_USER" in 
     nvermaak | neill )
-        $nuke_root/Nuke12.0 -nukex $@
+        $nuke_root/$nuke_command -nukex $@
         ;;
     * )
-        $nuke_root/Nuke12.0 $@
+        $nuke_root/$nuke_command $@
         ;;
 esac                                                                                           
