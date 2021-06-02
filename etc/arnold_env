@@ -1,7 +1,12 @@
 #!/bin/bash
 
-arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version)
 aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+if [[ $IJ_TESTING == "1" ]]; 
+then 
+    arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version_testing)
+else
+    arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version)
+fi
 
 if [[ $IJ_OS == "mac" ]]; 
 then 

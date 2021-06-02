@@ -44,7 +44,7 @@ if len(sys.argv) == 3:
         exit()
 
     print 'Looking in %s...' % search_path
-    search_path += '/act*_sc*_sh*_%s*.mp4' % search_type
+    search_path += '/act*_sc*_sh*_%s.mp4' % search_type
     video_files  = glob.glob(search_path)
     if len(video_files) != 0:
         for vid in video_files:
