@@ -274,6 +274,8 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         testing )
+          echo "Setting software Branch to TESTING. Use with Caution."
+          echo "Active until you close THIS terminal, from this terminal only."
           export IJ_TESTING=1;
         ;;
       * )

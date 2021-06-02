@@ -5,12 +5,14 @@ aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 if [[ $IJ_OS == "mac" ]]; 
 then 
     export nuke_root=/Applications/Nuke12.0v5/Nuke12.0v5.app/Contents/MacOS
+    export NUKE_PATH=/opt/nuke_plugs:$NUKE_PATH
     export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
     export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
     export nuke_root=/opt/Nuke12.0v5
+    export NUKE_PATH=/opt/nuke_plugs:$NUKE_PATH
     export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
     export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
 fi
