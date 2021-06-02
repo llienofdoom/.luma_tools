@@ -59,6 +59,7 @@ function usage
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
     echo "  mon                 : Opens the luma monitor in a browser.";
+    echo "  testing             : Enable testing software branch, until terminal close."
     echo "#####################################################################"
 }
 
@@ -270,6 +271,10 @@ if [ "$1" != "" ]; then
         #############################################################
         maya_clean )
           la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/maya_virus/la_mayaCLEAN.py $2;
+        ;;
+        #############################################################
+        testing )
+          export IJ_TESTING=1;
         ;;
       * )
           usage;
