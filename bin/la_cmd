@@ -236,7 +236,8 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         eus | editUpdateSources )
-          python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources.py $2 $3;
+          # python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources.py $2 $3;
+          python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources_02.py $2 $3;
         ;;
         #############################################################
         fa | fromaces )
@@ -257,8 +258,8 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         mon )
-          if [[ $IJ_OS == "mac" ]]; then open http://192.168.35.1:3000/; fi
-          if [[ $IJ_OS == "lin" ]]; then firefox http://192.168.35.1:3000/; fi
+          if [[ $IJ_OS == "mac" ]]; then open http://192.168.34.2:3000/; fi
+          if [[ $IJ_OS == "lin" ]]; then firefox http://192.168.34.2:3000/; fi
         ;;
         #############################################################
         edit_info | esi )
