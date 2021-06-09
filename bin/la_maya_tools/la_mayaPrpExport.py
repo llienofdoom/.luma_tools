@@ -34,7 +34,7 @@ json_file.close()
 props      = json_data['assets']['props']
 frame_s    = int(json_data['clip_start'])
 frame_e    = int(json_data['clip_end'  ])
-prop_roots      = cmds.ls('*ij_prp_*')
+prop_roots      = cmds.ls('*ij_prp_*rigAsset')
 rig_controllers = cmds.ls('*ij_prp_*_rig:propctl_set', sets=True)
 rig_controllers_alt = cmds.ls('*ij_prp_*_rig:rig_controllers_set', sets=True)
 print '\tWorking in %s' % shot_root
