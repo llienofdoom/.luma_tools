@@ -8,7 +8,7 @@ time=$(date "+%Y-%m-%d_%H-%M-%S")
 mp4_name=$IJ_SHOT_NAME\_playblast\_$time.mp4
 mp4_path=$IJ_SHOT_PATH/img/flip/$mp4_name
 
-ffmpeg -y -i $1 -filter_complex "[0:v]drawtext='fontcolor=white:font=sans-serif:fontsize=20:x=6:y=1130:text=[[luma-film - 2020 - [inside job] [$IJ_DATE][$IJ_SHOT_NAME]:box=1:boxborderw=5:boxcolor=black'[LT]" -pix_fmt yuv420p -c:v libx264 -crf 25 -map "[LT]" $mp4_path
+ffmpeg -y -i $1 -s 2048x1152 -filter_complex "[0:v]drawtext='fontcolor=white:font=sans-serif:fontsize=20:x=6:y=1130:text=[[luma-film - 2020 - [inside job] [$IJ_DATE][$IJ_SHOT_NAME]:box=1:boxborderw=5:boxcolor=black'[LT]" -pix_fmt yuv420p -c:v libx264 -crf 25 -map "[LT]" $mp4_path
 la_mrv $mp4_path
 
 
