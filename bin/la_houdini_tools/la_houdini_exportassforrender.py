@@ -11,10 +11,7 @@ import sys
 import os
 import hou
 
-print sys.argv
-
-"""
-hipfile = sys.argv
+hipfile = sys.argv[1]
 
 print 'Exporting ASS files to render, from', hipfile
 
@@ -22,20 +19,18 @@ print "Loading file %s" % (hipfile)
 hou.hipFile.load(hipfile)
 print "Loaded!"
 
+"""
 hou.parm('/obj/ij_stereo_camera_rig/ar_skip_license_check').set(0)
 
 fs  = int(sys.argv[6])
 fe  = int(sys.argv[8])
 print "Setting frame range to %d - %d" % (fs, fe)
 
-# Set progress output
-rop.parm('vm_verbose').set(3)
-rop.parm('vm_alfprogress').set(1)
-
 # RENDER
 print "Starting to render...",
 rop.render(frame_range=(fs, fe))
 print "DONE!"
 
-quit()
 """
+print 'Done. Exiting.'
+quit()
