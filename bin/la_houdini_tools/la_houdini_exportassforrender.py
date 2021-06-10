@@ -12,25 +12,24 @@ import os
 import hou
 
 hipfile = sys.argv[1]
+frame   = int(sys.argv[2])
 
-print 'Exporting ASS files to render, from', hipfile
+print 'Exporting ASS files to render, from %s.' % hipfile
+print 'Doing frame %04d.' % frame
 
 print "Loading file %s" % (hipfile)
 hou.hipFile.load(hipfile, suppress_save_prompt=True, ignore_load_warnings=True)
 print "Loaded!"
 
-"""
+print 'Setting settings...'
 hou.parm('/obj/ij_stereo_camera_rig/ar_skip_license_check').set(0)
-
-fs  = int(sys.argv[6])
-fe  = int(sys.argv[8])
-print "Setting frame range to %d - %d" % (fs, fe)
+hou.parmTuple('/obj/ij_stereo_camera_rig/f').deleteAllKeyframes()
+hou.parm('/obj/ij_stereo_camera_rig/f1').set(frame)
+hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
 
 # RENDER
 print "Starting to render...",
-rop.render(frame_range=(fs, fe))
-print "DONE!"
+hou.parm('/obj/ij_stereo_camera_rig/render_to_disk_main').pressButton()
 
-"""
 print 'Done. Exiting.'
 quit()
