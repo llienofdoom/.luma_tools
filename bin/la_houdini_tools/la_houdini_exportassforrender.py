@@ -16,7 +16,7 @@ hipfile = sys.argv[1]
 print 'Exporting ASS files to render, from', hipfile
 
 print "Loading file %s" % (hipfile)
-hou.hipFile.load(hipfile)
+hou.hipFile.load(hipfile, suppress_save_prompt=True, ignore_load_warnings=True)
 print "Loaded!"
 
 """
