@@ -13,6 +13,7 @@ fi
 if [[ $IJ_OS == "mac" ]]; 
 then 
     export nuke_root=/Applications/Nuke$nuke_version/Nuke$nuke_version.app/Contents/MacOS
+    unset NUKE_PATH
     export NUKE_PATH=/opt/nuke_plugs:$NUKE_PATH
     export NUKE_PATH=/opt/nuke_plugs/Cryptomatte/nuke:$NUKE_PATH
     export NUKE_PATH=/opt/nuke_plugs/ffmpeg_write:$NUKE_PATH
