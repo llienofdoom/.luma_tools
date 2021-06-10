@@ -20,6 +20,10 @@ webhook = json_data['webhook']
 
 user    = sys.argv[1]
 message = sys.argv[2]
+video   = ''
+
+if len(sys.argv) == 4:
+    video = sys.argv[3]
 
 try:
     user = json_data['users'][user]
@@ -29,4 +33,12 @@ except:
 message = '%s - %s.' % (user, message)
 
 webhook = DiscordWebhook(url=webhook, content=message)
+
+if video != '':
+    with open(video, 'rb') as f:
+        webhook.add_file(file=f.read(), filename=os.path.basename(video))
+
 response = webhook.execute()
+
+# DISCORD
+# https://pypi.org/project/discord-webhook/
