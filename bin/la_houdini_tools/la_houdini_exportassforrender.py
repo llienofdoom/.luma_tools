@@ -30,6 +30,8 @@ hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
 # RENDER
 print "Starting to render...",
 hou.parm('/obj/ij_stereo_camera_rig/render_to_disk_main').pressButton()
+hou.parm('/obj/ij_stereo_camera_rig/render_to_disk_volume').pressButton()
+hou.parm('/obj/ij_stereo_camera_rig/render_to_disk_crypto').pressButton()
 
 print 'Done. Exiting.'
 quit()
