@@ -83,7 +83,7 @@ for char in chars:
     cmds.setKeyframe()
 
     print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 10)
+    cmds.currentTime(frame_s - 20)
     # UPDATE SHIT ###################################################
     # update for switching from IK to FK on the arms, to stop
     # intersections for use in sim export.
@@ -96,7 +96,7 @@ for char in chars:
     cmds.setKeyframe()
 
     print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 11)
+    cmds.currentTime(frame_s - 21)
     # UPDATE SHIT ###################################################
     # update for switching from IK to FK on the arms, to stop
     # intersections for use in sim export.
@@ -109,7 +109,7 @@ for char in chars:
     cmds.setKeyframe()
 
     print '\t\tSetting attributes for sim bind pose...'
-    cmds.currentTime(frame_s - 30)
+    cmds.currentTime(frame_s - 40)
     cmds.select( global_ctl, d=True )
     for i in cmds.ls(sl=True):
         try:
@@ -136,7 +136,7 @@ for char in chars:
     cmds.select(ctl_set, replace=True)
     cmds.setKeyframe()
     print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 31)
+    cmds.currentTime(frame_s - 41)
     # UPDATE SHIT ###################################################
     # update for switching from IK to FK on the arms, to stop
     # intersections for use in sim export.
@@ -149,10 +149,10 @@ for char in chars:
     cmds.setKeyframe()
 
     print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 50)
+    cmds.currentTime(frame_s - 58)
     cmds.setKeyframe()
     print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 51)
+    cmds.currentTime(frame_s - 59)
     cmds.setKeyframe()
 
     print '\t\tSetting attributes for world bind pose...'
