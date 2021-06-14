@@ -155,7 +155,7 @@ for prop in props:
     export_string = ' -root %s' % prop_root
     print '\t\tExporting ABC file...'
     cmd  = '-frameRange %d %d' % (frame_s - 61, frame_e + 1)
-    cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
+    cmd += ' -uvWrite  -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
     cmd += export_string
     cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
     cmds.AbcExport ( j=cmd )
