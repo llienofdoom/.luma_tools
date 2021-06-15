@@ -45,8 +45,13 @@ else:
     filename = '*.mp4'
     if update_type == 'flip':
         filename = '*animation*.mp4'
+    if update_type == 'render':
+        filename = '*render*.mp4'
+        update_type = 'renders'
     shot_search_string = os.path.join( shot_root, 'act%s' % update_shot[0], 'sc%s' % update_shot[1], 'sh%s' % update_shot[2], 'img', update_type, filename )
+    # print shot_search_string
     list_of_shot_videos = glob.glob( shot_search_string )
+    # print list_of_shot_videos
     print 'Done. Sorting files into latest...'
     
     list_of_shot_videos.sort()
@@ -67,6 +72,8 @@ else:
     for i in list_of_uniques:
         if update_type == 'flip':
             update_type = 'animation'
+        if update_type == 'renders':
+            update_type = 'render'
         act = os.path.basename(i).split('_')[0]
         scn = os.path.basename(i).split('_')[1]
         sht = os.path.basename(i).split('_')[2]
@@ -74,7 +81,7 @@ else:
         new_path = os.path.join(edit_sources_master, update_type, new_name)
         print '\tUpdating %s' % new_path
         print '\tCopying mp4...'
-        print i, new_path + '.mp4'
+        # print i, new_path + '.mp4'
         shutil.copy2(i, new_path + '.mp4')
         print '\tDone! Converting to ProRes...'
         cmd  = 'ffmpeg -y -hide_banner -loglevel panic'
