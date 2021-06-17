@@ -120,7 +120,7 @@ for e in envs:
     export_string += ' -root %s ' % e
 print 'Done. Exporting... ',
 cmd  = '-frameRange %d %d' % (frame_s, frame_s)
-cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
+cmd += ' -uvWrite -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
 cmd += export_string
 cmd += ' -file %s' % os.path.join(abc_export_path, abc_static_name)
 cmds.AbcExport ( j=cmd )
@@ -134,7 +134,7 @@ if len(env_geo_anim) > 0:
         export_string += ' -root %s ' % i
     print 'Done. Exporting... ',
     cmd  = '-frameRange %d %d' % (frame_s - 1, frame_e + 1)
-    cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
+    cmd += ' -uvWrite -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
     cmd += export_string
     cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
     cmds.AbcExport ( j=cmd )
