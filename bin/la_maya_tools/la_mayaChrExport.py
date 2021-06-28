@@ -87,11 +87,11 @@ for char in chars:
     # UPDATE SHIT ###################################################
     # update for switching from IK to FK on the arms, to stop
     # intersections for use in sim export.
-    # for i in cmds.ls(sl=True):
-    #     if 'shoulder_L0_ctl' in i:
-    #         cmds.setAttr(i + '.arm_L0_blend', 0)
-    #     if 'shoulder_R0_ctl' in i:
-    #         cmds.setAttr(i + '.arm_R0_blend', 0)
+    for i in cmds.ls(sl=True):
+        if 'shoulder_L0_ctl' in i:
+            cmds.setAttr(i + '.arm_L0_blend', 0)
+        if 'shoulder_R0_ctl' in i:
+            cmds.setAttr(i + '.arm_R0_blend', 0)
     #################################################################
     cmds.setKeyframe()
 
@@ -100,11 +100,11 @@ for char in chars:
     # UPDATE SHIT ###################################################
     # update for switching from IK to FK on the arms, to stop
     # intersections for use in sim export.
-    # for i in cmds.ls(sl=True):
-    #     if 'shoulder_L0_ctl' in i:
-    #         cmds.setAttr(i + '.arm_L0_blend', 0)
-    #     if 'shoulder_R0_ctl' in i:
-    #         cmds.setAttr(i + '.arm_R0_blend', 0)
+    for i in cmds.ls(sl=True):
+        if 'shoulder_L0_ctl' in i:
+            cmds.setAttr(i + '.arm_L0_blend', 0)
+        if 'shoulder_R0_ctl' in i:
+            cmds.setAttr(i + '.arm_R0_blend', 0)
     #################################################################
     cmds.setKeyframe()
 
@@ -126,10 +126,10 @@ for char in chars:
             # UPDATE SHIT ###################################################
             # update for switching from IK to FK on the arms, to stop
             # intersections for use in sim export.
-            # if 'shoulder_L0_ctl' in i:
-            #     cmds.setAttr(i + '.arm_L0_blend', 0)
-            # if 'shoulder_R0_ctl' in i:
-            #     cmds.setAttr(i + '.arm_R0_blend', 0)
+            if 'shoulder_L0_ctl' in i:
+                cmds.setAttr(i + '.arm_L0_blend', 0)
+            if 'shoulder_R0_ctl' in i:
+                cmds.setAttr(i + '.arm_R0_blend', 0)
             #################################################################
         except:
             pass
@@ -140,11 +140,11 @@ for char in chars:
     # UPDATE SHIT ###################################################
     # update for switching from IK to FK on the arms, to stop
     # intersections for use in sim export.
-    # for i in cmds.ls(sl=True):
-    #     if 'shoulder_L0_ctl' in i:
-    #         cmds.setAttr(i + '.arm_L0_blend', 0)
-    #     if 'shoulder_R0_ctl' in i:
-    #         cmds.setAttr(i + '.arm_R0_blend', 0)
+    for i in cmds.ls(sl=True):
+        if 'shoulder_L0_ctl' in i:
+            cmds.setAttr(i + '.arm_L0_blend', 0)
+        if 'shoulder_R0_ctl' in i:
+            cmds.setAttr(i + '.arm_R0_blend', 0)
     #################################################################
     cmds.setKeyframe()
 
@@ -176,10 +176,10 @@ for char in chars:
             # UPDATE SHIT ###################################################
             # update for switching from IK to FK on the arms, to stop
             # intersections for use in sim export.
-            # if 'shoulder_L0_ctl' in i:
-            #     cmds.setAttr(i + '.arm_L0_blend', 1)
-            # if 'shoulder_R0_ctl' in i:
-            #     cmds.setAttr(i + '.arm_R0_blend', 1)
+            if 'shoulder_L0_ctl' in i:
+                cmds.setAttr(i + '.arm_L0_blend', 1)
+            if 'shoulder_R0_ctl' in i:
+                cmds.setAttr(i + '.arm_R0_blend', 1)
             #################################################################
         except:
             pass
