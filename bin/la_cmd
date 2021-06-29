@@ -48,6 +48,8 @@ function usage
     echo "  mp | makeprev       : make preview : mono(m), stereo(s) or both(b) and filename";
     echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
     echo "  vm | viewmono       : view exported mono sequence";
+    echo "  va | viewanim       : view exported animation sequence";
+    echo "  vr | viewrender     : view exported render sequence";
     # echo "  vs | viewstereo     : view exported stereo sequence";
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
     # echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
@@ -219,6 +221,18 @@ if [ "$1" != "" ]; then
         #############################################################
         vm | viewmono )
           latest=$IJ_SHOT_PATH/img/camera/$IJ_SHOT_NAME\_mono.mp4
+          if [[ $IJ_OS == "mac" ]]; then open $latest; fi
+          if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
+        ;;
+        #############################################################
+        va | viewanim )
+          latest=$(ls -td $IJ_SHOT_PATH/img/flip/*_animation_*.mp4 | head -n1)
+          if [[ $IJ_OS == "mac" ]]; then open $latest; fi
+          if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
+        ;;
+        #############################################################
+        vr | viewrender )
+          latest=$(ls -td $IJ_SHOT_PATH/img/renders/*_render_*.mp4 | head -n1)
           if [[ $IJ_OS == "mac" ]]; then open $latest; fi
           if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
         ;;
