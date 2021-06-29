@@ -27,6 +27,7 @@ print 'Scene loading took %d seconds.' % (time_end + 1)
 
 print 'Setting settings...'
 hou.parm('/obj/ij_stereo_camera_rig/ar_skip_license_check').set(0)
+hou.parm('/obj/ij_stereo_camera_rig/enable_volumes').set(0)
 hou.parmTuple('/obj/ij_stereo_camera_rig/f').deleteAllKeyframes()
 hou.parm('/obj/ij_stereo_camera_rig/f1').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
