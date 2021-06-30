@@ -48,6 +48,9 @@ else:
     if update_type == 'render':
         filename = '*render*.mp4'
         update_type = 'renders'
+    if update_type == 'comp':
+        filename = '*comp*.mp4'
+        update_type = 'comp'
     shot_search_string = os.path.join( shot_root, 'act%s' % update_shot[0], 'sc%s' % update_shot[1], 'sh%s' % update_shot[2], 'img', update_type, filename )
     # print shot_search_string
     list_of_shot_videos = glob.glob( shot_search_string )
