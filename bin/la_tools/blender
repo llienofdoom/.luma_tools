@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    export blender_root=/Applications/Blender/2.91/Blender.app/Contents/MacOS;
+    $blender_root/Blender $@
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    export blender_root=/opt/blender;
+    $blender_root/blender $@
+fi
