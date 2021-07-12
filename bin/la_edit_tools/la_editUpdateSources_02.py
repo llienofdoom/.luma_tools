@@ -51,6 +51,9 @@ else:
     if update_type == 'comp':
         filename = '*comp*.mp4'
         update_type = 'comp'
+    if update_type == 'mono':
+        filename = '*mono.mp4'
+        update_type = 'camera'
     shot_search_string = os.path.join( shot_root, 'act%s' % update_shot[0], 'sc%s' % update_shot[1], 'sh%s' % update_shot[2], 'img', update_type, filename )
     # print shot_search_string
     list_of_shot_videos = glob.glob( shot_search_string )
@@ -77,6 +80,8 @@ else:
             update_type = 'animation'
         if update_type == 'renders':
             update_type = 'render'
+        if update_type == 'camera':
+            update_type = 'mono'
         act = os.path.basename(i).split('_')[0]
         scn = os.path.basename(i).split('_')[1]
         sht = os.path.basename(i).split('_')[2]
