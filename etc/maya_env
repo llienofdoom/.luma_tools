@@ -47,3 +47,5 @@ export LD_LIBRARY_PATH=/usr/autodesk/maya2016.5/lib/
 export PATH=/usr/autodesk/maya/bin:$PATH
 export MAYA_DISABLE_CIP=1
 export MAYA_DISABLE_CER=1
+export MAYA_DISABLE_CLIC_IPM=1
+export MAYA_DISABLE_VP2_WHEN_POSSIBLE=1
