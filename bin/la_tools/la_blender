@@ -4,7 +4,7 @@ aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export blender_root=/Applications/Blender/2.91/Blender.app/Contents/MacOS;
+    export blender_root=/Applications/Blender/2.93/Blender.app/Contents/MacOS;
     export ocio_root=/mnt/luma_h/SITE/ocio
     export OCIO=$ocio_root/$aces_version/config.ocio
 
