@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source $IJ_LOCAL_REPO/etc/nuke_env
+
+$nuke_root/$nuke_command $@
