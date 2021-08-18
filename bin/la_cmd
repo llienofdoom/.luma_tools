@@ -34,7 +34,7 @@ function usage
     echo ""
     echo "  shotPrep            : export abc from maya, and setup houdini";
     # echo "  maya2hou            : shotPrep batch mode";
-    # echo "  mayaExportAnim      : export animation to alembic from maya";
+    echo "  mayaExportAnim      : export animation to alembic from maya";
     # echo "  mayaExportAnimLookDev : export animation to alembic from maya for lookdev";
     echo "  houAssemble         : create a shot assembly file as a base";
     echo "  mesd                : Maya Environment Shot Data. WIP";
@@ -44,12 +44,13 @@ function usage
     echo "  ass_export | ae     : export assets from maya.";
     echo "  ass_tohip | ah      : build hip for asset files of doom.";
     echo ""
-    echo "  edit_info     | esi : edits the shot infor file.";
+    echo "  edit_info | esi     : edits the shot infor file.";
     echo "  mp | makeprev       : make preview : mono(m), stereo(s) or both(b) and filename";
     echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
     echo "  vm | viewmono       : view exported mono sequence";
     echo "  va | viewanim       : view exported animation sequence";
     echo "  vr | viewrender     : view exported render sequence";
+    echo "  vc | viewcomp       : view exported comp";
     # echo "  vs | viewstereo     : view exported stereo sequence";
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
     # echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
@@ -235,6 +236,12 @@ if [ "$1" != "" ]; then
           latest=$(ls -td $IJ_SHOT_PATH/img/renders/*_render_*.mp4 | head -n1)
           if [[ $IJ_OS == "mac" ]]; then open $latest; fi
           if [[ $IJ_OS == "lin" ]]; then mrViewer $latest; fi
+        ;;
+        #############################################################
+        vc | viewcomp )
+          latest=$(ls -td $IJ_SHOT_PATH/img/comp/*_comp_*.mov | head -n1)
+          if [[ $IJ_OS == "mac" ]]; then open $latest; fi
+          if [[ $IJ_OS == "lin" ]]; then la_djv $latest; fi
         ;;
         #############################################################
         vms | viewmonosc )
