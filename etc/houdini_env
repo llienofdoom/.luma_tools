@@ -47,6 +47,7 @@ export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/asset_lookdev_hd
 export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/shot_builder_hda:$HOUDINI_OTLSCAN_PATH
 export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/stereo_camera_rig:$HOUDINI_OTLSCAN_PATH
 export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/gen/tools/scene_cam_reader:$HOUDINI_OTLSCAN_PATH
+export HOUDINI_OTLSCAN_PATH=$IJ_LUMA_PROJ_ROOT/assets/fx/_MASTER:$HOUDINI_OTLSCAN_PATH
 
 # ARNOLD
 HTOA=$arnold_root/$arnold_version/$arnold_version
