@@ -49,7 +49,7 @@ else:
         filename = '*render*.mp4'
         update_type = 'renders'
     if update_type == 'comp':
-        filename = '*comp*.mp4'
+        filename = '*comp*.mov'
         update_type = 'comp'
     if update_type == 'mono':
         filename = '*mono.mp4'
