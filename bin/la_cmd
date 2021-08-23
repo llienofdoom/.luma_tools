@@ -26,11 +26,19 @@ function usage
     echo "  mgear               : stupid hack to get maya to play along";
     echo ""
     echo "  ani | animatic      : view the animatic video";
+    echo "  vm  | viewmono      : view exported mono sequence";
+    echo "  va  | viewanim      : view exported animation sequence";
+    echo "  vr  | viewrender    : view exported render sequence";
+    echo "  vc  | viewcomp      : view exported comp";
+    # echo "  vs | viewstereo     : view exported stereo sequence";
+    echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
+    # echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
     echo "  makett              : generate a turntable of the selected asset";
     echo "  viewtt              : view turntable of selected asset";
     echo ""
     echo "  makevid | mv        : generate an mp4 from a sequence. NOT ACES YET.";
     echo "  mp4                 : generate an mp4 from ACES EXR files. FOLDER ONLY NOW."
+    echo "  prores              : generate a PRORES from a sequence.";
     echo ""
     echo "  shotPrep            : export abc from maya, and setup houdini";
     # echo "  maya2hou            : shotPrep batch mode";
@@ -47,13 +55,6 @@ function usage
     echo "  edit_info | esi     : edits the shot infor file.";
     echo "  mp | makeprev       : make preview : mono(m), stereo(s) or both(b) and filename";
     echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
-    echo "  vm | viewmono       : view exported mono sequence";
-    echo "  va | viewanim       : view exported animation sequence";
-    echo "  vr | viewrender     : view exported render sequence";
-    echo "  vc | viewcomp       : view exported comp";
-    # echo "  vs | viewstereo     : view exported stereo sequence";
-    echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
-    # echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
     echo "  se | seqedit        : generate scene video : lab se (m)(s) (ass)(cam)(ren) 25";
     echo "  editUpdateSources | eus : update shotsources  for edit : lab eu (a)(m)(s)(r) (SCENE or all)";
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
@@ -161,6 +162,12 @@ if [ "$1" != "" ]; then
           echo "Done. Cleaning up."
           rm *.jpg
           mv *.mp4 ../
+          echo "Done!"
+        ;;
+        #############################################################
+        prores )
+          latest=$(ls -td *.exr | head -n1)
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makeprores.py $latest
           echo "Done!"
         ;;
         #############################################################
