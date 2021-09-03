@@ -60,6 +60,14 @@ function usage
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
     echo "  usc | update_scene_cams : update the per scene camera exports.";
     echo ""
+    echo "  ob                  : open assembly file.";
+    echo "  oa                  : open latest animation file.";
+    echo "  oc                  : open latest camera file.";
+    echo "  or                  : open latest render file.";
+    echo "  of                  : open latest fx file.";
+    echo "  os                  : open latest sim file.";
+    echo "  ok                  : open latest comp file.";
+    echo ""
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
     echo "  mon                 : Opens the luma monitor in a browser.";
@@ -274,6 +282,41 @@ if [ "$1" != "" ]; then
         #############################################################
         usc | update_scene_cams )
           python3.7 $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_collect_scene_cams.py $2;
+        ;;
+        #############################################################
+        ob )
+          latest=$(ls -t act*_sc*_sh*_assembly.hip | head -1);
+          la_houdini $latest;
+        ;;
+        #############################################################
+        oa )
+          latest=$(ls -t act*_sc*_sh*_animation_v*.mb | head -1);
+          la_maya $latest;
+        ;;
+        #############################################################
+        oc )
+          latest=$(ls -t act*_sc*_sh*_camera_v*.hip | head -1);
+          la_houdini $latest;
+        ;;
+        #############################################################
+        or )
+          latest=$(ls -t act*_sc*_sh*_render_v*.hip | head -1);
+          la_houdini $latest;
+        ;;
+        #############################################################
+        of )
+          latest=$(ls -t act*_sc*_sh*_fx_v*.hip | head -1);
+          la_houdini $latest;
+        ;;
+        #############################################################
+        os )
+          latest=$(ls -t act*_sc*_sh*_sim_v*.hip | head -1);
+          la_houdini $latest;
+        ;;
+        #############################################################
+        ok )
+          latest=$(ls -t act*_sc*_sh*_comp_v*.nk | head -1);
+          la_nuke $latest;
         ;;
         #############################################################
         -h | --help | h | help )
