@@ -173,6 +173,10 @@ for char in chars:
                 cmds.setAttr(i + '.foot_L0_toeLift', 0)
             if 'foot_R0_fk0_ctl' in i:
                 cmds.setAttr(i + '.foot_R0_toeLift', 0)
+            if 'foot_L0_fk0_ctl' in i:
+                cmds.setAttr(i + '.foot_L0_ballBendLift', 0)
+            if 'foot_R0_fk0_ctl' in i:
+                cmds.setAttr(i + '.foot_R0_ballBendLift', 0)
             # UPDATE SHIT ###################################################
             # update for switching from IK to FK on the arms, to stop
             # intersections for use in sim export.
