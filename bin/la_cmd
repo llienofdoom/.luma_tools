@@ -290,32 +290,32 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         oa )
-          latest=$(ls -t act*_sc*_sh*_animation_v*.mb | head -1);
+          latest=$(ls -v act*_sc*_sh*_animation_v*.mb | tail -1);
           la_maya $latest;
         ;;
         #############################################################
         oc )
-          latest=$(ls -t act*_sc*_sh*_camera_v*.hip | head -1);
+          latest=$(ls -v act*_sc*_sh*_camera_v*.hip | tail -1);
           la_houdini $latest;
         ;;
         #############################################################
         or )
-          latest=$(ls -t act*_sc*_sh*_render_v*.hip | head -1);
+          latest=$(ls -v act*_sc*_sh*_render_v*.hip | tail -1);
           la_houdini $latest;
         ;;
         #############################################################
         of )
-          latest=$(ls -t act*_sc*_sh*_fx_v*.hip | head -1);
+          latest=$(ls -v act*_sc*_sh*_fx_v*.hip | tail -1);
           la_houdini $latest;
         ;;
         #############################################################
         os )
-          latest=$(ls -t act*_sc*_sh*_sim_v*.hip | head -1);
+          latest=$(ls -v act*_sc*_sh*_sim_v*.hip | tail -1);
           la_houdini $latest;
         ;;
         #############################################################
         ok )
-          latest=$(ls -t act*_sc*_sh*_comp_v*.nk | head -1);
+          latest=$(ls -v act*_sc*_sh*_comp_v*.nk | tail -1);
           la_nuke $latest;
         ;;
         #############################################################

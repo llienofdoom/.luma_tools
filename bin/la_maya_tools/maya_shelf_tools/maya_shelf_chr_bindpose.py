@@ -38,8 +38,6 @@ for char in chars:
         continue
 
     char_name = char.split('ij_chr_')[-1]
-    # if char_name != 'frankie':
-    #     continue
     print '\t****************************************'
     print '\tStarting export setup for', char_name
 
@@ -196,4 +194,5 @@ cmds.undoInfo( closeChunk=True )
 # cmds.undo()
 cmds.playbackOptions(minTime=frame_s - 60)
 cmds.currentTime(frame_s - 60)
+cmds.select(char_root, replace=True)
 print 'Done with bind pose setup.'
