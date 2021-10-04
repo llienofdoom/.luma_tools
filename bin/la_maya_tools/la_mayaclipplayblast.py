@@ -63,10 +63,14 @@ try:
     if renderCamera != None:
         print renderCamera[0]
         cmds.setAttr(renderCamera[0] + '.rnd', 1)
+        print 'Camera Setup Complete.'
         playblast_path = os.path.join(shot_root, 'img', 'flip', 'playblast_temp', shot_name + '_animation')
-        cmds.playblast(f=playblast_path, fmt='image', compression='png', startTime=frame_s, endTime=frame_e, width=2048, height=1152, viewer=False, offScreen=True)
+        print 'Setting playblast path to: %s' % playblast_path
+        print 'Running playblast...'
+        cmds.playblast(f=playblast_path, fmt='image', compression='png', startTime=frame_s, endTime=frame_e, width=2048, height=1152, viewer=False)
+        print 'Playblast Done.'
         
-        print 'Done with playblast. Converting to mp4... (Colour still magic O_o. To fix.)'
+        print 'Converting to mp4... (Colour still magic O_o. To fix.)'
         video_path = os.path.join(shot_root, 'img', 'flip', shot_name + '_animation_CURRENT.mp4')
         cmd  = 'ffmpeg -y'
         cmd += ' -r 24'
