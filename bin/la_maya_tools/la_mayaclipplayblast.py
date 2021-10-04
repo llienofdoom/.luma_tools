@@ -9,6 +9,8 @@ maya.standalone.initialize( name='python' )
 
 shot_root = os.environ['IJ_SHOT_PATH']
 shot_name = os.environ['IJ_SHOT_NAME']
+date      = os.environ['IJ_DATE']
+user      = os.environ['IJ_USER']
 anim_file_path = glob.glob(shot_root + os.sep + '*_animation_v*.mb')
 if len(anim_file_path) != 0:
     anim_file_path.sort()
@@ -50,7 +52,18 @@ if renderCamera != None:
     cmds.setAttr(renderCamera[0] + '.rnd', 1)
     playblast_path = os.path.join(shot_root, 'img', 'flip', 'playblast_temp', shot_name + '_animation')
     cmds.playblast(f=playblast_path, fmt='image', compression='png', startTime=frame_s, endTime=frame_e, width=2048, height=1152, viewer=False, offScreen=True)
+    
     print 'Done with playblast. Converting...'
+    video_path = os.path.join(shot_root, 'img', 'flip', shot_name + '_animation_CURRENT.mp4')
+    cmd  = 'ffmpeg -y'
+    cmd += ' -i %s' % playblast_path + '.%04d.png'
+    cmd += ' -s 2048x1152'
+    cmd += ' -filter_complex "[0:v]drawtext=\'fontcolor=white:font=sans-serif:fontsize=40:x=6:y=1080:text=  luma-film - 2020 - inside job %s - %s - %s:box=1:boxborderw=5:boxcolor=black\'[LT]"' % (date, shot_name, user)
+    cmd += ' -pix_fmt yuv420p -c:v libx264 -crf 25 -map "[LT]"'
+    cmd += ' -map 0:a'
+    cmd += ' %s' % video_path
+    os.system( cmd )
+
 else:
     print 'No camera found...'
 print 'Done with all. Exiting.'
