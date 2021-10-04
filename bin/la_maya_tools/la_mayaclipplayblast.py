@@ -56,6 +56,8 @@ if renderCamera != None:
     print 'Done with playblast. Converting...'
     video_path = os.path.join(shot_root, 'img', 'flip', shot_name + '_animation_CURRENT.mp4')
     cmd  = 'ffmpeg -y'
+    cmd += ' -r 24'
+    cmd += ' -start_number %d' % frame_s
     cmd += ' -i %s' % playblast_path + '.%04d.png'
     cmd += ' -s 2048x1152'
     cmd += ' -filter_complex "[0:v]drawtext=\'fontcolor=white:font=sans-serif:fontsize=40:x=6:y=1080:text=  luma-film - 2020 - inside job %s - %s - %s:box=1:boxborderw=5:boxcolor=black\'[LT]"' % (date, shot_name, user)
