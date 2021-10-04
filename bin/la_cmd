@@ -263,6 +263,10 @@ if [ "$1" != "" ]; then
           python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_mono.py $2;
         ;;
         #############################################################
+        vrs | viewrendersc )
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_render.py $2;
+        ;;
+        #############################################################
         # vss | viewstereosc )
         #   python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_stereo.py $2;
         # ;;
