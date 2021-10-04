@@ -21,9 +21,11 @@ if len(sys.argv) == 2:
                 else:
                     continue
             break
-        print list_of_vids
         list_of_vids.sort()
-        print list_of_vids
+
+        for i in list_of_vids:
+            command += ' %s' % i
+        print command
         # os.system(command)
 
 else:
