@@ -17,16 +17,15 @@ if len(sys.argv) == 2:
                 if len(vid) > 0:
                     vid = vid[-1]
                     list_of_vids.append(vid)
-                    print 'LATEST : ' + vid
                 else:
                     continue
             break
         list_of_vids.sort()
 
         for i in list_of_vids:
+            print 'Picked %s' % i
             command += ' %s' % i
-        print command
-        # os.system(command)
+        os.system(command)
 
 else:
     print "Please specify a scene you want to watch."
