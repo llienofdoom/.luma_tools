@@ -221,7 +221,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         muft )
-          /opt/ftrack_tools/la_ftrack_update_maya_shots $@;
+          /opt/ftrack_tools/la_ftrack_update_maya_shots $2;
         ;;
         #############################################################
         ass_export | ae )
