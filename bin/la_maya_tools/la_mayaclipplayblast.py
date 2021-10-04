@@ -61,7 +61,7 @@ if renderCamera != None:
     cmd += ' -start_number %d' % frame_s
     cmd += ' -i %s' % playblast_path + '.%04d.png'
     cmd += ' -s 2048x1152'
-    cmd += ' -filter_complex "[0:v]drawtext=\'fontcolor=white:font=sans-serif:fontsize=12:x=6:y=500:text=  luma-film - 2020 - inside job %s - %s - %s - %{eif\:frame_num\:d\:5}:box=1:boxborderw=5:boxcolor=black\'[LT]"' % (date, shot_name, user)
+    cmd += ' -filter_complex "[0:v]drawtext=\'fontcolor=white:font=sans-serif:fontsize=12:x=6:y=500:text=  luma-film - 2020 - inside job %s - %s - %s - %%{frame_num}:box=1:boxborderw=5:boxcolor=black\'[LT]"' % (date, shot_name, user)
     cmd += ' -pix_fmt yuv420p -c:v libx264 -crf 25 -map "[LT]"'
     cmd += ' %s' % video_path
     os.system( cmd )
