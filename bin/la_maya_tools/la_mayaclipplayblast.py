@@ -7,7 +7,8 @@ import maya.standalone
 from maya import cmds
 maya.standalone.initialize( name='python' )
 
-shot_root  = os.environ['IJ_SHOT_PATH']
+shot_root = os.environ['IJ_SHOT_PATH']
+shot_name = os.environ['IJ_SHOT_NAME']
 anim_file_path = glob.glob(shot_root + os.sep + '*_animation_v*.mb')
 if len(anim_file_path) != 0:
     anim_file_path.sort()
@@ -26,7 +27,6 @@ print '\n' * 5
 print '*' * 80
 print 'Starting Animation Playblast Export.'
 
-shot_root  = os.environ['IJ_SHOT_PATH']
 json_file  = open( os.path.join(shot_root, 'shot_info.json'), 'r' )
 json_data  = json.load( json_file )[0]
 json_file.close()
@@ -48,7 +48,8 @@ print renderCamera
 if renderCamera != None:
     print renderCamera[0]
     cmds.setAttr(renderCamera[0] + '.rnd', 1)
-    cmds.playblast(f='/Users/llien/Desktop/playblast/act01_sc001_sh0270_animation', fmt='image', compression='png', startTime=frame_s, endTime=frame_e, width =2048, height=1152, viewer=False, offScreen=True)
+    playblast_path = os.path.join(shot_root, 'img', 'flip', 'playblast_temp', shot_name + '_animation')
+    cmds.playblast(f=playblast_path, fmt='image', compression='png', startTime=frame_s, endTime=frame_e, width =2048, height=1152, viewer=False, offScreen=True)
     print 'Done with playblast. Converting...'
 else:
     print 'No camera found...'
