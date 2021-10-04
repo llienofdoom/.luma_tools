@@ -14,7 +14,9 @@ if len(sys.argv) == 2:
                 shot_path = scene_folder + os.sep + shot + os.sep + 'img/renders/act*_sc*_sh*_render_v*.mp4'
                 vid = glob.glob(shot_path)
                 if len(vid) > 0:
+                    print vid
                     vid = vid[-1]
+                    print 'LATEST : ' + vid
                 else:
                     continue
                 command += vid + ' '
