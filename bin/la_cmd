@@ -32,6 +32,7 @@ function usage
     echo "  vc  | viewcomp      : view exported comp";
     # echo "  vs | viewstereo     : view exported stereo sequence";
     echo "  vms | viewmonosc    : view mono scene. : lab viewmonosc 25";
+    echo "  vrs | viewrendersc  : view render scene. : lab vrs 5";
     # echo "  vss | viewstereosc  : view mono scene. : lab viewstereosc 25";
     echo "  makett              : generate a turntable of the selected asset";
     echo "  viewtt              : view turntable of selected asset";
@@ -48,6 +49,7 @@ function usage
     echo "  mesd                : Maya Environment Shot Data. WIP";
     echo "  mcsd                : Maya Character Shot Data. WIP";
     echo "  mpsd                : Maya Props Shot Data. WIP";
+    echo "  mpb                 : Maya playblast generate. Also cam export.";
     echo ""
     echo "  ass_export | ae     : export assets from maya.";
     echo "  ass_tohip | ah      : build hip for asset files of doom.";
@@ -211,6 +213,10 @@ if [ "$1" != "" ]; then
         #############################################################
         mpsd )
           la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaPrpExport.py;
+        ;;
+        #############################################################
+        mpb )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaclipplayblast.py;
         ;;
         #############################################################
         ass_export | ae )
