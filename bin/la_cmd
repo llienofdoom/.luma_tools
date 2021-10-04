@@ -49,6 +49,7 @@ function usage
     echo "  mesd                : Maya Environment Shot Data. WIP";
     echo "  mcsd                : Maya Character Shot Data. WIP";
     echo "  mpsd                : Maya Props Shot Data. WIP";
+    echo "  muft                : Maya update ftrack. USE WITH CAUTION. ie lab muft 1-1-270";
     echo "  mpb                 : Maya playblast generate. Also cam export.";
     echo ""
     echo "  ass_export | ae     : export assets from maya.";
@@ -217,6 +218,10 @@ if [ "$1" != "" ]; then
         #############################################################
         mpb )
           la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaclipplayblast.py;
+        ;;
+        #############################################################
+        muft )
+          /opt/ftrack_tools/la_ftrack_update_maya_shots "$@";
         ;;
         #############################################################
         ass_export | ae )
