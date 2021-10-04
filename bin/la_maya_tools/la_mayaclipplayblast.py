@@ -28,13 +28,22 @@ cmds.loadPlugin('AbcExport')
 # The fun starts here... ######################################################
 print '\n' * 5
 print '*' * 80
-print 'Starting Animation Playblast Export.'
+print 'Starting Animation Playblast and camera Exports.'
 
 json_file  = open( os.path.join(shot_root, 'shot_info.json'), 'r' )
 json_data  = json.load( json_file )[0]
 json_file.close()
 frame_s    = int(json_data['clip_start'])
 frame_e    = int(json_data['clip_end'  ])
+
+print 'Exporting renderCamera for render.'
+renderCamera_path = os.path.join(shot_root, 'shot_data', 'camera_data', 'render_camera_from_maya.abc')
+renderCamera = cmds.ls('renderCamera')
+cmd  = '-frameRange %d %d' % (frame_s - 2, frame_e + 2)
+cmd += ' -wholeFrameGeo -worldSpace -dataFormat ogawa -root %s' %  renderCamera[0]
+cmd += ' -file %s' % renderCamera_path
+cmds.AbcExport ( j=cmd )
+print 'Done. Moving on...'
 
 print 'Playblasting from %04d to %04d.' % (frame_s, frame_e)
 
