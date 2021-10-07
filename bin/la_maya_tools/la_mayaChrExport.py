@@ -45,197 +45,200 @@ print '\tWorking in %s' % shot_root
 # cmds.delete( all=True, sc=True )
 
 for char in chars:
-    char_name = char.split('ij_chr_')[-1]
-    # if char_name != 'frankie':
-    #     continue
-    print '\t****************************************'
-    print '\tStarting export setup for', char_name
+    try:
+        char_name = char.split('ij_chr_')[-1]
+        # if char_name != 'frankie':
+        #     continue
+        print '\t****************************************'
+        print '\tStarting export setup for', char_name
 
-    char_root = ''
-    for i in char_roots:
-        if char_name in i.lower():
-            char_root = i
-    print '\t\tFound root called %s' % char_root
+        char_root = ''
+        for i in char_roots:
+            if char_name in i.lower():
+                char_root = i
+        print '\t\tFound root called %s' % char_root
 
-    ctl_set = ''
-    for i in rig_controllers:
-        if char_name in i.lower():
-            ctl_set = i
-    print '\t\tFound set called %s' % ctl_set
+        ctl_set = ''
+        for i in rig_controllers:
+            if char_name in i.lower():
+                ctl_set = i
+        print '\t\tFound set called %s' % ctl_set
 
-    cmds.select(ctl_set, replace=True)
-    controllers = cmds.ls(sl=True)
-    global_ctl = ''
-    for i in controllers:
-        if 'global_C0_ctl' in i:
-            global_ctl = i
-    print '\t\tFound %d controllers' % len(controllers)
-    print '\t\tFound global controller %s' % global_ctl
+        cmds.select(ctl_set, replace=True)
+        controllers = cmds.ls(sl=True)
+        global_ctl = ''
+        for i in controllers:
+            if 'global_C0_ctl' in i:
+                global_ctl = i
+        print '\t\tFound %d controllers' % len(controllers)
+        print '\t\tFound global controller %s' % global_ctl
 
-    curves = cmds.listConnections(controllers, type='animCurve')
-    print '\t\tFound %d animation curves' % len(curves)
+        curves = cmds.listConnections(controllers, type='animCurve')
+        print '\t\tFound %d animation curves' % len(curves)
 
-    print '\t\tSetting key on first frame...'
-    cmds.currentTime(frame_s)
-    cmds.setKeyframe()
+        print '\t\tSetting key on first frame...'
+        cmds.currentTime(frame_s)
+        cmds.setKeyframe()
 
-    print '\t\tRemoving all keys before start.'
-    cmds.cutKey(time=(-9999,frame_s-1))
+        print '\t\tRemoving all keys before start.'
+        cmds.cutKey(time=(-9999,frame_s-1))
 
-    print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 1)
-    cmds.setKeyframe()
+        print '\t\tSetting hold key...'
+        cmds.currentTime(frame_s - 1)
+        cmds.setKeyframe()
 
-    print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 20)
-    # UPDATE SHIT ###################################################
-    # update for switching from IK to FK on the arms, to stop
-    # intersections for use in sim export.
-    for i in cmds.ls(sl=True):
-        if 'shoulder_L0_ctl' in i:
-            cmds.setAttr(i + '.arm_L0_blend', 0)
-        if 'shoulder_R0_ctl' in i:
-            cmds.setAttr(i + '.arm_R0_blend', 0)
-    #################################################################
-    cmds.setKeyframe()
-
-    print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 21)
-    # UPDATE SHIT ###################################################
-    # update for switching from IK to FK on the arms, to stop
-    # intersections for use in sim export.
-    for i in cmds.ls(sl=True):
-        if 'shoulder_L0_ctl' in i:
-            cmds.setAttr(i + '.arm_L0_blend', 0)
-        if 'shoulder_R0_ctl' in i:
-            cmds.setAttr(i + '.arm_R0_blend', 0)
-    #################################################################
-    cmds.setKeyframe()
-
-    print '\t\tSetting attributes for sim bind pose...'
-    cmds.currentTime(frame_s - 40)
-    cmds.select( global_ctl, d=True )
-    for i in cmds.ls(sl=True):
-        try:
-            cmds.setAttr(i + '.tx', 0)
-            cmds.setAttr(i + '.ty', 0)
-            cmds.setAttr(i + '.tz', 0)
-            cmds.setAttr(i + '.rx', 0)
-            cmds.setAttr(i + '.ry', 0)
-            cmds.setAttr(i + '.rz', 0)
-            if 'shoulder_L0_ctl' in i:
-                cmds.setAttr(i + '.arm_L0_maxstretch', 1)
-            if 'shoulder_R0_ctl' in i:
-                cmds.setAttr(i + '.arm_R0_maxstretch', 1)
-            # UPDATE SHIT ###################################################
-            # update for switching from IK to FK on the arms, to stop
-            # intersections for use in sim export.
+        print '\t\tSetting hold key...'
+        cmds.currentTime(frame_s - 20)
+        # UPDATE SHIT ###################################################
+        # update for switching from IK to FK on the arms, to stop
+        # intersections for use in sim export.
+        for i in cmds.ls(sl=True):
             if 'shoulder_L0_ctl' in i:
                 cmds.setAttr(i + '.arm_L0_blend', 0)
             if 'shoulder_R0_ctl' in i:
                 cmds.setAttr(i + '.arm_R0_blend', 0)
-            #################################################################
-        except:
-            pass
-    cmds.select(ctl_set, replace=True)
-    cmds.setKeyframe()
-    print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 41)
-    # UPDATE SHIT ###################################################
-    # update for switching from IK to FK on the arms, to stop
-    # intersections for use in sim export.
-    for i in cmds.ls(sl=True):
-        if 'shoulder_L0_ctl' in i:
-            cmds.setAttr(i + '.arm_L0_blend', 0)
-        if 'shoulder_R0_ctl' in i:
-            cmds.setAttr(i + '.arm_R0_blend', 0)
-    #################################################################
-    cmds.setKeyframe()
+        #################################################################
+        cmds.setKeyframe()
 
-    print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 58)
-    cmds.setKeyframe()
-    print '\t\tSetting hold key...'
-    cmds.currentTime(frame_s - 59)
-    cmds.setKeyframe()
-
-    print '\t\tSetting attributes for world bind pose...'
-    cmds.currentTime(frame_s - 60)
-    for i in cmds.ls(sl=True):
-        try:
-            cmds.setAttr(i + '.tx', 0)
-            cmds.setAttr(i + '.ty', 0)
-            cmds.setAttr(i + '.tz', 0)
-            cmds.setAttr(i + '.rx', 0)
-            cmds.setAttr(i + '.ry', 0)
-            cmds.setAttr(i + '.rz', 0)
+        print '\t\tSetting hold key...'
+        cmds.currentTime(frame_s - 21)
+        # UPDATE SHIT ###################################################
+        # update for switching from IK to FK on the arms, to stop
+        # intersections for use in sim export.
+        for i in cmds.ls(sl=True):
             if 'shoulder_L0_ctl' in i:
-                cmds.setAttr(i + '.arm_L0_maxstretch', 1)
+                cmds.setAttr(i + '.arm_L0_blend', 0)
             if 'shoulder_R0_ctl' in i:
-                cmds.setAttr(i + '.arm_R0_maxstretch', 1)
-            if 'foot_L0_fk0_ctl' in i:
-                cmds.setAttr(i + '.foot_L0_toeLift', 0)
-            if 'foot_R0_fk0_ctl' in i:
-                cmds.setAttr(i + '.foot_R0_toeLift', 0)
-            if 'foot_L0_fk0_ctl' in i:
-                cmds.setAttr(i + '.foot_L0_ballBendLift', 0)
-            if 'foot_R0_fk0_ctl' in i:
-                cmds.setAttr(i + '.foot_R0_ballBendLift', 0)
-            # UPDATE SHIT ###################################################
-            # update for switching from IK to FK on the arms, to stop
-            # intersections for use in sim export.
+                cmds.setAttr(i + '.arm_R0_blend', 0)
+        #################################################################
+        cmds.setKeyframe()
+
+        print '\t\tSetting attributes for sim bind pose...'
+        cmds.currentTime(frame_s - 40)
+        cmds.select( global_ctl, d=True )
+        for i in cmds.ls(sl=True):
+            try:
+                cmds.setAttr(i + '.tx', 0)
+                cmds.setAttr(i + '.ty', 0)
+                cmds.setAttr(i + '.tz', 0)
+                cmds.setAttr(i + '.rx', 0)
+                cmds.setAttr(i + '.ry', 0)
+                cmds.setAttr(i + '.rz', 0)
+                if 'shoulder_L0_ctl' in i:
+                    cmds.setAttr(i + '.arm_L0_maxstretch', 1)
+                if 'shoulder_R0_ctl' in i:
+                    cmds.setAttr(i + '.arm_R0_maxstretch', 1)
+                # UPDATE SHIT ###################################################
+                # update for switching from IK to FK on the arms, to stop
+                # intersections for use in sim export.
+                if 'shoulder_L0_ctl' in i:
+                    cmds.setAttr(i + '.arm_L0_blend', 0)
+                if 'shoulder_R0_ctl' in i:
+                    cmds.setAttr(i + '.arm_R0_blend', 0)
+                #################################################################
+            except:
+                pass
+        cmds.select(ctl_set, replace=True)
+        cmds.setKeyframe()
+        print '\t\tSetting hold key...'
+        cmds.currentTime(frame_s - 41)
+        # UPDATE SHIT ###################################################
+        # update for switching from IK to FK on the arms, to stop
+        # intersections for use in sim export.
+        for i in cmds.ls(sl=True):
             if 'shoulder_L0_ctl' in i:
-                cmds.setAttr(i + '.arm_L0_blend', 1)
+                cmds.setAttr(i + '.arm_L0_blend', 0)
             if 'shoulder_R0_ctl' in i:
-                cmds.setAttr(i + '.arm_R0_blend', 1)
-            #################################################################
-        except:
-            pass
-    cmds.setKeyframe()
+                cmds.setAttr(i + '.arm_R0_blend', 0)
+        #################################################################
+        cmds.setKeyframe()
 
-    cmds.filterCurve( curves )
+        print '\t\tSetting hold key...'
+        cmds.currentTime(frame_s - 58)
+        cmds.setKeyframe()
+        print '\t\tSetting hold key...'
+        cmds.currentTime(frame_s - 59)
+        cmds.setKeyframe()
 
-    print '\t\tGetting list of geos to include in export.'
-    geos_json_path = os.path.join( os.environ['IJ_LUMA_PROJ_ROOT'], 'assets', 'chr', 'render', '*'+char_name+'*', 'asset_data', 'export_geo.json' )
-    geos_json_file = glob.glob( geos_json_path )
-    if len(geos_json_file) > 0:
-        geos_json_file = geos_json_file[-1]
-        print '\t\tFound export_geo.json file here: %s' % geos_json_file
-        json_file       = open( geos_json_file, 'r' )
-        geos_json_data  = json.load( json_file )[0]
-        json_file.close()
-        export_geo = geos_json_data['export_geo']
-        print '\t\t%d geos to export.' % len(export_geo)
+        print '\t\tSetting attributes for world bind pose...'
+        cmds.currentTime(frame_s - 60)
+        for i in cmds.ls(sl=True):
+            try:
+                cmds.setAttr(i + '.tx', 0)
+                cmds.setAttr(i + '.ty', 0)
+                cmds.setAttr(i + '.tz', 0)
+                cmds.setAttr(i + '.rx', 0)
+                cmds.setAttr(i + '.ry', 0)
+                cmds.setAttr(i + '.rz', 0)
+                if 'shoulder_L0_ctl' in i:
+                    cmds.setAttr(i + '.arm_L0_maxstretch', 1)
+                if 'shoulder_R0_ctl' in i:
+                    cmds.setAttr(i + '.arm_R0_maxstretch', 1)
+                if 'foot_L0_fk0_ctl' in i:
+                    cmds.setAttr(i + '.foot_L0_toeLift', 0)
+                if 'foot_R0_fk0_ctl' in i:
+                    cmds.setAttr(i + '.foot_R0_toeLift', 0)
+                if 'foot_L0_fk0_ctl' in i:
+                    cmds.setAttr(i + '.foot_L0_ballBendLift', 0)
+                if 'foot_R0_fk0_ctl' in i:
+                    cmds.setAttr(i + '.foot_R0_ballBendLift', 0)
+                # UPDATE SHIT ###################################################
+                # update for switching from IK to FK on the arms, to stop
+                # intersections for use in sim export.
+                if 'shoulder_L0_ctl' in i:
+                    cmds.setAttr(i + '.arm_L0_blend', 1)
+                if 'shoulder_R0_ctl' in i:
+                    cmds.setAttr(i + '.arm_R0_blend', 1)
+                #################################################################
+            except:
+                pass
+        cmds.setKeyframe()
 
-        all_meshes    = cmds.listRelatives(char_root, allDescendents=True, fullPath=True, type='mesh')
-        needed_meshes = []
-        for i in all_meshes:
-            for j in export_geo:
-                if j in i:
-                    needed_meshes.append(i)
-                    # print 'Found %s, adding.' % i
-        cmds.select(needed_meshes, replace=True)
-        cmds.pickWalk( direction='up' )
+        cmds.filterCurve( curves )
 
-        abc_export_path = os.path.join(shot_root, 'geo', 'anim_export')
-        if not os.path.exists(abc_export_path):
-            os.mkdir(abc_export_path)
+        print '\t\tGetting list of geos to include in export.'
+        geos_json_path = os.path.join( os.environ['IJ_LUMA_PROJ_ROOT'], 'assets', 'chr', 'render', '*'+char_name+'*', 'asset_data', 'export_geo.json' )
+        geos_json_file = glob.glob( geos_json_path )
+        if len(geos_json_file) > 0:
+            geos_json_file = geos_json_file[-1]
+            print '\t\tFound export_geo.json file here: %s' % geos_json_file
+            json_file       = open( geos_json_file, 'r' )
+            geos_json_data  = json.load( json_file )[0]
+            json_file.close()
+            export_geo = geos_json_data['export_geo']
+            print '\t\t%d geos to export.' % len(export_geo)
 
-        abc_anim_name = 'anim_export_%s_anim.abc' % char_name
-        export_string = ''
-        for i in cmds.ls(sl=True, long=True):
-            export_string += ' -root %s ' % i
-        print '\t\tExporting ABC file...'
-        cmd  = '-frameRange %d %d' % (frame_s - 61, frame_e + 1)
-        cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
-        cmd += export_string
-        cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
-        cmds.AbcExport ( j=cmd )
+            all_meshes    = cmds.listRelatives(char_root, allDescendents=True, fullPath=True, type='mesh')
+            needed_meshes = []
+            for i in all_meshes:
+                for j in export_geo:
+                    if j in i:
+                        needed_meshes.append(i)
+                        # print 'Found %s, adding.' % i
+            cmds.select(needed_meshes, replace=True)
+            cmds.pickWalk( direction='up' )
 
-    else:
-        print 'ERROR! No export_geo.json file for %s.' % char_name
-        print 'All that waisted time, for NOTHING...'
-        print 'Carrying on with next character O_o\n\n'
+            abc_export_path = os.path.join(shot_root, 'geo', 'anim_export')
+            if not os.path.exists(abc_export_path):
+                os.mkdir(abc_export_path)
+
+            abc_anim_name = 'anim_export_%s_anim.abc' % char_name
+            export_string = ''
+            for i in cmds.ls(sl=True, long=True):
+                export_string += ' -root %s ' % i
+            print '\t\tExporting ABC file...'
+            cmd  = '-frameRange %d %d' % (frame_s - 61, frame_e + 1)
+            cmd += ' -uvWrite -writeColorSets -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
+            cmd += export_string
+            cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
+            cmds.AbcExport ( j=cmd )
+
+        else:
+            print 'ERROR! No export_geo.json file for %s.' % char_name
+            print 'All that waisted time, for NOTHING...'
+            print 'Carrying on with next character O_o\n\n'
+    except Exception:
+        print 'Errors exporting %s. Skipping.' % char_name
 
 # CLOSE UNDO CHUNK and RESET
 cmds.undoInfo( closeChunk=True )
