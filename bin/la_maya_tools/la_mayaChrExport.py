@@ -32,6 +32,10 @@ json_file  = open( os.path.join(shot_root, 'shot_info.json'), 'r' )
 json_data  = json.load( json_file )[0]
 json_file.close()
 chars      = json_data['assets']['chars']
+if type(chars) == list:
+    tmp = chars
+    chars = []
+    chars.append(tmp)
 frame_s    = int(json_data['clip_start'])
 frame_e    = int(json_data['clip_end'  ])
 char_roots      = cmds.ls('*IJ_CHR_*')
