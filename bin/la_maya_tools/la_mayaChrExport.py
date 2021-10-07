@@ -234,7 +234,7 @@ for char in chars:
             print 'All that waisted time, for NOTHING...'
             print 'Carrying on with next character O_o\n\n'
     except Exception:
-        print 'Errors exporting %s. Skipping.' % char_name
+        print 'Errors exporting. Skipping.'
 
 # CLOSE UNDO CHUNK and RESET
 cmds.undoInfo( closeChunk=True )
