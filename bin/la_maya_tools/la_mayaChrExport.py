@@ -233,8 +233,8 @@ for char in chars:
             print 'ERROR! No export_geo.json file for %s.' % char_name
             print 'All that waisted time, for NOTHING...'
             print 'Carrying on with next character O_o\n\n'
-    except Exception:
-        print Exception
+    except Exception as e:
+        print e
         print 'Errors exporting. Skipping.'
 
 # CLOSE UNDO CHUNK and RESET
