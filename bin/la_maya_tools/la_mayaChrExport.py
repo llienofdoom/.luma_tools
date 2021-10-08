@@ -32,7 +32,7 @@ json_file  = open( os.path.join(shot_root, 'shot_info.json'), 'r' )
 json_data  = json.load( json_file )[0]
 json_file.close()
 chars      = json_data['assets']['chars']
-if type(chars) == list:
+if type(chars) != list:
     tmp = chars
     chars = []
     chars.append(tmp)
