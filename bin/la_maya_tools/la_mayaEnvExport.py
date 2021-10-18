@@ -43,7 +43,7 @@ frame_e    = int(json_data['clip_end'  ])
 print '\tWorking in %s' % shot_root
 
 # Delete Static Channels
-cmds.delete( all=True, sc=True )
+# cmds.delete( all=True, sc=True )
 
 # ENV ROOT ####################################################################
 print '\tEnvironment starting.'
