@@ -40,6 +40,7 @@ print 'Exporting renderCamera for render.'
 try:
     renderCamera_path = os.path.join(shot_root, 'shot_data', 'camera_data', 'render_camera_from_maya.abc')
     renderCamera = cmds.ls('renderCamera')
+    print renderCamera
     cmd  = '-frameRange %d %d' % (frame_s - 2, frame_e + 2)
     cmd += ' -wholeFrameGeo -worldSpace -dataFormat ogawa -root %s' %  renderCamera[0]
     cmd += ' -file %s' % renderCamera_path
