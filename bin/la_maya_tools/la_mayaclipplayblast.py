@@ -81,7 +81,7 @@ try:
         os.system( cmd )
 
         print 'Done with mp4. Converting to Prores for edit, and moving.'
-        prores_path = os.path.join('/mnt/luma_i/editorial/edit_sources_master/current_animation', shot_name + '.mov')
+        prores_path = os.path.join('/mnt/luma_i/editorial/edit_sources_master/animation', shot_name + '.mov')
         cmd  = 'ffmpeg -y'
         cmd += ' -i %s' % video_path
         cmd += ' -c:v prores_ks -profile:v 3 -qscale:v 5 -vendor ap10 -pix_fmt yuv422p10le'
