@@ -45,7 +45,8 @@ try:
     cmd += ' -file %s' % renderCamera_path
     cmds.AbcExport ( j=cmd )
     print 'Done. Moving on...'
-except Exception:
+except Exception as e:
+    print e
     print 'Couldn\'t export renderCamera.'
 
 try:
