@@ -48,5 +48,5 @@ except Exception:
 
 # CLOSE UNDO CHUNK and RESET
 cmds.undoInfo( closeChunk=True )
-cmds.undo()
+# cmds.undo()
 print 'Done with export. If you see this, it worked. Cheers!'
