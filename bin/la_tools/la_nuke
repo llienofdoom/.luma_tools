@@ -3,7 +3,11 @@
 source $IJ_LOCAL_REPO/etc/nuke_env
 
 case "$IJ_USER" in 
-    nvermaak | neill | isabel | graemecarr )
+    nvermaak | neill | isabel )
+        $nuke_root/$nuke_command -nukex $@
+        ;;
+    graemecarr )
+        unset NUKE_PATH
         $nuke_root/$nuke_command -nukex $@
         ;;
     * )
