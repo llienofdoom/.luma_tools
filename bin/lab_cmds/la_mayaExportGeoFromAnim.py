@@ -53,7 +53,7 @@ for geo in geos:
 
         command  = '-frameRange %d %d' % (f_start, f_end)
         command += ' -uvWrite'
-        command += ' -writeColorSets'
+        # command += ' -writeColorSets'
         command += ' -writeFaceSets'
         command += ' -wholeFrameGeo'
         command += ' -worldSpace'
