@@ -35,7 +35,7 @@ def main():
             try:
                 copy_path = os.path.join(edit_sources_root, '_latest_shot_version', shot_name)
                 print '\tCopy to  %s' % copy_path.split(edit_sources_root)[-1][1:]
-                shutil.copy2(shot, copy_path)
+                shutil.copy2(current_path, copy_path)
             except:
                 print 'Failed to copy %s' % current_path
         else:
