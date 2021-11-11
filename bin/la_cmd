@@ -61,6 +61,7 @@ function usage
     echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
     echo "  se | seqedit        : generate scene video : lab se (m)(s) (ass)(cam)(ren) 25";
     echo "  editUpdateSources | eus : update shotsources  for edit : lab eu (a)(m)(s)(r) (SCENE or all)";
+    echo "  editLatest | el     : update to latest for edit";
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
     echo "  usc | update_scene_cams : update the per scene camera exports.";
     echo ""
@@ -294,6 +295,10 @@ if [ "$1" != "" ]; then
         eus | editUpdateSources )
           # python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources.py $2 $3;
           python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources_02.py $2 $3;
+        ;;
+        #############################################################
+        editLatest | el )
+          python $IJ_LOCAL_REPO/bin/la_edit_tools/la_edit_latestversionofshot.py;
         ;;
         #############################################################
         fa | fromaces )
