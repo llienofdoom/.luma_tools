@@ -65,6 +65,8 @@ function usage
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
     echo "  usc | update_scene_cams : update the per scene camera exports.";
     echo ""
+    echo "  scs | submitscene   : submits whole scene to opencure for final render.";
+    echo ""
     echo "  ob                  : open assembly file.";
     echo "  oa                  : open latest animation file.";
     echo "  oc                  : open latest camera file.";
@@ -307,6 +309,10 @@ if [ "$1" != "" ]; then
         #############################################################
         usc | update_scene_cams )
           python3.7 $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_collect_scene_cams.py $2;
+        ;;
+        #############################################################
+        scs | submitscene )
+          python $IJ_LOCAL_REPO/bin/lab_tools/la_submit_scene.py;
         ;;
         #############################################################
         ob )
