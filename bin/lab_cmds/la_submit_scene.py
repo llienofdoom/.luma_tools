@@ -176,7 +176,7 @@ for cur in list_of_shots:
         #Run submission script for shot
         print('Starting render submission....')
         os.system(
-            "python /home/christophe/.luma_tools/bin/lab_cmds/la_submit_shot_default.py "
+            "python ~/.luma_tools/bin/lab_cmds/la_submit_shot_default.py "
             + hipfile)
         c += 1
         print('')
