@@ -312,7 +312,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         scs | submitscene )
-          python $IJ_LOCAL_REPO/bin/lab_tools/la_submit_scene.py;
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_submit_scene.py;
         ;;
         #############################################################
         ob )
