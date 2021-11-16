@@ -28,18 +28,20 @@ print('path=' + path)
 list_of_frames = glob.glob(path)
 num = len(list_of_frames)
 c = 1
-print(list_of_frames)
+#print(list_of_frames)
 
 #COPY
 for cur in list_of_frames:
     # for file in cur:
     filename = cur.split('/')[-1]
+    print('Doing frame: ' + filename)
     cp_path = origdir + filename
-    print('cp path:' + cp_path)
-    print(cur)
+    #print('cp path:' + cp_path)
+    #print(cur)
     shutil.move(cur, cp_path)
     os.system(
         'oiiotool %s --attrib "arnold/aovs/RGBA/filter" "RGBA" --attrib "arnold/aovs/variance/filter" "variance_filter" -o %s'
         % (cp_path, cur))
 
 #FIX
+print('done with lentil filter fix')
