@@ -13,7 +13,7 @@ import time
 import hou
 
 hipfile = sys.argv[1]
-frame = int(sys.argv[2])
+frame   = int(sys.argv[2])
 
 print 'Exporting ASS files to render, from %s.' % hipfile
 print 'Doing frame %04d.' % frame
@@ -35,28 +35,10 @@ hou.parm('/obj/ij_stereo_camera_rig/view_cache').set(1)
 
 # RENDER
 time_start = time.time()
-print "Starting to render... ############################## ",
-print "                      ############################## ",
-print "# ",
-print "# ",
-print "# ",
-print "# ",
-print "Caching Scene............. ##############################",
-#hou.parm('/obj/ij_stereo_camera_rig/ropnet_RENDER/USECACHE/execute'
-#         ).pressButton()
-print "                           ##############################",
-print "# ",
-print "# ",
-print "Writing Passes............. ##############################",
-hou.parm('/obj/ij_stereo_camera_rig/ropnet_RENDER/brain_extra_passes/execute').pressButton()
-
+print "Starting to render...",
+hou.parm('/obj/ij_stereo_camera_rig/render_to_disk_fx').pressButton()
 time_end = time.time() - time_start
-
-print "Done",
-print "# ",
-print "# ",
-
 print 'Ass file exports took %d seconds.' % (time_end + 1)
-print "# ",
-print 'Exports complete. Exiting..................'
+
+print 'Done. Exiting.'
 quit()
