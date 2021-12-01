@@ -28,6 +28,7 @@ print('path=' + path)
 list_of_frames = glob.glob(path)
 num = len(list_of_frames)
 c = 1
+list_of_frames = sorted(list_of_frames)
 #print(list_of_frames)
 
 #COPY

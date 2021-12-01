@@ -31,6 +31,7 @@ user = os.environ['IJ_USER']
 hipfile = sys.argv[1]
 print('Render hip: ' + hipfile)
 hipname = hipfile.split('/')[6]
+res = sys.argv[2]
 
 priority = 5
 
@@ -59,6 +60,8 @@ elif 'airlock' in render_set:
     mode = 2
 elif 'bridge' in render_set:
     mode = 2
+elif render_set == '':
+    mode = 0
 
 ###########
 #Determine scene
@@ -91,6 +94,7 @@ cmd += ' la_hython /mnt/luma_i/_tools/luma_tools/bin/la_houdini_tools/la_houdini
 cmd += ' %s' % hipfile
 cmd += ' #ZFRAME#'
 cmd += ' %s' % str(mode)
+cmd += ' %s' % str(res)
 HOUDINI_EXPORT_LAYER = {
     'name': 'houdini_export_ass_files',
     'layerType': JobTypes.JobTypes.SHELL,

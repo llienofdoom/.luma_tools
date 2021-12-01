@@ -28,6 +28,8 @@ print('*' * 80)
 print('')
 
 allowcopy = raw_input('Save up version? (Y/N)')
+sceneinfo = raw_input('show info only? (Y/N)')
+res = raw_input('Resolution: high(1) low(0)')
 
 print('Using current scene.')
 a = currentact
@@ -174,10 +176,15 @@ for cur in list_of_shots:
             print('')
         #######################################################################################################
         #Run submission script for shot
-        print('Starting render submission....')
-        os.system(
-            "python ~/.luma_tools/bin/lab_cmds/la_submit_shot_default.py "
-            + hipfile)
+
+        if sceneinfo != "Y" and sceneinfo != "y":
+            print('Starting render submission....')
+        #os.system(
+        #    "python ~/.luma_tools/bin/lab_cmds.py "
+        #    + hipfile + " " +  res)
+        else:
+            print("showing info only")
+
         c += 1
         print('')
 

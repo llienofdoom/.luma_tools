@@ -16,6 +16,7 @@ import hou
 hipfile = sys.argv[1]
 frame = int(sys.argv[2])
 mode = int(sys.argv[3])
+res = int(sys.argv[4])
 
 print 'Exporting ASS files to render, from %s.' % hipfile
 print 'Doing frame %04d.' % frame
@@ -35,7 +36,7 @@ hou.parm('/obj/ij_stereo_camera_rig/f1').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/view_cache').set(1)
 hou.parm('/obj/ij_stereo_camera_rig/rendertype').set(mode)
-hou.parm('/obj/ij_stereo_camera_rig/main_res').set(1)
+hou.parm('/obj/ij_stereo_camera_rig/main_res').set(res)
 
 # RENDER
 time_start = time.time()
