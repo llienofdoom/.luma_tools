@@ -36,7 +36,7 @@ print "Writing static geo... ############################## ",
 print "                      ############################## ",
 print "# ",
 print "# ",
-hou.parm('/obj/ij_stereo_camera_rig/writecache2').pressButton()
+hou.parm('/obj/ij_stereo_camera_rig/writestatic2').pressButton()
 print "                      ############################## ",
 print "# ",
 print "# ",
