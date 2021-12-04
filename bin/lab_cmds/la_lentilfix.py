@@ -34,6 +34,7 @@ list_of_frames = sorted(list_of_frames)
 #COPY
 for cur in list_of_frames:
     # for file in cur:
+    print('origdir: ' + origdir)
     filename = cur.split('/')[-1]
     print('Doing frame: ' + filename)
     cp_path = origdir + filename
