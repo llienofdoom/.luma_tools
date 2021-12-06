@@ -37,8 +37,8 @@ for cur in list_of_frames:
     filename = cur.split('/')[-1]
     print('Doing frame: ' + filename)
     cp_path = origdir + '/' + filename
-    #print('cp path:' + cp_path)
-    #print(cur)
+    print('cp path:' + cp_path)
+    print('current"' + cur)
     shutil.move(cur, cp_path)
     os.system(
         'oiiotool %s --attrib "arnold/aovs/RGBA/filter" "RGBA" --attrib "arnold/aovs/variance/filter" "variance_filter" -o %s'
