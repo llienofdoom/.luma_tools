@@ -37,7 +37,7 @@ for cur in list_of_frames:
     print('origdir: ' + origdir)
     filename = cur.split('/')[-1]
     print('Doing frame: ' + filename)
-    cp_path = origdir + filename
+    cp_path = origdir + '/' + filename
     #print('cp path:' + cp_path)
     #print(cur)
     shutil.move(cur, cp_path)
