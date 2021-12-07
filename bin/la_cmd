@@ -48,6 +48,7 @@ function usage
     echo "  houAssemble         : create a shot assembly file as a base";
     echo "  mesd                : Maya Environment Shot Data. WIP";
     echo "  mcsd                : Maya Character Shot Data. WIP";
+    echo "  mcsdi               : Maya Character Shot Data, for an individual character. ie lab mcsdi frankie";
     echo "  mpsd                : Maya Props Shot Data. WIP";
     echo "  mksd                : Maya Kamera Shot Data. WIP";
     echo "  muft                : Maya update ftrack. USE WITH CAUTION. ie lab muft 1-1-270";
@@ -214,6 +215,10 @@ if [ "$1" != "" ]; then
         #############################################################
         mcsd )
           la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaChrExport.py;
+        ;;
+        #############################################################
+        mcsdi )
+          la_mayapy $IJ_LOCAL_REPO/bin/la_maya_tools/la_mayaChrExport_Single.py;
         ;;
         #############################################################
         mpsd )
