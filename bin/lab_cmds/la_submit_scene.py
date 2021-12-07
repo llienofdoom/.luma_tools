@@ -164,7 +164,7 @@ for cur in list_of_shots:
                 print('Saving up version....')
                 print('Creating new file....')
                 print('New hip file name: ' + newstr)
-                # os.system(copycmd)
+                os.system(copycmd)
                 newhipname = newstr.split('/')[7]
                 hipfile = (cur) + '/' + newhipname
                 hipname = newhipname
