@@ -30,7 +30,7 @@ shot_path = os.environ['IJ_SHOT_PATH']
 user = os.environ['IJ_USER']
 hipfile = sys.argv[1]
 print('Render hip: ' + hipfile)
-hipname = hipfile.split('/')[-1]
+hipname = hipfile.split('/')[-1].split('.')[0]
 final = sys.argv[2]
 
 priority = 3
