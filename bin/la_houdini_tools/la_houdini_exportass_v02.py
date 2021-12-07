@@ -6,7 +6,7 @@ import hou
 hipfile = sys.argv[1]
 frame = int(sys.argv[2])
 mode = int(sys.argv[3])
-final = int(sys.argv[4])
+final = sys.argv[4]
 
 print 'Exporting ASS files to render, from %s.' % hipfile
 print 'Doing frame %04d.' % frame
