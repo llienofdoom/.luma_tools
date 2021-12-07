@@ -30,7 +30,7 @@ shot_path = os.environ['IJ_SHOT_PATH']
 user = os.environ['IJ_USER']
 hipfile = sys.argv[1]
 print('Render hip: ' + hipfile)
-hipname = hipfile.split('/')[6]
+hipname = hip.split('/')[-1][:-4]
 final = sys.argv[2]
 
 priority = 3
@@ -45,6 +45,8 @@ f_start = '%04d' % f_start
 f_end = '%04d' % f_end
 f_range = '%s-%s' % (f_start, f_end)
 render_set = json_data['assets']['env']
+if type(render_set) == list:
+    render_set = render_set[0]
 currentjobname = shot_name + '_render'
 mode = 0
 
@@ -58,7 +60,7 @@ elif 'brain' in render_set:
     mode = 3
 elif 'airlock' in render_set:
     mode = 1
-elif 'bridge' in render_set:
+elif 'nailbridge' in render_set:
     mode = 5
 elif render_set == '':
     mode = 0
@@ -468,7 +470,7 @@ elif mode == 3:
 elif mode == 5:
     jobData = {
         'name':
-        hipname + '_render',
+        hipfile + '_render',
         'shot':
         shot_name + '_' + user,
         'show':
