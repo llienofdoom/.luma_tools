@@ -57,9 +57,9 @@ if 'sciencehallway' in render_set:
 elif 'brain' in render_set:
     mode = 3
 elif 'airlock' in render_set:
-    mode = 2
+    mode = 1
 elif 'bridge' in render_set:
-    mode = 2
+    mode = 5
 elif render_set == '':
     mode = 0
 
@@ -531,7 +531,7 @@ for layer in layers:
     layer_count += 1
     outline.add_layer(layer)
 
-jobs = cuerun.launch(outline, use_pycuerun=False, pause=False)
+jobs = cuerun.launch(outline, use_pycuerun=False, pause=True)
 for job in jobs:
     print(job.name())
     job.setPriority(priority)
