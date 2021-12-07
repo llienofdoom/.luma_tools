@@ -1,7 +1,6 @@
 import sys
 import os
 import time
-from types import MethodDescriptorType
 import hou
 
 hipfile = sys.argv[1]
@@ -54,7 +53,9 @@ if final != 'N' and final != 'n':
     # TODO: MAKE SURE SIMS ARE ON FOR MAIN CHARACTERS
     print 'Setting final render settings...'
     hou.parm('/obj/ij_stereo_camera_rig/enable_secondary').set(0)
-    hou.parm('/obj/ij_stereo_camera_rig/main_res').set(1)
+    hou.parm('/obj/ij_stereo_camera_rig/main_res').set("1.0")
+    hou.parm('/obj/ij_stereo_camera_rig/ar_ignore_subdivision').set(0)
+    hou.parm('/obj/ij_stereo_camera_rig/force_vol').set(0)
 
 # RENDER
 time_start = time.time()
