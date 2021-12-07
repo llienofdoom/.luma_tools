@@ -33,7 +33,7 @@ print('Render hip: ' + hipfile)
 hipname = hipfile.split('/')[6]
 final = sys.argv[2]
 
-priority = 5
+priority = 3
 
 json_file = open(os.path.join(os.environ['IJ_SHOT_PATH'], 'shot_info.json'),
                  'r')
@@ -232,7 +232,7 @@ ARNOLD_RENDER_CRYPTO_LAYER = {
 ########
 ass_dir = os.path.join(
     '/mnt/luma_i/tmp/ass_files', hipname,
-    hipname + '-rop_ar_volume_b.#ZFRAME#.ass.gz'
+    hipname + '-rop_ar_floaties.#ZFRAME#.ass.gz'
 )  # '/mnt/luma_i/tmp/ass_files/act00_sc000_sh0040_render_v07'
 cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
 cmd += ' la_kick -i'
@@ -490,53 +490,53 @@ elif mode == 5:
 
 print('Sending to opencue')
 
-# SUBMIT ############################################################
-# outline = Outline(jobData['name'],
-#                     shot=jobData['shot'],
-#                     show=jobData['show'],
-#                     user=jobData['username'])
-# layers = []
-# for layerData in jobData['layers']:
-#     layer = Shell(layerData.name,
-#                     command=layerData.cmd.split(),
-#                     chunk='1',
-#                     threads=float(layerData.cores),
-#                     range=str(layerData.layerRange),
-#                     threadable=True)
-#     layer.set_service(layerData.services[0])
-#     layers.append(layer)
+#SUBMIT #######################
 
-# layer_count = 0
-# layerData = jobData['layers']
-# for layer in layers:
-#     if layer_count > 0:
-#         if layerData[layer_count].dependType == 'Layer':
+outline = Outline(jobData['name'],
+                  shot=jobData['shot'],
+                  show=jobData['show'],
+                  user=jobData['username'])
+layers = []
+for layerData in jobData['layers']:
+    layer = Shell(layerData.name,
+                  command=layerData.cmd.split(),
+                  chunk='1',
+                  threads=float(layerData.cores),
+                  range=str(layerData.layerRange),
+                  threadable=True)
+    layer.set_service(layerData.services[0])
+    layers.append(layer)
 
-#             if 'arnold_denoise' in str(layer):
-#                 layer.depend_all(layers[2])
-#                 print(str(layer) + ' is layer')
-#             else:
-#                 layer.depend_all(layers[layer_count - 1])
-#                 print(str(layer) + ' is layer')
+layer_count = 0
+layerData = jobData['layers']
+for layer in layers:
+    if layer_count > 0:
+        if layerData[layer_count].dependType == 'Layer':
 
-#         if layerData[layer_count].dependType == 'Frame':
-#             if 'arnold_render_ass_files_volume' in str(
-#                     layer) or 'arnold_render_ass_files_crypto' in str(
-#                         layer):
-#                 layer.depend_on(layers[1])
-#                 print(str(layer) + ' is FRAME')
-#             else:
-#                 layer.depend_on(layers[layer_count - 1])
-#                 print(str(layer) + ' is FRAME')
-#     layer_count += 1
-#     outline.add_layer(layer)
+            if 'arnold_denoise' in str(layer):
+                layer.depend_all(layers[2])
+                print(str(layer) + ' is layer')
+            else:
+                layer.depend_all(layers[layer_count - 1])
+                print(str(layer) + ' is layer')
 
-# jobs = cuerun.launch(outline, use_pycuerun=False, pause=False)
-# for job in jobs:
-#     print(job.name())
-#     job.setPriority(priority)
-#     job.setMaxCores(1500)
-#     job.setMaxRetries(3)
+        if layerData[layer_count].dependType == 'Frame':
+            if 'arnold_render_ass_files_volume' in str(
+                    layer) or 'arnold_render_ass_files_crypto' in str(layer):
+                layer.depend_on(layers[1])
+                print(str(layer) + ' is FRAME')
+            else:
+                layer.depend_on(layers[layer_count - 1])
+                print(str(layer) + ' is FRAME')
+    layer_count += 1
+    outline.add_layer(layer)
+
+jobs = cuerun.launch(outline, use_pycuerun=False, pause=False)
+for job in jobs:
+    print(job.name())
+    job.setPriority(priority)
+    job.setMaxCores(1500)
+    job.setMaxRetries(10)
 print('')
 print(colored('Shot successfully submitted to opencue', 'green'))
 print('*' * 80 + '\n')

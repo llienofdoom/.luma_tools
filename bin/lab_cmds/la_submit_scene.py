@@ -181,8 +181,9 @@ for cur in list_of_shots:
 
         if sceneinfo != "Y" and sceneinfo != "y":
             print('Starting render submission....')
-            os.system("python ~/.luma_tools/bin/lab_cmds.py " + hipfile + " " +
-                      final)
+            os.system(
+                "python ~/.luma_tools/bin/lab_cmds/la_submit_shot_default.py "
+                + hipfile + " " + final)
         else:
             print("showing info only")
 
