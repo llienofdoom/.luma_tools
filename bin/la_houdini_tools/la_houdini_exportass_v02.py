@@ -7,8 +7,7 @@ import hou
 hipfile = sys.argv[1]
 frame = int(sys.argv[2])
 mode = int(sys.argv[3])
-res = int(sys.argv[4])
-final = int(sys.argv[5])
+final = int(sys.argv[4])
 
 print 'Exporting ASS files to render, from %s.' % hipfile
 print 'Doing frame %04d.' % frame
@@ -32,10 +31,9 @@ hou.parm('/obj/ij_stereo_camera_rig/f1').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/view_cache').set(1)
 hou.parm('/obj/ij_stereo_camera_rig/rendertype').set(mode)
-hou.parm('/obj/ij_stereo_camera_rig/main_res').set(res)
 
 #FORCE FINAL RENDER PARAMETERS
-if final == 1:
+if final != 'N' and final != 'n':
     print 'Rendering with final parameters forced on...'
 
     #Update to latest render hda ver
@@ -56,7 +54,7 @@ if final == 1:
     # TODO: MAKE SURE SIMS ARE ON FOR MAIN CHARACTERS
     print 'Setting final render settings...'
     hou.parm('/obj/ij_stereo_camera_rig/enable_secondary').set(0)
-    hou.parm('/obj/ij_stereo_camera_rig/main_res').set(0)
+    hou.parm('/obj/ij_stereo_camera_rig/main_res').set(1)
 
 # RENDER
 time_start = time.time()

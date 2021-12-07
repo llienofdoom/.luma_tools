@@ -31,7 +31,7 @@ user = os.environ['IJ_USER']
 hipfile = sys.argv[1]
 print('Render hip: ' + hipfile)
 hipname = hipfile.split('/')[6]
-res = sys.argv[2]
+final = sys.argv[2]
 
 priority = 5
 
@@ -94,7 +94,7 @@ cmd += ' la_hython /mnt/luma_i/_tools/luma_tools/bin/la_houdini_tools/la_houdini
 cmd += ' %s' % hipfile
 cmd += ' #ZFRAME#'
 cmd += ' %s' % str(mode)
-cmd += ' %s' % str(res)
+cmd += ' %s' % str(final)
 HOUDINI_EXPORT_LAYER = {
     'name': 'houdini_export_ass_files',
     'layerType': JobTypes.JobTypes.SHELL,
@@ -225,6 +225,82 @@ ARNOLD_RENDER_CRYPTO_LAYER = {
     'services': ['arnold'],
     'dependType': Layer.DependType.Frame,
 }
+
+#######################################################
+# NOTE :
+#FLOATIES_BRAIN
+########
+ass_dir = os.path.join(
+    '/mnt/luma_i/tmp/ass_files', hipname,
+    hipname + '-rop_ar_volume_b.#ZFRAME#.ass.gz'
+)  # '/mnt/luma_i/tmp/ass_files/act00_sc000_sh0040_render_v07'
+cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' la_kick -i'
+cmd += ' %s' % ass_dir
+ARNOLD_RENDER_FLOATIES_LAYER = {
+    'name': 'arnold_render_ass_files_floaties',
+    'layerType': JobTypes.JobTypes.SHELL,
+    'cmd': cmd,
+    'layerRange': f_range,
+    'cores': '8',
+    'services': ['arnold'],
+    'dependType': Layer.DependType.Frame,
+}
+
+#######################################################
+#######################################################
+# NOTE :
+#SHIPEXTRA
+########
+ass_dir = os.path.join(
+    '/mnt/luma_i/tmp/ass_files', hipname,
+    hipname + '-rop_ship_aovs.#ZFRAME#.ass.gz'
+)  # '/mnt/luma_i/tmp/ass_files/act00_sc000_sh0040_render_v07'
+cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' la_kick -i'
+cmd += ' %s' % ass_dir
+ARNOLD_RENDER_SHIPEXTRA = {
+    'name': 'arnold_render_ass_files_shipextra',
+    'layerType': JobTypes.JobTypes.SHELL,
+    'cmd': cmd,
+    'layerRange': f_range,
+    'cores': '8',
+    'services': ['arnold'],
+    'dependType': Layer.DependType.Frame,
+}
+
+#######################################################
+# NOTE :
+# LENTIL FIX OF DEATH
+# #######
+
+img_path = os.path.join(shot_path, 'img', 'renders', hipname,
+                        hipname + '-rop_ar_main.#ZFRAME#.exr')
+cp_path = os.path.join(shot_path, 'img', 'renders', hipname, "lentil",
+                       hipname + '-rop_ar_main.#ZFRAME#.exr')
+try:
+    os.makedirs(os.path.join(shot_path, 'img', 'renders', hipname, 'lentil'))
+    #shutil.move(img_path,cp_path)
+except:
+    pass
+
+cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+#cmd += 'oiiotool %s --attrib "arnold/aovs/RGBA/filter" "RGBA" --attrib "arnold/aovs/variance/filter" "variance_filter" -o %s' %(cp_path,img_path)
+cmd += ' python /home/christophe/.luma_tools/bin/lab_cmds/la_lentilfix.py'
+cmd += ' %s' % img_path
+cmd += ' %s' % cp_path
+cmd += ' %s' % shot_path
+cmd += ' %s' % hipname
+ARNOLD_RENDER_LENTIL_LAYER = {
+    'name': 'arnold_lentil_fix',
+    'layerType': JobTypes.JobTypes.SHELL,
+    'cmd': cmd,
+    'layerRange': f_start,
+    'cores': '8',
+    'services': ['shell'],
+    'dependType': Layer.DependType.Layer,
+}
+
 #######################################################
 # NOTE :
 #DENOISE
@@ -307,6 +383,7 @@ if mode == 0:
             Layer.LayerData.buildFactory(**HOUDINI_EXPORT_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_MAIN_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_CRYPTO_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_LENTIL_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_DENOISE_LAYER),
             Layer.LayerData.buildFactory(**FFMPEG_LAYER),
             Layer.LayerData.buildFactory(**CLEANUP_LAYER)
@@ -330,6 +407,7 @@ elif mode == 1:
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_MAIN_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_VOLUME_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_CRYPTO_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_LENTIL_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_DENOISE_LAYER),
             Layer.LayerData.buildFactory(**FFMPEG_LAYER),
             Layer.LayerData.buildFactory(**CLEANUP_LAYER)
@@ -377,7 +455,33 @@ elif mode == 3:
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_MAIN_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_VOLUME_A_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_VOLUME_B_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_FLOATIES_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_CRYPTO_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_LENTIL_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_DENOISE_LAYER),
+            Layer.LayerData.buildFactory(**FFMPEG_LAYER),
+            Layer.LayerData.buildFactory(**CLEANUP_LAYER)
+        ]
+    }
+
+#SPF
+elif mode == 5:
+    jobData = {
+        'name':
+        hipname + '_render',
+        'shot':
+        shot_name + '_' + user,
+        'show':
+        'inside_job',
+        'username':
+        user,
+        'layers': [
+            Layer.LayerData.buildFactory(**HOUDINI_EXPORT_STATIC_CACHE_LAYER),
+            Layer.LayerData.buildFactory(**HOUDINI_EXPORT_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_MAIN_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_SHIPEXTRA),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_CRYPTO_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_LENTIL_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_DENOISE_LAYER),
             Layer.LayerData.buildFactory(**FFMPEG_LAYER),
             Layer.LayerData.buildFactory(**CLEANUP_LAYER)

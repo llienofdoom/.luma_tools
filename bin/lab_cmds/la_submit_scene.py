@@ -29,7 +29,7 @@ print('')
 
 allowcopy = raw_input('Save up version? (Y/N)')
 sceneinfo = raw_input('show info only? (Y/N)')
-res = raw_input('Resolution: high(1) low(0)')
+final = raw_input('force final render settings? (Y/N)')
 
 print('Using current scene.')
 a = currentact
@@ -43,6 +43,7 @@ c = 1
 
 #warning/debug variables
 nohip = []
+foundhip = []
 noenv = []
 envlist = []
 sciencetest = []
@@ -128,6 +129,7 @@ for cur in list_of_shots:
 
     #Found render files
     if len(hip_file) > 0:
+        foundhip.append(cur)
         hip_file = hip_file[-1].split('.')[1]
         hipfile = (cur) + (hip_file) + '.hip'
         hipname = hip_file.split('/')[1]
@@ -179,9 +181,8 @@ for cur in list_of_shots:
 
         if sceneinfo != "Y" and sceneinfo != "y":
             print('Starting render submission....')
-        #os.system(
-        #    "python ~/.luma_tools/bin/lab_cmds.py "
-        #    + hipfile + " " +  res)
+            os.system("python ~/.luma_tools/bin/lab_cmds.py " + hipfile + " " +
+                      final)
         else:
             print("showing info only")
 
@@ -193,6 +194,13 @@ for cur in list_of_shots:
 print('#' * 80)
 print('###FINISHED###')
 print('#' * 80 + '\n')
+
+#list submitted
+print(colored('The following shots were submitted:. ', 'yellow'))
+print('')
+foundhip = sorted(foundhip)
+for i in range(len(foundhip)):
+    print(colored(foundhip[i], 'yellow'))
 
 #Missing HIP files warning
 if c != num:
