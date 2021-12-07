@@ -373,7 +373,7 @@ CLEANUP_LAYER = {
 if mode == 0:
     jobData = {
         'name':
-        hipname + '_render',
+        hipname + '_scene_render',
         'shot':
         shot_name + '_' + user,
         'show':
@@ -396,7 +396,7 @@ if mode == 0:
 elif mode == 1:
     jobData = {
         'name':
-        hipname + '_render',
+        hipname + '_scene_render',
         'shot':
         shot_name + '_' + user,
         'show':
@@ -420,7 +420,7 @@ elif mode == 1:
 elif mode == 2:
     jobData = {
         'name':
-        hipname + '_render',
+        hipname + '_scene_render',
         'shot':
         shot_name + '_' + user,
         'show':
@@ -444,7 +444,7 @@ elif mode == 2:
 elif mode == 3:
     jobData = {
         'name':
-        hipname + '_render',
+        hipname + '_scene_render',
         'shot':
         shot_name + '_' + user,
         'show':
@@ -470,7 +470,7 @@ elif mode == 3:
 elif mode == 5:
     jobData = {
         'name':
-        hipname + '_render',
+        hipname + '_scene_render',
         'shot':
         shot_name + '_' + user,
         'show':
