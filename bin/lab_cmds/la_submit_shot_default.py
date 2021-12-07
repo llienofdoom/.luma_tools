@@ -470,7 +470,7 @@ elif mode == 3:
 elif mode == 5:
     jobData = {
         'name':
-        hipfile + '_render',
+        hipname + '_render',
         'shot':
         shot_name + '_' + user,
         'show':
