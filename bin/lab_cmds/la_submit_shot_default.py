@@ -372,6 +372,7 @@ CLEANUP_LAYER = {
 # JOB ###############################################################
 #Default
 if mode == 0:
+    print('Submitting Default.')
     jobData = {
         'name':
         hipname + '_scene_render',
@@ -395,6 +396,7 @@ if mode == 0:
 
 #Include volume
 elif mode == 1:
+    print('Submitting Include Volume.')
     jobData = {
         'name':
         hipname + '_scene_render',
@@ -419,6 +421,7 @@ elif mode == 1:
 
 #bathroom
 elif mode == 2:
+    print('Submitting Bathroom.')
     jobData = {
         'name':
         hipname + '_scene_render',
@@ -443,6 +446,7 @@ elif mode == 2:
 
 #brain
 elif mode == 3:
+    print('Submitting Brain.')
     jobData = {
         'name':
         hipname + '_scene_render',
@@ -469,6 +473,7 @@ elif mode == 3:
 
 #SPF
 elif mode == 5:
+    print('Submitting SPF.')
     jobData = {
         'name':
         hipname + '_scene_render',
@@ -491,7 +496,7 @@ elif mode == 5:
         ]
     }
 
-print('Sending to opencue')
+print('Sending to opencue...')
 
 #SUBMIT #######################
 

@@ -151,6 +151,7 @@ for cur in list_of_shots:
         hipname = hip_file.split('/')[1]
         print('')
         print('Latest render file found: ' + (cur) + (hip_file) + '.hip')
+        print('Render mode: ' + str(mode))
         print('')
 
         #SAVE UP VERISION
@@ -213,7 +214,7 @@ print('###FINISHED###')
 print('#' * 80 + '\n')
 
 #list submitted
-print(colored('The following shots were submitted:. ', 'yellow'))
+print(colored('The following shots were submitted:. ', 'blue'))
 print('')
 foundhip = sorted(foundhip)
 for i in range(len(foundhip)):
@@ -227,7 +228,7 @@ if c != num:
         ' shots do not have valid render hip files:. ', 'yellow'))
     print('')
     for i in range(len(nohip)):
-        print(colored(nohip[i], 'yellow'))
+        print(colored(nohip[i], 'red'))
 else:
     print(colored('All shots sucessfully submitted.', 'green'))
     print('')
@@ -240,6 +241,6 @@ if len(noenv) > 0:
         'yellow'))
     print('')
     for i in range(len(noenv)):
-        print(colored(noenv[i], 'yellow'))
+        print(colored(noenv[i], 'red'))
 print('')
 print(colored('Scene submission complete!', 'green'))
