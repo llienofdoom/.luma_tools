@@ -1,6 +1,12 @@
 import os
 import sys
 import glob
+from datetime import datetime
+
+# date = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+date = os.environ['IJ_DATE']
+shot_name = os.environ['IJ_SHOT_NAME']
+user = os.environ['IJ_USER']
 
 if len(sys.argv) == 2:
     search_pattern = sys.argv[1].split('.')[0]
@@ -10,10 +16,14 @@ if len(sys.argv) == 2:
     list_of_files.sort()
     first_frame = int(list_of_files[0].split('.')[1])
 
+    burnin = '"[0:v]drawtext=\'fontcolor=white:font=sans-serif:fontsize=10:x=5:y=5:text=  luma-film - 2020 - inside job %s - %s - %s:box=1:boxborderw=5:boxcolor=black\'[LT]"' % (date, shot_name, user)
+
     cmd  = 'ffmpeg -y -hide_banner -r 24'
     cmd += ' -start_number %d' % first_frame
     cmd += ' -i %s.%s.%s' % (search_pattern, '%04d', search_extention)
-    cmd += ' -pix_fmt yuv420p -c:v libx264 -crf 25'
+    cmd += ' -s 2048x1152'
+    cmd += ' -filter_complex %s' % burnin
+    cmd += ' -pix_fmt yuv420p -c:v libx264 -crf 25 -map "[LT]"'
     cmd += ' %s.mp4' % search_pattern
 
     os.system( cmd )
