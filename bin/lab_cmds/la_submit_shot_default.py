@@ -97,6 +97,7 @@ cmd += ' %s' % hipfile
 cmd += ' #ZFRAME#'
 cmd += ' %s' % str(mode)
 cmd += ' %s' % str(final)
+cmd += ' %s' % str(shot_name)
 HOUDINI_EXPORT_LAYER = {
     'name': 'houdini_export_ass_files',
     'layerType': JobTypes.JobTypes.SHELL,

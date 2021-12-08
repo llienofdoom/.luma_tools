@@ -30,6 +30,8 @@ print('')
 allowcopy = raw_input('Save up version? (Y/N)')
 sceneinfo = raw_input('show info only? (Y/N)')
 final = raw_input('force final render settings? (Y/N)')
+environment = raw_input(
+    'Render only one environment?. (enter env name, empty for all): ')
 
 print('Using current scene.')
 a = currentact
@@ -86,24 +88,38 @@ for cur in list_of_shots:
 
     render_set = json_data['assets']['env']
 
+    if type(render_set) == list:
+        render_set = render_set[0]
+
     if render_set == 'NaN':
         noenv.append(cur)
-
+    print('enviro:' + environment)
+    if environment:
+        print('doing individual env')
+        if not environment in render_set:
+            print('skipping..')
+            continue
+        else:
+            print('doing that other thing')
     envlist.append(cur + '' + str(render_set))
 
     # debug variables for env cehcking
+    if 'extschoolentrance' in render_set:
+        mode = 0
     if 'scienceclassroom' in render_set:
         mode = 1
-        sciencetest.append('scienceclassroom')
+    if 'sciencehallway' in render_set:
+        mode = 0
     elif 'brain' in render_set:
         mode = 3
-        sciencetest.append('brain')
     elif 'airlock' in render_set:
-        mode = 2
-        sciencetest.append('airlock')
-    elif 'bridge' in render_set:
-        mode = 2
-        sciencetest.append('bridge')
+        mode = 1
+    elif 'nailbridge' in render_set:
+        mode = 5
+    elif 'props' in render_set:
+        mode = 1
+    elif render_set == '':
+        mode = 0
 
     print('Environment in shot: ', render_set)
     print('')
@@ -164,7 +180,7 @@ for cur in list_of_shots:
                 print('Saving up version....')
                 print('Creating new file....')
                 print('New hip file name: ' + newstr)
-                os.system(copycmd)
+                #os.system(copycmd)
                 newhipname = newstr.split('/')[7]
                 hipfile = (cur) + '/' + newhipname
                 hipname = newhipname
@@ -181,9 +197,9 @@ for cur in list_of_shots:
 
         if sceneinfo != "Y" and sceneinfo != "y":
             print('Starting render submission....')
-            os.system(
-                "python ~/.luma_tools/bin/lab_cmds/la_submit_shot_default.py "
-                + hipfile + " " + final)
+            #os.system(
+            #    "python ~/.luma_tools/bin/lab_cmds/la_submit_shot_default.py "
+            #    + hipfile + " " + final)
         else:
             print("showing info only")
 
@@ -227,8 +243,3 @@ if len(noenv) > 0:
         print(colored(noenv[i], 'yellow'))
 print('')
 print(colored('Scene submission complete!', 'green'))
-
-#for i in range(len(envlist)):
-#    print(colored(envlist[i], 'yellow'))
-
-#print(sciencetest)
