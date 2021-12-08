@@ -460,6 +460,7 @@ elif mode == 3:
             Layer.LayerData.buildFactory(**HOUDINI_EXPORT_STATIC_CACHE_LAYER),
             Layer.LayerData.buildFactory(**HOUDINI_EXPORT_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_MAIN_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_VOLUME_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_VOLUME_A_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_VOLUME_B_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_FLOATIES_LAYER),
