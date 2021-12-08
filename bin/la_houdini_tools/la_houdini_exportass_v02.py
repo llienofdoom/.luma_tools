@@ -52,30 +52,73 @@ shotname = shotname.split("_render")[0]
 noderoot = "/obj/ij_shot_builder_" + shotname
 
 #Charlene
-hou.parm(noderoot +
-         '/shot_render_geo/chr_charlene_master/hair_deform_switch').set(1)
-hou.parm(noderoot +
-         '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_charlene_master/hair_deform_switch').set(1)
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
+except:
+    print('Charlene not found')
+    pass
+
 #Frankie
-hou.parm(noderoot +
-         '/shot_render_geo/chr_frankie_master/hair_deform_switch').set(1)
-hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
+
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_frankie_master/hair_deform_switch').set(1)
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
+except:
+    print('Frankie not found')
+    pass
+
 #Ale
-hou.parm(noderoot +
-         '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
+except:
+    print('Alejandro not found')
+    pass
+
 #Norman
-hou.parm(noderoot + '/shot_render_geo/chr_norman_master/deform_switch').set(1)
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_norman_master/deform_switch').set(1)
+except:
+    print('Norman not found')
+    pass
+
 #Anderson
-hou.parm(noderoot +
-         '/shot_render_geo/chr_anderson_master/deform_switch').set(1)
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_anderson_master/deform_switch').set(1)
+except:
+    print('Anderson not found')
+    pass
+
 #Mike
-hou.parm(noderoot + '/shot_render_geo/chr_mike_master/deform_switch').set(1)
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_mike_master/deform_switch').set(1)
+except:
+    print('Mike not found')
+    pass
+
 #Witherington
-hou.parm(noderoot +
-         '/shot_render_geo/chr_witherington_master/deform_switch').set(1)
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_witherington_master/deform_switch').set(1)
+except:
+    print('Witherington not found')
+    pass
+
 #Hernandez
-hou.parm(noderoot +
-         '/shot_render_geo/chr_hernandez_master/deform_switch').set(1)
+try:
+    hou.parm(noderoot +
+             '/shot_render_geo/chr_hernandez_master/deform_switch').set(1)
+except:
+    print('Hernandez not found')
+    pass
 
 #FORCE FINAL RENDER PARAMETERS
 if final != 'N' and final != 'n':
