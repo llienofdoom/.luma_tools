@@ -45,86 +45,89 @@ hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/view_cache').set(1)
 hou.parm('/obj/ij_stereo_camera_rig/rendertype').set(mode)
 
-#CHARACTER SETTINGS
-print("Setting up characters...")
-shotname = hou.expandString("$HIPNAME")
-shotname = shotname.split("_render")[0]
-noderoot = "/obj/ij_shot_builder_" + shotname
-
-#Charlene
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_charlene_master/hair_deform_switch').set(1)
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
-except:
-    print('Charlene not found')
-    pass
-
-#Frankie
-
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_frankie_master/hair_deform_switch').set(1)
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
-except:
-    print('Frankie not found')
-    pass
-
-#Ale
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
-except:
-    print('Alejandro not found')
-    pass
-
-#Norman
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_norman_master/deform_switch').set(1)
-except:
-    print('Norman not found')
-    pass
-
-#Anderson
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_anderson_master/deform_switch').set(1)
-except:
-    print('Anderson not found')
-    pass
-
-#Mike
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_mike_master/deform_switch').set(1)
-except:
-    print('Mike not found')
-    pass
-
-#Witherington
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_witherington_master/deform_switch').set(1)
-except:
-    print('Witherington not found')
-    pass
-
-#Hernandez
-try:
-    hou.parm(noderoot +
-             '/shot_render_geo/chr_hernandez_master/deform_switch').set(1)
-except:
-    print('Hernandez not found')
-    pass
-
 #FORCE FINAL RENDER PARAMETERS
 if final != 'N' and final != 'n':
     print 'Rendering with final parameters forced on.'
     #Final render settings (WIP)
     # TODO: MAKE SURE SIMS ARE ON FOR MAIN CHARACTERS
+    #CHARACTER SETTINGS
+    print("Setting up characters...")
+    shotname = hou.expandString("$HIPNAME")
+    shotname = shotname.split("_render")[0]
+    noderoot = "/obj/ij_shot_builder_" + shotname
+
+    #Charlene
+    try:
+        hou.parm(
+            noderoot +
+            '/shot_render_geo/chr_charlene_master/hair_deform_switch').set(1)
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
+    except:
+        print('Charlene not found')
+        pass
+
+    #Frankie
+
+    try:
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_frankie_master/hair_deform_switch').set(
+                     1)
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
+    except:
+        print('Frankie not found')
+        pass
+
+    #Ale
+    try:
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
+    except:
+        print('Alejandro not found')
+        pass
+
+    #Norman
+    try:
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_norman_master/deform_switch').set(1)
+    except:
+        print('Norman not found')
+        pass
+
+    #Anderson
+    try:
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_anderson_master/deform_switch').set(1)
+    except:
+        print('Anderson not found')
+        pass
+
+    #Mike
+    try:
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_mike_master/deform_switch').set(1)
+    except:
+        print('Mike not found')
+        pass
+
+    #Witherington
+    try:
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_witherington_master/deform_switch').set(
+                     1)
+    except:
+        print('Witherington not found')
+        pass
+
+    #Hernandez
+    try:
+        hou.parm(noderoot +
+                 '/shot_render_geo/chr_hernandez_master/deform_switch').set(1)
+    except:
+        print('Hernandez not found')
+        pass
+
     print 'Setting final render settings...'
     hou.parm('/obj/ij_stereo_camera_rig/enable_secondary').set(0)
     hou.parm('/obj/ij_stereo_camera_rig/main_res').set("1.0")
