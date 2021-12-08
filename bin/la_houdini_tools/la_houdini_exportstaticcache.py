@@ -24,6 +24,20 @@ print 'Scene loading done.'
 
 print 'Setting settings...'
 
+#Update to latest render hda ver
+print 'Updating to latest render hda...'
+rendernode = hou.node("/obj/ij_stereo_camera_rig/")
+library_filepath = rendernode.type().definition().libraryFilePath()
+all_definitions = hou.hda.definitionsInFile(library_filepath)
+nodename = all_definitions[-1].nodeTypeName()
+nodetype = rendernode.type()
+if nodetype != nodename:
+    rendernode.changeNodeType(all_definitions[-1].nodeTypeName())
+    rendernode = hou.node("/obj/ij_stereo_camera_rig/")
+
+#Lock hda
+rendernode.matchCurrentDefinition()
+
 hou.parm('/obj/ij_stereo_camera_rig/view_cache').set(0)
 
 # RENDER
