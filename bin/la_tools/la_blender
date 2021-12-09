@@ -1,20 +1,12 @@
 #!/bin/bash
 
-aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+source $IJ_LOCAL_REPO/etc/blender_env
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    export blender_root=/Applications/Blender/2.93/Blender.app/Contents/MacOS;
-    export ocio_root=/mnt/luma_h/SITE/ocio
-    export OCIO=$ocio_root/$aces_version/config.ocio
-
     $blender_root/Blender $@
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    export blender_root=/opt/blender;
-    export ocio_root=/opt/OpenColorIO-Configs
-    export OCIO=$ocio_root/$aces_version/config.ocio
-
     $blender_root/blender $@
 fi
