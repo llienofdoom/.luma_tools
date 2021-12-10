@@ -32,6 +32,7 @@ sceneinfo = raw_input('show info only? (Y/N)')
 final = raw_input('force final render settings? (Y/N)')
 environment = raw_input(
     'Render only one environment?. (enter env name, empty for all): ')
+specific = raw_input('Specific shot?. (enter shot no, empty for all): ')
 
 print('Using current scene.')
 a = currentact
@@ -40,6 +41,7 @@ s = '*'
 
 path = shots_root + '/%s/%s/%s' % (a, c, s)
 list_of_shots = glob.glob(path)
+list_of_shots.sort
 num = len(list_of_shots)
 c = 1
 
@@ -94,6 +96,7 @@ for cur in list_of_shots:
     if render_set == 'NaN':
         noenv.append(cur)
     print('enviro:' + environment)
+
     if environment:
         print('doing individual env')
         if not environment in render_set:
@@ -101,6 +104,17 @@ for cur in list_of_shots:
             continue
         else:
             print('doing that other thing')
+
+    if specific:
+        print('doing individual shot')
+        if not specific in cur:
+            print(specific)
+            print(cur)
+            print('skipping..')
+            continue
+        else:
+            print('doing that other thing')
+
     envlist.append(cur + '' + str(render_set))
 
     # debug variables for env cehcking

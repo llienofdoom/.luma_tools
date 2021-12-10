@@ -438,6 +438,7 @@ elif mode == 2:
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_MIRROR_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_VOLUME_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_RENDER_CRYPTO_LAYER),
+            Layer.LayerData.buildFactory(**ARNOLD_RENDER_LENTIL_LAYER),
             Layer.LayerData.buildFactory(**ARNOLD_DENOISE_LAYER),
             Layer.LayerData.buildFactory(**FFMPEG_LAYER),
             Layer.LayerData.buildFactory(**CLEANUP_LAYER)
@@ -523,8 +524,11 @@ for layer in layers:
         if layerData[layer_count].dependType == 'Layer':
 
             if 'arnold_denoise' in str(layer):
-                layer.depend_all(layers[2])
+                layer.depend_all(layers[layer_count - 1])
                 print(str(layer) + ' is layer')
+
+            if 'arnold_lentil_fix' in str(layer):
+                layer.depend_all(layers[2])
             else:
                 layer.depend_all(layers[layer_count - 1])
                 print(str(layer) + ' is layer')
