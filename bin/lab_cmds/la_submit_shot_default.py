@@ -62,6 +62,10 @@ elif 'airlock' in render_set:
     mode = 1
 elif 'nailbridge' in render_set:
     mode = 5
+elif 'props' in render_set:
+    mode = 1
+elif 'girlsbathroom' in render_set:
+    mode = 2
 elif render_set == '':
     mode = 0
 
