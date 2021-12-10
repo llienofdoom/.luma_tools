@@ -6,7 +6,7 @@ umask 002
 
 orig_path=$(pwd)
 
-alias la_check_exports='ll $IJ_SHOT_PATH/geo/anim_geo'
+alias la_check_exports='ll $IJ_SHOT_PATH/geo/anim_export'
 
 #####################################################################
 # echo -e "Checking OS..."
