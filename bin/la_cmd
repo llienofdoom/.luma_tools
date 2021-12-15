@@ -57,6 +57,7 @@ function usage
     echo "  ass_export | ae     : export assets from maya.";
     echo "  ass_tohip | ah      : build hip for asset files of doom.";
     echo ""
+    echo "  cs                  : cloth sim current shot. Provide list of shots (01-001-0050,01-007-0010,02-002-0140)";
     echo "  edit_info | esi     : edits the shot infor file.";
     echo "  mp | makeprev       : make preview : mono(m), stereo(s) or both(b) and filename";
     echo "  mps | makeprevs     : make previews : lab mps (m)(s)(b) (ass)(cam)(ren) ##-###-####";
@@ -367,6 +368,10 @@ if [ "$1" != "" ]; then
         mon )
           if [[ $IJ_OS == "mac" ]]; then open http://192.168.34.2:3000/; fi
           if [[ $IJ_OS == "lin" ]]; then firefox http://192.168.34.2:3000/; fi
+        ;;
+        #############################################################
+        cs )
+          la_hython $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdiniCreateClothSimFile.py $2;
         ;;
         #############################################################
         edit_info | esi )
