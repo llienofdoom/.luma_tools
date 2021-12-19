@@ -54,6 +54,8 @@ if 'extschoolentrance' in render_set:
     mode = 0
 if 'scienceclassroom' in render_set:
     mode = 1
+if 'bedroom' in render_set:
+    mode = 1
 if 'sciencehallway' in render_set:
     mode = 0
 elif 'brain' in render_set:
