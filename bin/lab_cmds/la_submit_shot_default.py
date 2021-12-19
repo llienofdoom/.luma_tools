@@ -52,9 +52,13 @@ mode = 0
 
 if 'extschoolentrance' in render_set:
     mode = 0
+if 'normanstreet' in render_set:
+    mode = 0
 if 'scienceclassroom' in render_set:
     mode = 1
 if 'bedroom' in render_set:
+    mode = 1
+if 'normanentrance' in render_set:
     mode = 1
 if 'sciencehallway' in render_set:
     mode = 0
