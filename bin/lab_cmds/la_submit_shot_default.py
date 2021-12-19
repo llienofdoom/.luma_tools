@@ -56,7 +56,7 @@ if 'normanstreet' in render_set:
     mode = 0
 if 'scienceclassroom' in render_set:
     mode = 1
-if 'bedroom' in render_set:
+if 'normanbedroom' in render_set:
     mode = 1
 if 'normanentrance' in render_set:
     mode = 1
@@ -359,9 +359,9 @@ FFMPEG_LAYER = {
 # NOTE :
 #CLEANUP
 ########
-ass_dir_to_remove = os.path.dirname(ass_dir)
-cmd = 'rm -r %s;' % ass_dir_to_remove
-cmd += ' python /mnt/luma_i/_tools/luma_tools/bin/lab_cmds/la_discord_notify.py %s %s %s;' % (
+#ass_dir_to_remove = os.path.dirname(ass_dir)
+#cmd = 'rm -r %s;' % ass_dir_to_remove
+cmd = 'python /mnt/luma_i/_tools/luma_tools/bin/lab_cmds/la_discord_notify.py %s %s %s;' % (
     user, '"' + shot_name + ' - Render Complete! - ' + comments + '"',
     mp4_path)
 CLEANUP_LAYER = {

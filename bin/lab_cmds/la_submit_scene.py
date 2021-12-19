@@ -120,7 +120,13 @@ for cur in list_of_shots:
     # debug variables for env cehcking
     if 'extschoolentrance' in render_set:
         mode = 0
+    if 'normanstreet' in render_set:
+        mode = 0
     if 'scienceclassroom' in render_set:
+        mode = 1
+    if 'normanbedroom' in render_set:
+        mode = 1
+    if 'normanentrance' in render_set:
         mode = 1
     if 'sciencehallway' in render_set:
         mode = 0
@@ -130,8 +136,6 @@ for cur in list_of_shots:
         mode = 1
     elif 'nailbridge' in render_set:
         mode = 5
-    elif 'props' in render_set:
-        mode = 1
     elif render_set == '':
         mode = 0
 
