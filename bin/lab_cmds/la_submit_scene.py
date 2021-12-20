@@ -120,21 +120,15 @@ for cur in list_of_shots:
     # debug variables for env cehcking
     if 'extschoolentrance' in render_set:
         mode = 0
-<<<<<<< HEAD
+    elif 'normanstreet' in render_set:
+        mode = 0
     elif 'scienceclassroom' in render_set:
         mode = 1
+    elif 'normanbedroom' in render_set:
+        mode = 1
+    elif 'normanentrance' in render_set:
+        mode = 1
     elif 'sciencehallway' in render_set:
-=======
-    if 'normanstreet' in render_set:
-        mode = 0
-    if 'scienceclassroom' in render_set:
-        mode = 1
-    if 'normanbedroom' in render_set:
-        mode = 1
-    if 'normanentrance' in render_set:
-        mode = 1
-    if 'sciencehallway' in render_set:
->>>>>>> christophe
         mode = 0
     elif 'brain' in render_set:
         mode = 3
@@ -142,17 +136,11 @@ for cur in list_of_shots:
         mode = 1
     elif 'nailbridge' in render_set:
         mode = 5
-<<<<<<< HEAD
     elif 'props' in render_set:
         mode = 1
     elif 'girlsbathroom' in render_set:
         mode = 2
-    elif 'normanbedroom' in render_set:
-        mode = 1
     else:
-=======
-    elif render_set == '':
->>>>>>> christophe
         mode = 0
 
     print('Environment in shot: ', render_set)

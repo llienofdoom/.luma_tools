@@ -52,15 +52,15 @@ mode = 0
 
 if 'extschoolentrance' in render_set:
     mode = 0
-if 'normanstreet' in render_set:
+elif 'normanstreet' in render_set:
     mode = 0
-if 'scienceclassroom' in render_set:
+elif 'scienceclassroom' in render_set:
     mode = 1
-if 'normanbedroom' in render_set:
+elif 'normanbedroom' in render_set:
     mode = 1
-if 'normanentrance' in render_set:
+elif 'normanentrance' in render_set:
     mode = 1
-if 'sciencehallway' in render_set:
+elif 'sciencehallway' in render_set:
     mode = 0
 elif 'brain' in render_set:
     mode = 3
@@ -72,7 +72,7 @@ elif 'props' in render_set:
     mode = 1
 elif 'girlsbathroom' in render_set:
     mode = 2
-elif render_set == '':
+else:
     mode = 0
 
 ###########
