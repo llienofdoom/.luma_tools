@@ -365,11 +365,7 @@ FFMPEG_LAYER = {
 ########
 #ass_dir_to_remove = os.path.dirname(ass_dir)
 #cmd = 'rm -r %s;' % ass_dir_to_remove
-<<<<<<< HEAD
-cmd += ' python /mnt/luma_i/_tools/luma_tools/bin/lab_cmds/la_discord_notify.py %s %s %s;' % (
-=======
 cmd = 'python /mnt/luma_i/_tools/luma_tools/bin/lab_cmds/la_discord_notify.py %s %s %s;' % (
->>>>>>> christophe
     user, '"' + shot_name + ' - Render Complete! - ' + comments + '"',
     mp4_path)
 CLEANUP_LAYER = {
