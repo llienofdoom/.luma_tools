@@ -54,6 +54,8 @@ if 'extschoolentrance' in render_set:
     mode = 0
 elif 'normanstreet' in render_set:
     mode = 0
+elif 'betelgeuse' in render_set:
+    mode = 1          
 elif 'scienceclassroom' in render_set:
     mode = 1
 elif 'normanbedroom' in render_set:
