@@ -122,6 +122,8 @@ for cur in list_of_shots:
         mode = 0
     elif 'normanstreet' in render_set:
         mode = 0
+    elif 'betelgeuse' in render_set:
+        mode = 1        
     elif 'scienceclassroom' in render_set:
         mode = 1
     elif 'normanbedroom' in render_set:
@@ -173,7 +175,6 @@ for cur in list_of_shots:
         hipname = hip_file.split('/')[1]
         print('')
         print('Latest render file found: ' + (cur) + (hip_file) + '.hip')
-        print('Render mode: ' + str(mode))
         print('')
 
         #SAVE UP VERISION

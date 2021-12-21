@@ -77,6 +77,7 @@ elif 'girlsbathroom' in render_set:
 else:
     mode = 0
 
+print('Render mode: ' + str(mode))
 ###########
 #Determine scene
 
