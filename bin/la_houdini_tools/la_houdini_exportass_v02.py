@@ -49,7 +49,7 @@ hou.parm('/obj/ij_stereo_camera_rig/rendertype').set(mode)
 if final != 'N' and final != 'n':
     print 'Rendering with final parameters forced on.'
     #Final render settings (WIP)
-    # TODO: MAKE SURE SIMS ARE ON FOR MAIN CHARACTERS
+
     #CHARACTER SETTINGS
     print("Setting up characters...")
     shotname = hou.expandString("$HIPNAME")
@@ -57,102 +57,84 @@ if final != 'N' and final != 'n':
     noderoot = "/obj/ij_shot_builder_" + shotname
 
     #Charlene
-    if hou.parm(noderoot +
-                '/shot_render_geo/chr_charlene_master/tinfoil_hat') == 1:
-        print('tinfoil hat enabled, skipping hair sim')
+    if hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/tinfoil_hat') == 1:
+        print('Charlene found')
+        print('Charlene tinfoil hat enabled, skipping hair sim.')
+        hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
     else:
         try:
-            hou.parm(noderoot +
-                     '/shot_render_geo/chr_charlene_master/hair_deform_switch'
-                     ).set(1)
-            hou.parm(noderoot +
-                     '/shot_render_geo/chr_charlene_master/deform_switch').set(
-                         1)
+            print('Charlene found')
+            hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/hair_deform_switch').set(1)
+            hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
         except:
             print('Charlene not found')
             pass
 
     #Frankie
-    if hou.parm(noderoot +
-                '/shot_render_geo/chr_frankie_master/tinfoil_hat') == 1:
-        print('tinfoil hat enabled, skipping hair sim')
+    if hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/tinfoil_hat') == 1:
+        print('Frankie found')
+        print('Frankie tinfoil hat enabled, skipping hair sim.')
+        hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
     else:
         try:
-            hou.parm(noderoot +
-                     '/shot_render_geo/chr_frankie_master/hair_deform_switch'
-                     ).set(1)
-            hou.parm(noderoot +
-                     '/shot_render_geo/chr_frankie_master/deform_switch').set(
-                         1)
+            print('Frankie found')
+            hou.parm(noderoot +  '/shot_render_geo/chr_frankie_master/hair_deform_switch').set(1)
+            hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
         except:
             print('Frankie not found')
             pass
 
     #Ale
-    if hou.parm(noderoot +
-                '/shot_render_geo/chr_alejandro_master/tinfoil_hat') == 1:
-        print('tinfoil hat enabled, skipping hair sim')
-    else:
-        try:
-            hou.parm(
-                noderoot +
-                '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
-        except:
-            print('Alejandro not found')
-            pass
+    try:
+        hou.parm(noderoot + '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
+        print('Alejandro found')
+    except:
+        print('Alejandro not found')
+        pass
 
     #Norman
-    if hou.parm(noderoot +
-                '/shot_render_geo/chr_norman_master/tinfoil_hat') == 1:
-        print('tinfoil hat enabled, skipping hair sim')
-    else:
-        try:
-            hou.parm(noderoot +
-                     '/shot_render_geo/chr_norman_master/deform_switch').set(1)
-        except:
-            print('Norman not found')
-            pass
+    try:
+        hou.parm(noderoot + '/shot_render_geo/chr_norman_master/deform_switch').set(1)
+        print('Norman found')
+    except:
+        print('Norman not found')
+        pass
     #Virgil
-    if hou.parm(noderoot +
-                '/shot_render_geo/chr_virgil_master/tinfoil_hat') == 1:
-        print('tinfoil hat enabled, skipping hair sim')
-    else:
-        try:
-            hou.parm(noderoot +
-                     '/shot_render_geo/chr_virgil_master/deform_switch').set(1)
-        except:
-            print('Virgil not found')
-            pass
+    try:
+        hou.parm(noderoot + '/shot_render_geo/chr_virgil_master/deform_switch').set(1)
+        print('Virgil found')
+    except:
+        print('Virgil not found')
+        pass
 
     #Anderson
     try:
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_anderson_master/deform_switch').set(1)
+        hou.parm(noderoot + '/shot_render_geo/chr_anderson_master/deform_switch').set(1)
+        print('Anderson found')
     except:
         print('Anderson not found')
         pass
 
     #Mike
     try:
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_mike_master/deform_switch').set(1)
+        hou.parm(noderoot + '/shot_render_geo/chr_mike_master/deform_switch').set(1)
+        print('Mike found')
     except:
         print('Mike not found')
         pass
 
     #Witherington
     try:
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_witherington_master/deform_switch').set(
-                     1)
+        hou.parm(noderoot + '/shot_render_geo/chr_witherington_master/deform_switch').set(1)
+        print('Witherington found')
     except:
         print('Witherington not found')
         pass
 
     #Hernandez
     try:
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_hernandez_master/deform_switch').set(1)
+        hou.parm(noderoot + '/shot_render_geo/chr_hernandez_master/deform_switch').set(1)
+        print('Hernandez found')
     except:
         print('Hernandez not found')
         pass
@@ -168,8 +150,7 @@ else:
 # RENDER
 time_start = time.time()
 print "Caching Scene..."
-hou.parm('/obj/ij_stereo_camera_rig/ropnet_RENDER/brain_extra_passes/execute'
-         ).pressButton()
+hou.parm('/obj/ij_stereo_camera_rig/ropnet_RENDER/brain_extra_passes/execute').pressButton()
 
 time_end = time.time() - time_start
 
