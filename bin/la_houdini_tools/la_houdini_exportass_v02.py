@@ -57,43 +57,72 @@ if final != 'N' and final != 'n':
     noderoot = "/obj/ij_shot_builder_" + shotname
 
     #Charlene
-    try:
-        hou.parm(
-            noderoot +
-            '/shot_render_geo/chr_charlene_master/hair_deform_switch').set(1)
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
-    except:
-        print('Charlene not found')
-        pass
+    if hou.parm(noderoot +
+                '/shot_render_geo/chr_charlene_master/tinfoil_hat') == 1:
+        print('tinfoil hat enabled, skipping hair sim')
+    else:
+        try:
+            hou.parm(noderoot +
+                     '/shot_render_geo/chr_charlene_master/hair_deform_switch'
+                     ).set(1)
+            hou.parm(noderoot +
+                     '/shot_render_geo/chr_charlene_master/deform_switch').set(
+                         1)
+        except:
+            print('Charlene not found')
+            pass
 
     #Frankie
-
-    try:
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_frankie_master/hair_deform_switch').set(
-                     1)
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
-    except:
-        print('Frankie not found')
-        pass
+    if hou.parm(noderoot +
+                '/shot_render_geo/chr_frankie_master/tinfoil_hat') == 1:
+        print('tinfoil hat enabled, skipping hair sim')
+    else:
+        try:
+            hou.parm(noderoot +
+                     '/shot_render_geo/chr_frankie_master/hair_deform_switch'
+                     ).set(1)
+            hou.parm(noderoot +
+                     '/shot_render_geo/chr_frankie_master/deform_switch').set(
+                         1)
+        except:
+            print('Frankie not found')
+            pass
 
     #Ale
-    try:
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
-    except:
-        print('Alejandro not found')
-        pass
+    if hou.parm(noderoot +
+                '/shot_render_geo/chr_alejandro_master/tinfoil_hat') == 1:
+        print('tinfoil hat enabled, skipping hair sim')
+    else:
+        try:
+            hou.parm(
+                noderoot +
+                '/shot_render_geo/chr_alejandro_master/deform_switch').set(1)
+        except:
+            print('Alejandro not found')
+            pass
 
     #Norman
-    try:
-        hou.parm(noderoot +
-                 '/shot_render_geo/chr_norman_master/deform_switch').set(1)
-    except:
-        print('Norman not found')
-        pass
+    if hou.parm(noderoot +
+                '/shot_render_geo/chr_norman_master/tinfoil_hat') == 1:
+        print('tinfoil hat enabled, skipping hair sim')
+    else:
+        try:
+            hou.parm(noderoot +
+                     '/shot_render_geo/chr_norman_master/deform_switch').set(1)
+        except:
+            print('Norman not found')
+            pass
+    #Virgil
+    if hou.parm(noderoot +
+                '/shot_render_geo/chr_virgil_master/tinfoil_hat') == 1:
+        print('tinfoil hat enabled, skipping hair sim')
+    else:
+        try:
+            hou.parm(noderoot +
+                     '/shot_render_geo/chr_virgil_master/deform_switch').set(1)
+        except:
+            print('Virgil not found')
+            pass
 
     #Anderson
     try:
