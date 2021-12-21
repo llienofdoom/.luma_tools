@@ -201,15 +201,19 @@ for cur in list_of_shots:
             print('Saving up version enabled.')
             try:
                 #Copy if allowed
-                print('Saving up version....')
-                print('Creating new file....')
-                print('New hip file name: ' + newstr)
-                os.system(copycmd)
-                newhipname = newstr.split('/')[7]
-                hipfile = (cur) + '/' + newhipname
-                hipname = newhipname
-                print(colored('Copy succesful! continuing...', 'green'))
-                print('')
+                if sceneinfo != "Y" and sceneinfo != "y":
+                    print('Saving up version....')
+                    print('Creating new file....')
+                    print('New hip file name: ' + newstr)
+                    os.system(copycmd)
+                    newhipname = newstr.split('/')[7]
+                    hipfile = (cur) + '/' + newhipname
+                    hipname = newhipname
+                    print(colored('Copy succesful! continuing...', 'green'))
+                    print('')
+                else:
+                    print('Saving up version disabled.')
+                    print('')
             except:
                 print('error copying new file.')
                 print('')
