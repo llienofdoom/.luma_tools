@@ -57,7 +57,9 @@ if final != 'N' and final != 'n':
     noderoot = "/obj/ij_shot_builder_" + shotname
 
     #Charlene
-    if hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/tinfoil_hat').eval() == 1:
+    charnode = hou.node(noderoot + '/shot_render_geo/chr_charlene_master/')
+    charparm = charnode.parm('tinfoil_hat').eval()
+    if charparm == 1:
         print('Charlene found')
         print('Charlene tinfoil hat enabled, skipping hair sim.')
         hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
@@ -71,7 +73,9 @@ if final != 'N' and final != 'n':
             pass
 
     #Frankie
-    if hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/tinfoil_hat').eval() == 1:
+    frankienode = hou.node(noderoot + '/shot_render_geo/chr_frankie_master/')
+    frankieparm = frankienode.parm('tinfoil_hat').eval()
+    if frankieparm == 1:
         print('Frankie found')
         print('Frankie tinfoil hat enabled, skipping hair sim.')
         hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
