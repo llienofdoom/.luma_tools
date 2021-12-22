@@ -59,34 +59,36 @@ if final != 'N' and final != 'n':
     #Charlene
     charnode = hou.node(noderoot + '/shot_render_geo/chr_charlene_master/')
     charparm = charnode.parm('tinfoil_hat').eval()
-    if charparm == 1:
-        print('Charlene found')
-        print('Charlene tinfoil hat enabled, skipping hair sim.')
-        hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
-    else:
-        try:
+
+    try:
+        if charparm == 1:
             print('Charlene found')
+            print('Charlene tinfoil hat enabled, skipping hair sim.')
+            hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
+        else:            
             hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/hair_deform_switch').set(1)
             hou.parm(noderoot + '/shot_render_geo/chr_charlene_master/deform_switch').set(1)
-        except:
-            print('Charlene not found')
-            pass
+            print('Charlene found')
+    except:
+        print('Charlene not found')
+        pass
 
     #Frankie
     frankienode = hou.node(noderoot + '/shot_render_geo/chr_frankie_master/')
     frankieparm = frankienode.parm('tinfoil_hat').eval()
-    if frankieparm == 1:
-        print('Frankie found')
-        print('Frankie tinfoil hat enabled, skipping hair sim.')
-        hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
-    else:
-        try:
+
+    try:
+        if frankieparm == 1:
             print('Frankie found')
+            print('Frankie tinfoil hat enabled, skipping hair sim.')
+            hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
+        else:        
             hou.parm(noderoot +  '/shot_render_geo/chr_frankie_master/hair_deform_switch').set(1)
             hou.parm(noderoot + '/shot_render_geo/chr_frankie_master/deform_switch').set(1)
-        except:
-            print('Frankie not found')
-            pass
+            print('Frankie found')
+    except:
+        print('Frankie not found')
+        pass
 
     #Ale
     try:
