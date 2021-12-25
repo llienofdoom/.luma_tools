@@ -51,7 +51,7 @@ currentjobname = shot_name + '_render'
 mode = 0
 
 if 'extschoolentrance' in render_set:
-    mode = 0
+    mode = 1
 elif 'normanstreet' in render_set:
     mode = 0
 elif 'betelgeuse' in render_set:

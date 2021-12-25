@@ -119,7 +119,7 @@ for cur in list_of_shots:
 
     # debug variables for env cehcking
     if 'extschoolentrance' in render_set:
-        mode = 0
+        mode = 1
     elif 'normanstreet' in render_set:
         mode = 0
     elif 'betelgeuse' in render_set:
