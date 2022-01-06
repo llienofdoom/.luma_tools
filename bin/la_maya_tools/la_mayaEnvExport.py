@@ -109,6 +109,20 @@ try:
 except:
     print 'Failed to create folders for export.'
     sys.exit()
+# EXPORT ANIMATED #############################################################
+if len(env_geo_anim) > 0:
+    print '\t\t\tStarting Alembic Export of ANIMATED geo... ',
+    abc_anim_name = 'anim_export_env_anim.abc'
+    export_string = ''
+    for i in env_geo_anim:
+        export_string += ' -root %s ' % i
+    print 'Done. Exporting... ',
+    cmd  = '-frameRange %d %d' % (frame_s - 1, frame_e + 1)
+    cmd += ' -uvWrite -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
+    cmd += export_string
+    cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
+    cmds.AbcExport ( j=cmd )
+    print 'Done'
 # EXPORT STATIC ###############################################################
 print '\t\t\tStarting Alembic Export of STATIC geo... ',
 abc_static_name = 'anim_export_env_static.abc'
@@ -125,20 +139,6 @@ cmd += export_string
 cmd += ' -file %s' % os.path.join(abc_export_path, abc_static_name)
 cmds.AbcExport ( j=cmd )
 print 'Done'
-# EXPORT ANIMATED #############################################################
-if len(env_geo_anim) > 0:
-    print '\t\t\tStarting Alembic Export of ANIMATED geo... ',
-    abc_anim_name = 'anim_export_env_anim.abc'
-    export_string = ''
-    for i in env_geo_anim:
-        export_string += ' -root %s ' % i
-    print 'Done. Exporting... ',
-    cmd  = '-frameRange %d %d' % (frame_s - 1, frame_e + 1)
-    cmd += ' -uvWrite -writeFaceSets -wholeFrameGeo -worldSpace -writeCreases -writeUVSets -stripNamespaces 0 -dataFormat ogawa '
-    cmd += export_string
-    cmd += ' -file %s' % os.path.join(abc_export_path, abc_anim_name)
-    cmds.AbcExport ( j=cmd )
-    print 'Done'
 print '\tDone with environment export!\n'
 
 # CLOSE UNDO CHUNK and RESET
