@@ -25,7 +25,8 @@ if len(sys.argv) == 2:
     cmd += ' -filter_complex %s' % burnin
     cmd += ' -pix_fmt yuv420p -c:v libx264 -crf 25 -map "[LT]"'
     cmd += ' %s.mp4' % search_pattern
+    print cmd
 
-    os.system( cmd )
+    # os.system( cmd )
 else:
     print 'Boo hoo! Please type lab mv [name of any file in sequence]'
