@@ -142,6 +142,8 @@ for cur in list_of_shots:
         mode = 1
     elif 'girlsbathroom' in render_set:
         mode = 2
+    elif 'witheringoffice' in render_set:
+        mode = 1       
     else:
         mode = 0
 
