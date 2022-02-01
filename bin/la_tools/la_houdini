@@ -7,6 +7,7 @@ case "$IJ_USER" in
         houdinifx $@
         ;;
     * )
-        houdinicore $@
+	# LD_LIBRARY_PATH=/opt/glibc-2.29/lib
+        LD_PRELOAD=/opt/glibc-2.29/lib/libm.so.6 houdinicore $@
         ;;
 esac                                                                                           

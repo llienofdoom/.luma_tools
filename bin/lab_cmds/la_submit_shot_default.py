@@ -332,7 +332,7 @@ except:
 dnz_path = os.path.join(shot_path, 'img', 'renders', hipname, 'denoise',
                         hipname + '-rop_ar_main_denoise.#ZFRAME#.exr')
 cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
-cmd += ' la_noice -pr 4 -v 0.55 -ef 2 -l specular -l sss'
+cmd += ' la_noice -pr 5 -v 0.76 -ef 2 -l specular -l sss'
 cmd += ' -i %s' % img_path
 cmd += ' -o %s' % dnz_path
 ARNOLD_DENOISE_LAYER = {
