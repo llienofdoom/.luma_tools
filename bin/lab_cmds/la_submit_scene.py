@@ -27,6 +27,7 @@ print('CURRENT SCENE: ' + currentscene)
 print('*' * 80)
 print('')
 
+night = raw_input('Is it nighttime? (Y/N)')
 allowcopy = raw_input('Save up version? (Y/N)')
 sceneinfo = raw_input('show info only? (Y/N)')
 final = raw_input('force final render settings? (Y/N)')
@@ -229,7 +230,7 @@ for cur in list_of_shots:
             print('Starting render submission....')
             os.system(
                 "python ~/.luma_tools/bin/lab_cmds/la_submit_shot_default.py "
-                + hipfile + " " + final)
+                + hipfile + " " + final + " " + night)
         else:
             print("showing info only")
 

@@ -32,6 +32,7 @@ hipfile = sys.argv[1]
 print('Render hip: ' + hipfile)
 hipname = hipfile.split('/')[-1].split('.')[0]
 final = sys.argv[2]
+night = sys.argv[3]
 
 priority = 3
 
@@ -63,7 +64,11 @@ elif 'normanbedroom' in render_set:
 elif 'normanentrance' in render_set:
     mode = 1
 elif 'sciencehallway' in render_set:
-    mode = 0
+    if night != "N" and night != "n":
+        print("its night time!")
+        mode = 1
+    else:
+        mode = 0
 elif 'brain' in render_set:
     mode = 3
 elif 'airlock' in render_set:
