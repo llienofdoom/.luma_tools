@@ -20,8 +20,8 @@ function usage
     echo "  la | list_assets    : list the available assets, one of ";
     echo "                        ['chr', 'env', 'hrs', 'lgt', 'prp', 'wrd']";
     echo ""
-    echo "  ss | set_shot       : sets the current shot  : la ss 1-5-130";
-    echo "  sa | set_asset      : sets the current asset : la sa prp_car1_1";
+    echo "  ss | set_shot       : sets the current shot  : lab ss 1-5-130";
+    echo "  sa | set_asset      : sets the current asset : lab sa prp_car1_1";
     echo ""
     echo "  mgear               : stupid hack to get maya to play along";
     echo ""
@@ -76,6 +76,8 @@ function usage
     echo "  of                  : open latest fx file.";
     echo "  os                  : open latest sim file.";
     echo "  ok                  : open latest comp file.";
+    echo ""
+    echo "  compPrep            : generate comp based on template comp.";
     echo ""
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
@@ -354,6 +356,10 @@ if [ "$1" != "" ]; then
         ok )
           latest=$(ls -v act*_sc*_sh*_comp_v*.nk | tail -1);
           la_nuke $latest;
+        ;;
+        #############################################################
+        compPrep )
+          python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;
         ;;
         #############################################################
         -h | --help | h | help )
