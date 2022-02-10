@@ -360,6 +360,7 @@ if [ "$1" != "" ]; then
         #############################################################
         compPrep )
           python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;
+          la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/act01_sc017_sh0040a_comp_v00.nk
         ;;
         #############################################################
         -h | --help | h | help )

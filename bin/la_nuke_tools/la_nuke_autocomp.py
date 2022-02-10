@@ -4,26 +4,6 @@ import json
 import shutil
 import re
 
-################################################################################
-def nvNukeScriptParse(nuke_script):
-    nuke_file = open(nuke_script, 'r')
-    nuke_data = nuke_file.readlines()
-    nuke_file.close()
-
-    array_of_nodes_whole = []
-
-    i = 0
-    for line in nuke_data:
-        if line.strip().endswith('{'):
-            print line
-        elif line.strip().startswith('}'):
-            print line
-        if i > 1000:
-            exit()
-        i += 1
-
-################################################################################
-
 print 'Starting AutoComp...'
 
 # Get all env vars needed.
@@ -52,7 +32,7 @@ except:
 print '\tSet Comp Template to %s.' % comp_template
 
 # Copy template comp to shot location
-comp_name = os.path.join( shot_path, shot_name + '_comp_v01.nk' )
+comp_name = os.path.join( shot_path, shot_name + '_comp_v00.nk' )
 print '\tSet Shot Comp to be %s.' % comp_name
 if os.path.exists(comp_name):
     try:
@@ -61,6 +41,3 @@ if os.path.exists(comp_name):
         print 'ERROR! Could not remove old comp file. Exiting.'
         exit()
 shutil.copy2(comp_template, comp_name)
-# nvNukeScriptParse(comp_name)
-
-# Edit comp paths to latest render version

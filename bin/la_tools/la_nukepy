@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source $IJ_LOCAL_REPO/etc/nuke_env
+
+case "$IJ_USER" in
+    nvermaak | neill | isabel | graemecarr )
+        $nuke_root/$nuke_command -nukex -i -t $@
+        ;;
+    * )
+        $nuke_root/$nuke_command -i -t $@
+        ;;
+esac
