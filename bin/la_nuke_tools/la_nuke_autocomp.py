@@ -26,6 +26,10 @@ print '\tGot Frame Ranges as %04d to %04d.' % (frame_start, frame_end)
 comp_template = ''
 try:
     comp_template = str(json_data[0]['comp_template'])
+    if comp_template == '':
+        comp_template = os.path.join( proj_path, 'assets', 'comp', 'templates', 'MASTER', 'ij_comp_template_MASTER.nk' )
+    else:
+        comp_template = os.path.join( proj_path, 'assets', 'comp', 'templates', 'MASTER', 'ij_comp_template_' + comp_template + '_MASTER.nk' )
 except:
     print '\tNo Comp Template Found! Using default.'
     comp_template = os.path.join( proj_path, 'assets', 'comp', 'templates', 'MASTER', 'ij_comp_template_MASTER.nk' )
