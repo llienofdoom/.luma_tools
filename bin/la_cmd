@@ -383,7 +383,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         edit_info | esi )
-          vim $IJ_SHOT_PATH/shot_info.json
+          code $IJ_SHOT_PATH/shot_info.json
         ;;
         #############################################################
         maya_scan )

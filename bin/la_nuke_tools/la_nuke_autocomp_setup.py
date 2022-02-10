@@ -71,8 +71,12 @@ if len(sys.argv) is 2:
         print '\t\tUpdating %s...' % i.name()
         pass_name = i.name()[10:]
         print '\t\tPass set to %s.' % pass_name
-        search_str = os.path.join( latest_renders_path, '**', latest_renders + '-' + pass_name + '.*.exr' )
+
+        search_str = os.path.join( latest_renders_path, latest_renders + '-' + pass_name + '.*.exr' )
         pass_files = glob.glob(search_str)
+        if len(pass_files) == 0:
+            search_str = os.path.join( latest_renders_path, '**', latest_renders + '-' + pass_name + '.*.exr' )
+            pass_files = glob.glob(search_str)
         pass_str = ''
         if pass_files:
             pass_str = pass_files[0]
