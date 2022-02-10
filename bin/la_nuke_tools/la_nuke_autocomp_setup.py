@@ -7,6 +7,7 @@ import nuke
 if len(sys.argv) is 2:
 
     print 'Getting details from JSON file...'
+    shot_path = os.environ['IJ_SHOT_PATH']
     json_file  = open( os.path.join(shot_path, 'shot_info.json'), 'r' )
     json_data  = json.load( json_file )
     json_file.close()
@@ -49,7 +50,6 @@ if len(sys.argv) is 2:
 
     # Update Read Nodes
     print 'Finding the latest render folder...'
-    shot_path = os.environ['IJ_SHOT_PATH']
     renders_path = os.path.join(shot_path, 'img', 'renders')
     render_versions = []
     latest_renders = ''
