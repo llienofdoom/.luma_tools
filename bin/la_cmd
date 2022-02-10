@@ -356,12 +356,12 @@ if [ "$1" != "" ]; then
         ok )
           # latest=$(ls -v act*_sc*_sh*_comp_v*.nk | tail -1);
           # la_nuke $latest;
-          la_nuke $IJ_SHOT_PATH/act01_sc017_sh0040a_comp_v00.nk
+          la_nuke $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk
         ;;
         #############################################################
         compPrep )
           python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;
-          la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/act01_sc017_sh0040a_comp_v00.nk
+          la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk
         ;;
         #############################################################
         -h | --help | h | help )
