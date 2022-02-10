@@ -79,10 +79,10 @@ if len(sys.argv) is 2:
             pass_str = pass_str.split(shot_path)[1][1:-8] + r'%04d.exr'
         print '\t\tUpdating file path.'
         i['file'].setValue(pass_str)
-        i['first'].setvalue(frame_start)
-        i['last'].setvalue(frame_end)
-        i['origfirst'].setvalue(frame_start)
-        i['origlast'].setvalue(frame_end)
+        i['first'].setValue(frame_start)
+        i['last'].setValue(frame_end)
+        i['origfirst'].setValue(frame_start)
+        i['origlast'].setValue(frame_end)
         print '\t\tDone.'
 
     # Save
