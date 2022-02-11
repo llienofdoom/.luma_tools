@@ -77,6 +77,7 @@ function usage
     echo "  os                  : open latest sim file.";
     echo "  ok                  : open latest comp file.";
     echo ""
+    echo "  ct | compTemplate   : update comp template in JSON file.";
     echo "  compPrep            : generate comp based on template comp.";
     echo ""
     echo "  h | help            : This message";
@@ -357,6 +358,10 @@ if [ "$1" != "" ]; then
           # latest=$(ls -v act*_sc*_sh*_comp_v*.nk | tail -1);
           # la_nuke $latest;
           la_nuke $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk
+        ;;
+        #############################################################
+        ct | compTemplate )
+          python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_update_template.py;
         ;;
         #############################################################
         compPrep )

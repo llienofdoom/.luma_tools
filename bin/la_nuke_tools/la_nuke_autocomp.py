@@ -29,7 +29,7 @@ try:
     if comp_template == '':
         comp_template = os.path.join( proj_path, 'assets', 'comp', 'templates', 'MASTER', 'ij_comp_template_MASTER.nk' )
     else:
-        comp_template = os.path.join( proj_path, 'assets', 'comp', 'templates', 'MASTER', 'ij_comp_template_' + comp_template + '_MASTER.nk' )
+        comp_template = os.path.join( proj_path, 'assets', 'comp', 'templates', 'MASTER', comp_template + '.nk' )
 except:
     print '\tNo Comp Template Found! Using default.'
     comp_template = os.path.join( proj_path, 'assets', 'comp', 'templates', 'MASTER', 'ij_comp_template_MASTER.nk' )
