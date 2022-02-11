@@ -96,7 +96,7 @@ if len(sys.argv) is 2:
 
     # Update pressing buttons and other unique things.
     if 'compvol' in template:
-        nuke.execute('CurveTool1', frame_start, frame_end)
+        nuke.execute('CurveTool1', frame_start, frame_start)
 
     # Save
     print 'Saving updated script.'
