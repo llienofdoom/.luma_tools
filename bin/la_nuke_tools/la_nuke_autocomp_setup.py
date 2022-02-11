@@ -13,6 +13,11 @@ if len(sys.argv) is 2:
     json_file.close()
     frame_start = int(json_data[0]['clip_start'])
     frame_end   = int(json_data[0]['clip_end'])
+    template = ''
+    try:
+        template    = json_data[0]['comp_template']
+    except:
+        template = ''
 
     nuke_script = sys.argv[1]
     print '\nUpdating script : %s' % nuke_script
@@ -88,6 +93,10 @@ if len(sys.argv) is 2:
         i['origfirst'].setValue(frame_start)
         i['origlast'].setValue(frame_end)
         print '\t\tDone.'
+
+    # Update pressing buttons and other unique things.
+    if 'compvol' in template:
+        nuke.execute('CurveTool1', frame_start, frame_end)
 
     # Save
     print 'Saving updated script.'
