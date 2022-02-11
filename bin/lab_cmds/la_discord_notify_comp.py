@@ -16,7 +16,7 @@ json_file = open('/opt/opencue/discord_data.json', 'r')
 json_data = json.load(json_file)
 json_file.close()
 
-webhook = json_data['webhook_render']
+webhook = json_data['webhook_comp']
 
 user    = sys.argv[1]
 message = sys.argv[2]
