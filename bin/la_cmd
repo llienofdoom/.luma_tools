@@ -79,6 +79,7 @@ function usage
     echo ""
     echo "  ct | compTemplate   : update comp template in JSON file.";
     echo "  compPrep            : generate comp based on template comp.";
+    echo "  ehc                 : export houdini render camera";
     echo ""
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
@@ -367,6 +368,11 @@ if [ "$1" != "" ]; then
         compPrep )
           python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;
           la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk
+        ;;
+        #############################################################
+        ehc )
+          latest=$(ls -v act*_sc*_sh*_render_v*.hip | tail -1);
+          la_hython $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_exportcamera.py $latest;
         ;;
         #############################################################
         -h | --help | h | help )
