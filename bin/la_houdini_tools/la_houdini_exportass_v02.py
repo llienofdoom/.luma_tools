@@ -22,20 +22,6 @@ print 'Setting global settings...'
 
 print 'Render Mode is %d' % (mode)
 
-#Update to latest render hda ver
-print 'Updating to latest render hda...'
-rendernode = hou.node("/obj/ij_stereo_camera_rig/")
-library_filepath = rendernode.type().definition().libraryFilePath()
-all_definitions = hou.hda.definitionsInFile(library_filepath)
-nodename = all_definitions[-1].nodeTypeName()
-nodetype = rendernode.type()
-if nodetype != nodename:
-    rendernode.changeNodeType(all_definitions[-1].nodeTypeName())
-    rendernode = hou.node("/obj/ij_stereo_camera_rig/")
-
-#Lock hda
-rendernode.matchCurrentDefinition()
-
 #GLOABAL SETTINGS
 hou.parm('/obj/ij_stereo_camera_rig/ar_skip_license_check').set(0)
 hou.parm('/obj/ij_stereo_camera_rig/enable_volumes').set(0)
@@ -49,6 +35,21 @@ hou.parm('/obj/ij_stereo_camera_rig/rendertype').set(mode)
 if final != 'N' and final != 'n':
     print 'Rendering with final parameters forced on.'
     #Final render settings (WIP)
+
+    #Update to latest render hda ver
+    print 'Updating to latest render hda...'
+    rendernode = hou.node("/obj/ij_stereo_camera_rig/")
+    library_filepath = rendernode.type().definition().libraryFilePath()
+    all_definitions = hou.hda.definitionsInFile(library_filepath)
+    nodename = all_definitions[-1].nodeTypeName()
+    nodetype = rendernode.type()
+    if nodetype != nodename:
+        rendernode.changeNodeType(all_definitions[-1].nodeTypeName())
+        rendernode = hou.node("/obj/ij_stereo_camera_rig/")
+
+    #Lock hda
+    rendernode.matchCurrentDefinition()
+    print 'HDA updated...'
 
     #CHARACTER SETTINGS
     print("Setting up characters...")
