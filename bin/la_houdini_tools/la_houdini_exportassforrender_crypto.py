@@ -31,6 +31,7 @@ hou.parm('/obj/ij_stereo_camera_rig/enable_volumes').set(0)
 hou.parmTuple('/obj/ij_stereo_camera_rig/f').deleteAllKeyframes()
 hou.parm('/obj/ij_stereo_camera_rig/f1').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
+hou.parm('/obj/ij_stereo_camera_rig/view_cache').set(1)
 
 # RENDER
 time_start = time.time()
