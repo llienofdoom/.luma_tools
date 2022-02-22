@@ -80,6 +80,7 @@ function usage
     echo "  ct | compTemplate   : update comp template in JSON file.";
     echo "  compPrep            : generate comp based on template comp.";
     echo "  ehc                 : export houdini render camera";
+    echo "  cfp                 : post comp video to ftrack.";
     echo ""
     echo "  h | help            : This message";
     echo "  wiki                : Opens the luma wiki in a browser.";
@@ -373,6 +374,10 @@ if [ "$1" != "" ]; then
         ehc )
           latest=$(ls -v act*_sc*_sh*_render_v*.hip | tail -1);
           la_hython $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_exportcamera.py $latest;
+        ;;
+        #############################################################
+        cfp )
+          /opt/ftrack_tools/la_ftrack_post_videos $2;
         ;;
         #############################################################
         -h | --help | h | help )
