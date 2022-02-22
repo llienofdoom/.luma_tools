@@ -26,6 +26,7 @@ print '\tCurrently set to : %s' % comp_template
 print '\tOptions to choose from:'
 template_master_path = os.path.join(os.environ['IJ_LUMA_PROJ_ROOT'], 'assets', 'comp', 'templates', 'MASTER')
 list_of_templates = os.listdir(template_master_path)
+list_of_templates.sort()
 templates = []
 i = 1
 if list_of_templates:
