@@ -98,6 +98,18 @@ if len(sys.argv) is 2:
     if 'compvol' in template:
         nuke.execute('CurveTool1', frame_start, frame_start)
 
+    # Disconnect camera linking
+    try:
+        camera_node = nuke.toNode("AUTO_Read_renderCamera")
+        camera_node['read_from_file'].setValue(0)
+        camera_node['near'].clearAnimated()
+        camera_node['near'].setValue(0.001)
+        camera_node['win_translate'].clearAnimated()
+        camera_node['win_translate'].setValue([0, 0])
+    except:
+        print '\tNo Camera Node found to break...'
+
+
     # Save
     print 'Saving updated script.'
     nuke.scriptSave(nuke_script)
