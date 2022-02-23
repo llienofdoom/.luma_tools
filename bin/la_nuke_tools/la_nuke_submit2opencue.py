@@ -35,7 +35,7 @@ f_start = json_data['clip_start']
 f_end   = json_data['clip_end'  ]
 f_start = '%d' % f_start
 f_end   = '%d' % f_end
-f_range = '%s,%s' % (f_start, f_end)
+f_range = '%s-%s' % (f_start, f_end)
 
 
 
