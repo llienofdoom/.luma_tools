@@ -26,6 +26,7 @@ shot_num   = os.environ['IJ_SHOT']
 shot_path  = os.environ['IJ_SHOT_PATH']
 user       = os.environ['IJ_USER']
 nukefile   = sys.argv[1]
+nukename   = nukefile.split('.')[0]
 
 json_file = open(os.path.join(os.environ['IJ_SHOT_PATH'], 'shot_info.json'), 'r')
 json_data = json.load(json_file)[0]
