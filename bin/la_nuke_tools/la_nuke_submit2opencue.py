@@ -67,9 +67,43 @@ FFMPEG_LAYER = {
     'cmd': cmd,
     'layerRange': f_start,
     'cores': '1',
-    'services': ['shell'],
+    'services': ['util'],
     'dependType': Layer.DependType.Layer
 }
+# POST TO DISCORD
+a = shot_num.split('-')[0].lstrip('0')
+c = shot_num.split('-')[1].lstrip('0')
+s = shot_num.split('-')[2].lstrip('0')
+cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' python /mnt/luma_i/_tools/luma_tools/bin/lab_cmds/la_discord_notify_comp.py %s %s %s;' % (user, '"' + shot_name + ' - Comp Complete! - ' + comments + '"', os.path.join(shot_path, 'img', 'comp', shot_name + '_comp_v00.mp4'))
+NUKE_POST_TO_DISCORD = {
+    'name': 'nuke_post_to_discord',
+    'layerType': JobTypes.JobTypes.SHELL,
+    'cmd': cmd,
+    'layerRange': f_start,
+    'cores': '1',
+    'services': ['util']
+}
+# POST TO FTRACK
+a = shot_num.split('-')[0].lstrip('0')
+c = shot_num.split('-')[1].lstrip('0')
+s = shot_num.split('-')[2].lstrip('0')
+shot_str = '%s-%s-%s' % (a, c, s)
+cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' . la_cmd cfp %s;' % shot_str
+NUKE_POST_TO_FTRACK = {
+    'name': 'nuke_post_to_ftrack',
+    'layerType': JobTypes.JobTypes.SHELL,
+    'cmd': cmd,
+    'layerRange': f_start,
+    'cores': '1',
+    'services': ['util']
+}
+
+
+
+
+
 # JOB ###############################################################
 jobData = {
     'name': nukename + '_comp_exr',
