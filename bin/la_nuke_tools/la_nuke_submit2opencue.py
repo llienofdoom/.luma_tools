@@ -60,6 +60,7 @@ NUKE_RENDER_EXR = {
 # GENERATE PRORES AND MP4
 comp_path = os.path.join(shot_path, 'img', 'comp', nukename)
 cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' . la_cmd ss %s;' % shot_str
 cmd += ' cd %s;' % comp_path
 cmd += ' . la_cmd proresmp4;'
 FFMPEG_LAYER = {
