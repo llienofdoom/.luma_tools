@@ -21,6 +21,7 @@ os.environ['CUEBOT_HOSTNAME']       = '192.168.34.2'
 os.environ['CUEBOT_HOSTS']          = os.environ['CUEBOT_HOSTNAME']
 os.environ['CUEBOT_HOSTNAME_OR_IP'] = os.environ['CUEBOT_HOSTNAME']
 
+proj_path  = os.environ['IJ_LUMA_PROJ_ROOT']
 shot_name  = os.environ['IJ_SHOT_NAME']
 shot_num   = os.environ['IJ_SHOT']
 shot_path  = os.environ['IJ_SHOT_PATH']
@@ -44,7 +45,7 @@ c = shot_num.split('-')[1].lstrip('0')
 s = shot_num.split('-')[2].lstrip('0')
 shot_str = '%s-%s-%s' % (a, c, s)
 cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
-cmd += ' echo la_nuke_render'
+cmd += ' la_nuke_render'
 cmd += ' AUTO_Write_EXR'
 cmd += ' %s' % nukefile
 cmd += ' #ZFRAME#'
@@ -99,6 +100,19 @@ NUKE_POST_TO_FTRACK = {
     'cores': '1',
     'services': ['util']
 }
+# UPDATE EDIT
+edit_sources_path = os.path.join(proj_path, 'editorial', 'edit_sources_master', 'comp')
+cmd  = 'echo source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' echo cd %s/img/comp;' % shot_path
+cmd += ' echo cp %s_comp_v00.mov %s/%s.mov;' % (shot_name, edit_sources_path, shot_name)
+NUKE_UPDATE_EDIT = {
+    'name': 'nuke_update_edit_sources',
+    'layerType': JobTypes.JobTypes.SHELL,
+    'cmd': cmd,
+    'layerRange': f_start,
+    'cores': '1',
+    'services': ['util']
+}
 
 # JOB ###############################################################
 jobData = {
@@ -107,10 +121,11 @@ jobData = {
     'show': 'inside_job',
     'username': user,
     'layers': [
-        Layer.LayerData.buildFactory(**NUKE_RENDER_EXR),
-        Layer.LayerData.buildFactory(**FFMPEG_LAYER),
-        Layer.LayerData.buildFactory(**NUKE_POST_TO_DISCORD),
-        Layer.LayerData.buildFactory(**NUKE_POST_TO_FTRACK),
+        # Layer.LayerData.buildFactory(**NUKE_RENDER_EXR),
+        # Layer.LayerData.buildFactory(**FFMPEG_LAYER),
+        # Layer.LayerData.buildFactory(**NUKE_POST_TO_DISCORD),
+        # Layer.LayerData.buildFactory(**NUKE_POST_TO_FTRACK),
+        Layer.LayerData.buildFactory(**NUKE_UPDATE_EDIT),
         ]
 }
 
