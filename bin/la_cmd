@@ -40,6 +40,7 @@ function usage
     echo "  makevid | mv        : generate an mp4 from a sequence. NOT ACES YET.";
     echo "  mp4                 : generate an mp4 from ACES EXR files. FOLDER ONLY NOW."
     echo "  prores              : generate a PRORES from a sequence.";
+    echo "  proresmp4           : generate a PRORES and an MP4 from a sequence.";
     echo ""
     echo "  shotPrep            : export abc from maya, and setup houdini";
     # echo "  maya2hou            : shotPrep batch mode";
@@ -189,8 +190,34 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         prores )
-          latest=$(ls -td *.exr | head -n1)
+          echo "Starting conversion..."
+          for img in *.exr; do
+            echo "Converting" $img "to sRGB jpg."
+            . la_cmd fa $img
+          done
+          echo "Done. Making prores video one folder above..."
+          latest=$(ls -td *.jpg | head -n1)
           python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makeprores.py $latest
+          echo "Done. Cleaning up."
+          rm *.jpg
+          mv *.mov ../
+          echo "Done!"
+        ;;
+        #############################################################
+        proresmp4 )
+          echo "Starting conversion..."
+          for img in *.exr; do
+            echo "Converting" $img "to sRGB jpg."
+            . la_cmd fa $img
+          done
+          echo "Done. Making prores video one folder above..."
+          latest=$(ls -td *.jpg | head -n1)
+          python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makeprores.py $latest
+          . la_cmd mv $latest
+          echo "Done. Cleaning up."
+          rm *.jpg
+          mv *.mov ../
+          mv *.mp4 ../
           echo "Done!"
         ;;
         #############################################################

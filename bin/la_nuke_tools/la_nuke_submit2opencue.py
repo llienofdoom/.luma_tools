@@ -37,17 +37,14 @@ f_start = '%d' % f_start
 f_end   = '%d' % f_end
 f_range = '%s-%s' % (f_start, f_end)
 
-
-
-
 # LAYERS ############################################################
-#######################################################
+# RENDER COMP
 a = shot_num.split('-')[0].lstrip('0')
 c = shot_num.split('-')[1].lstrip('0')
 s = shot_num.split('-')[2].lstrip('0')
 shot_str = '%s-%s-%s' % (a, c, s)
 cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
-cmd += ' la_nuke_render'
+cmd += ' echo la_nuke_render'
 cmd += ' AUTO_Write_EXR'
 cmd += ' %s' % nukefile
 cmd += ' #ZFRAME#'
@@ -58,6 +55,20 @@ NUKE_RENDER_EXR = {
     'layerRange': f_range,
     'cores': '8',
     'services': ['nuke']
+}
+# GENERATE PRORES AND MP4
+comp_path = os.path.join(shot_path, 'img', 'comp', nukename)
+cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' cd %s;' % comp_path
+cmd += ' . la_cmd proresmp4;'
+FFMPEG_LAYER = {
+    'name': 'nuke_generate_videos',
+    'layerType': JobTypes.JobTypes.SHELL,
+    'cmd': cmd,
+    'layerRange': f_start,
+    'cores': '1',
+    'services': ['shell'],
+    'dependType': Layer.DependType.Layer
 }
 # JOB ###############################################################
 jobData = {
