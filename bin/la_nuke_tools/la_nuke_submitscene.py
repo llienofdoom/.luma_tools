@@ -72,14 +72,14 @@ try:
 
             if 'y' in comp_rebuild_choice.lower():
                 print '\t\tRebuilding Comp...'
-                cmd = 'echo python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;'
+                cmd = 'python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;'
                 os.system( cmd )
-                cmd = 'echo $IJ_LOCAL_REPO/bin/la_tools/la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk'
+                cmd = '$IJ_LOCAL_REPO/bin/la_tools/la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk'
                 os.system( cmd )
             else:
                 print '\t\tNot Rebuilding Comp.'
             print '\t\tSubmitting.'
-            cmd = 'echo $IJ_LOCAL_REPO/bin/la_tools/la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_submit2opencue.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk'
+            cmd = '$IJ_LOCAL_REPO/bin/la_tools/la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_submit2opencue.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk'
             os.system( cmd )
 
             print '\t\tDone.'
