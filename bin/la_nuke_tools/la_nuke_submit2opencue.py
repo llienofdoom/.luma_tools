@@ -121,10 +121,10 @@ jobData = {
     'show': 'inside_job',
     'username': user,
     'layers': [
-        # Layer.LayerData.buildFactory(**NUKE_RENDER_EXR),
-        # Layer.LayerData.buildFactory(**FFMPEG_LAYER),
-        # Layer.LayerData.buildFactory(**NUKE_POST_TO_DISCORD),
-        # Layer.LayerData.buildFactory(**NUKE_POST_TO_FTRACK),
+        Layer.LayerData.buildFactory(**NUKE_RENDER_EXR),
+        Layer.LayerData.buildFactory(**FFMPEG_LAYER),
+        Layer.LayerData.buildFactory(**NUKE_POST_TO_DISCORD),
+        Layer.LayerData.buildFactory(**NUKE_POST_TO_FTRACK),
         Layer.LayerData.buildFactory(**NUKE_UPDATE_EDIT),
         ]
 }
