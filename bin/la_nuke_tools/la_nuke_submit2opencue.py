@@ -62,7 +62,7 @@ NUKE_RENDER_EXR = {
 }
 # JOB ###############################################################
 jobData = {
-    'name': nukename + '_comp_quicktime_' + write_node,
+    'name': nukename + '_comp_exr',
     'shot': shot_name + '_' + user,
     'show': 'inside_job',
     'username': user,
