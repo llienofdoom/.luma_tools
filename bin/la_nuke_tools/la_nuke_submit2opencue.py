@@ -78,6 +78,7 @@ jobData = {
     'username': user,
     'layers': [
         Layer.LayerData.buildFactory(**NUKE_RENDER_EXR),
+        Layer.LayerData.buildFactory(**FFMPEG_LAYER),
         ]
 }
 
