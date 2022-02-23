@@ -102,9 +102,9 @@ NUKE_POST_TO_FTRACK = {
 }
 # UPDATE EDIT
 edit_sources_path = os.path.join(proj_path, 'editorial', 'edit_sources_master', 'comp')
-cmd  = 'echo source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
-cmd += ' echo cd %s/img/comp;' % shot_path
-cmd += ' echo cp %s_comp_v00.mov %s/%s.mov;' % (shot_name, edit_sources_path, shot_name)
+cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' cd %s/img/comp;' % shot_path
+cmd += ' cp %s_comp_v00.mov %s/%s.mov;' % (shot_name, edit_sources_path, shot_name)
 NUKE_UPDATE_EDIT = {
     'name': 'nuke_update_edit_sources',
     'layerType': JobTypes.JobTypes.SHELL,
