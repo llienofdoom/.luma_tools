@@ -4,6 +4,9 @@ import sys
 import json
 import nuke
 
+if '_comp_v' not in sys.argv[1]:
+    print 'No Nuke File Supplied. Quitting. Idiot...'
+    exit()
 
 # Setup OpenCue libs
 site.addsitedir('/opt/opencue/CURRENT/cuegui/venv/lib/python2.7/site-packages')
@@ -22,6 +25,7 @@ shot_name  = os.environ['IJ_SHOT_NAME']
 shot_num   = os.environ['IJ_SHOT']
 shot_path  = os.environ['IJ_SHOT_PATH']
 user       = os.environ['IJ_USER']
+nukefile   = sys.argv[1]
 
 json_file = open(os.path.join(os.environ['IJ_SHOT_PATH'], 'shot_info.json'), 'r')
 json_data = json.load(json_file)[0]
