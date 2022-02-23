@@ -79,6 +79,7 @@ function usage
     echo ""
     echo "  ct | compTemplate   : update comp template in JSON file.";
     echo "  compPrep            : generate comp based on template comp.";
+    echo "  compRender          : send current shot to OpenCue EXR.";
     echo "  ehc                 : export houdini render camera";
     echo "  cfp                 : post comp video to ftrack.";
     echo ""
@@ -369,6 +370,10 @@ if [ "$1" != "" ]; then
         compPrep )
           python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;
           la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk
+        ;;
+        #############################################################
+        compRender )
+          la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_submit2opencue.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk
         ;;
         #############################################################
         ehc )
