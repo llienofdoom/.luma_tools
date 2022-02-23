@@ -45,6 +45,7 @@ c = shot_num.split('-')[1].lstrip('0')
 s = shot_num.split('-')[2].lstrip('0')
 shot_str = '%s-%s-%s' % (a, c, s)
 cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
+cmd += ' . la_cmd ss %s;' % shot_str
 cmd += ' la_nuke_render'
 cmd += ' AUTO_Write_EXR'
 cmd += ' %s' % nukefile
