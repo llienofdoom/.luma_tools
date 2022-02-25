@@ -49,12 +49,11 @@ cmd += ' . la_cmd ss %s;' % shot_str
 cmd += ' la_nuke_render'
 cmd += ' AUTO_Write_EXR'
 cmd += ' %s' % nukefile
-cmd += ' #ZFRAME#'
 NUKE_RENDER_EXR = {
     'name': 'nuke_render_exr',
     'layerType': JobTypes.JobTypes.SHELL,
     'cmd': cmd,
-    'layerRange': f_range,
+    'layerRange': f_start,
     'cores': '8',
     'services': ['nuke']
 }
