@@ -33,7 +33,7 @@ hou.parm('/obj/ij_stereo_camera_rig/f1').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/f2').set(frame)
 hou.parm('/obj/ij_stereo_camera_rig/view_cache').set(1)
 hou.parm('/obj/ij_stereo_camera_rig/usecache').set(1)
-hou.parm('/obj/ij_stereo_camera_rig/main_res').set(1)
+hou.parm('/obj/ij_stereo_camera_rig/main_res').set('1.0')
 
 
 # RENDER
