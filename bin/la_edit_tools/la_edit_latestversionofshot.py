@@ -1,5 +1,3 @@
-#!/usr/bin/env python2
-
 import os
 import sys
 import shutil
@@ -20,12 +18,12 @@ def main():
         current_path = ''
         render_path = os.path.join(edit_sources_root, 'render', shot_name)
         comp_path = os.path.join(edit_sources_root, 'comp'  , shot_name)
-        if os.path.exists(render_path):
-            current_path = render_path
-            type_of_shot = 'render'
-        elif os.path.exists(comp_path):
+        if os.path.exists(comp_path):
             current_path = comp_path
             type_of_shot = 'comp'
+        elif os.path.exists(render_path):
+            current_path = render_path
+            type_of_shot = 'render'
         else:
             current_path = shot
             type_of_shot = 'animation'
@@ -41,8 +39,6 @@ def main():
         else:
             print '\tNot Found.'
         print ''
-
-
 
 if __name__ == '__main__':
     main()
