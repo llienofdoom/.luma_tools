@@ -101,8 +101,8 @@ if len(sys.argv) is 2:
     # Disconnect camera linking
     try:
         camera_node   = nuke.toNode("AUTO_Read_renderCamera")
-        reload_button = camera_node.knob('reload')
-        reload_button.execute()
+        camera_node['read_from_file'].setValue(0)
+        camera_node['read_from_file'].setValue(1)
         camera_node['read_from_file'].setValue(0)
         camera_node['near'].clearAnimated()
         camera_node['near'].setValue(0.001)
