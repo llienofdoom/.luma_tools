@@ -100,7 +100,9 @@ if len(sys.argv) is 2:
 
     # Disconnect camera linking
     try:
+        print 'Starting cam shit.'
         camera_node   = nuke.toNode("AUTO_Read_renderCamera")
+        camera_node.knob('reload').execute()
         camera_node['read_from_file'].setValue(0)
         camera_node['read_from_file'].setValue(1)
         camera_node['read_from_file'].setValue(0)
@@ -108,6 +110,7 @@ if len(sys.argv) is 2:
         camera_node['near'].setValue(0.001)
         camera_node['win_translate'].clearAnimated()
         camera_node['win_translate'].setValue([0, 0])
+        print 'done with cam shit.'
     except:
         print '\tNo Camera Node found to break...'
 
