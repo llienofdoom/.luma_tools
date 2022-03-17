@@ -104,7 +104,7 @@ if len(sys.argv) is 2:
         camera_node   = nuke.toNode("AUTO_Read_renderCamera")
         camera_node['read_from_file'].setValue(1)
         camera_node['file'].setValue('shot_data/camera_data/renderCamera.abc')
-        # camera_node.knob('reload').execute()
+        camera_node.knob('reload').execute()
         camera_node['read_from_file'].setValue(0)
         camera_node['near'].clearAnimated()
         camera_node['near'].setValue(0.001)
