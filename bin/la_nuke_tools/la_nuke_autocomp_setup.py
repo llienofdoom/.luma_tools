@@ -116,7 +116,7 @@ if len(sys.argv) is 2:
             i['selected'].setValue(False)
         camera_node = nuke.toNode("AUTO_Read_renderCamera")
         camera_node['selected'].setValue(True)
-        newcam = nuke.createNode('Camera2')newcam['read_from_file'].setValue(1)
+        newcam = nuke.createNode('Camera2')
         newcam['read_from_file'].setValue(1)
         newcam['file'].setValue('shot_data/camera_data/renderCamera.abc')
         newcam['read_from_file'].setValue(0)
