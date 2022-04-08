@@ -106,6 +106,7 @@ if len(sys.argv) is 2:
         camera_node['read_from_file'].setValue(1)
         # camera_node['file'].setValue('shot_data/camera_data/renderCamera.abc')
         camera_node['file'].setValue('shot_data/camera_data/renderCamera.fbx')
+        camera_node.knob('reload').execute()
         camera_node['fbx_node_name'].setValue('renderCamera_MAIN')
         camera_node.knob('reload').execute()
         # camera_node['read_from_file'].setValue(0)
