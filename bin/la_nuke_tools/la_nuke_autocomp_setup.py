@@ -98,7 +98,7 @@ if len(sys.argv) is 2:
     if 'compvol' in template:
         nuke.execute('CurveTool1', frame_start, frame_start)
 
-    Disconnect camera linking
+    # Disconnect camera linking
     try:
         print '\tStarting cam Update Things...'
         camera_node   = nuke.toNode("AUTO_Read_renderCamera")
