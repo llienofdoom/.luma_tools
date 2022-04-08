@@ -99,35 +99,35 @@ if len(sys.argv) is 2:
         nuke.execute('CurveTool1', frame_start, frame_start)
 
     # Disconnect camera linking
-    try:
-        print '\tStarting cam Update Things...'
-        camera_node   = nuke.toNode("AUTO_Read_renderCamera")
-        camera_node['read_from_file'].setValue(1)
-        camera_node['file'].setValue('shot_data/camera_data/renderCamera.abc')
-        camera_node.knob('reload').execute()
-        camera_node['read_from_file'].setValue(0)
-        camera_node['near'].clearAnimated()
-        camera_node['near'].setValue(0.001)
-        camera_node['win_translate'].clearAnimated()
-        camera_node['win_translate'].setValue([0, 0])
-        # s = nuke.allNodes()
-        # for i in s:
-        #     i['selected'].setValue(False)
-        # camera_node = nuke.toNode("AUTO_Read_renderCamera")
-        # camera_node['selected'].setValue(True)
-        # newcam = nuke.createNode('Camera2')
-        # nuke.delete(camera_node)
-        # newcam['read_from_file'].setValue(1)
-        # newcam['file'].setValue('shot_data/camera_data/renderCamera.abc')
-        # newcam['read_from_file'].setValue(0)
-        # newcam['near'].clearAnimated()
-        # newcam['near'].setValue(0.001)
-        # newcam['win_translate'].clearAnimated()
-        # newcam['win_translate'].setValue([0, 0])
-        # newcam['name'].setValue('AUTO_Read_renderCamera')
-        print '\tDone with cam updates.'
-    except:
-        print '\tNo Camera Node found to break...'
+    # try:
+    #     print '\tStarting cam Update Things...'
+    #     camera_node   = nuke.toNode("AUTO_Read_renderCamera")
+    #     camera_node['read_from_file'].setValue(1)
+    #     camera_node['file'].setValue('shot_data/camera_data/renderCamera.abc')
+    #     camera_node.knob('reload').execute()
+    #     camera_node['read_from_file'].setValue(0)
+    #     camera_node['near'].clearAnimated()
+    #     camera_node['near'].setValue(0.001)
+    #     camera_node['win_translate'].clearAnimated()
+    #     camera_node['win_translate'].setValue([0, 0])
+    #     # s = nuke.allNodes()
+    #     # for i in s:
+    #     #     i['selected'].setValue(False)
+    #     # camera_node = nuke.toNode("AUTO_Read_renderCamera")
+    #     # camera_node['selected'].setValue(True)
+    #     # newcam = nuke.createNode('Camera2')
+    #     # nuke.delete(camera_node)
+    #     # newcam['read_from_file'].setValue(1)
+    #     # newcam['file'].setValue('shot_data/camera_data/renderCamera.abc')
+    #     # newcam['read_from_file'].setValue(0)
+    #     # newcam['near'].clearAnimated()
+    #     # newcam['near'].setValue(0.001)
+    #     # newcam['win_translate'].clearAnimated()
+    #     # newcam['win_translate'].setValue([0, 0])
+    #     # newcam['name'].setValue('AUTO_Read_renderCamera')
+    #     print '\tDone with cam updates.'
+    # except:
+    #     print '\tNo Camera Node found to break...'
 
 
     # Save
