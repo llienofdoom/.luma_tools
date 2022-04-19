@@ -224,7 +224,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         rn1001 )
-          count=1001; for i in $2.*.exr; do name=$(echo $i | cut -d. -f1).$count.exr; echo "Renumbering" $i "to" $name; let "count+=1"; done
+          count=1001; for i in $2.*.exr; do name=$(echo $i | cut -d. -f1).$count.exr; echo "Renumbering" $i "to" $name; mv $i $name; let "count+=1"; done
         ;;
         #############################################################
         shotPrep )
