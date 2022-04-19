@@ -41,6 +41,7 @@ function usage
     echo "  mp4                 : generate an mp4 from ACES EXR files. FOLDER ONLY NOW."
     echo "  prores              : generate a PRORES from a sequence.";
     echo "  proresmp4           : generate a PRORES and an MP4 from a sequence.";
+    echo "  rn1001              : lab rn1001 [name of sequence] renumbers from 1001.";
     echo ""
     echo "  shotPrep            : export abc from maya, and setup houdini";
     # echo "  maya2hou            : shotPrep batch mode";
@@ -220,6 +221,10 @@ if [ "$1" != "" ]; then
           mv *.mov ../
           mv *.mp4 ../
           echo "Done!"
+        ;;
+        #############################################################
+        rn1001 )
+          count=1001; for i in $2.*.exr; do name=$(echo $i | cut -d. -f1).$count.exr; echo "Renumbering" $i "to" $name; let "count+=1"; done
         ;;
         #############################################################
         shotPrep )
