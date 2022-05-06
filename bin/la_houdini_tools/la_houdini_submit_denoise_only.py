@@ -28,7 +28,7 @@ comments = 'Denoise AOV Submission'
 shot_name = os.environ['IJ_SHOT_NAME']
 shot_path = os.environ['IJ_SHOT_PATH']
 user = os.environ['IJ_USER']
-hipfile = sys.argv[0]
+hipfile = sys.argv[1]
 print('Render hip: ' + hipfile)
 hipname = hipfile.split('/')[-1].split('.')[0]
 
@@ -187,7 +187,7 @@ CLEANUP_LAYER = {
 print('Submitting Default.')
 jobData = {
     'name':
-    hipname + '_scene_render',
+    shot_name + '_aov_denoise',
     'shot':
     shot_name + '_' + user,
     'show':
@@ -248,7 +248,7 @@ for layer in layers:
     layer_count += 1
     outline.add_layer(layer)
 
-jobs = cuerun.launch(outline, use_pycuerun=False, pause=True)
+jobs = cuerun.launch(outline, use_pycuerun=False, pause=False)
 for job in jobs:
     print(job.name())
     job.setPriority(priority)
