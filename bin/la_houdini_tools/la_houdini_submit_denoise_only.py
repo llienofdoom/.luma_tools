@@ -48,42 +48,6 @@ f_range = '%s-%s' % (f_start, f_end)
 #######################################################
 #we now build all layers regardless, only choosing layers on submission
 ###################################################################################################
-######################  EXPORT SHOT STATIC ################################################
-
-cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
-cmd += ' la_hython /mnt/luma_i/_tools/luma_tools/bin/la_houdini_tools/la_houdini_exportstaticcache.py'
-cmd += ' %s' % hipfile
-cmd += ' #ZFRAME#'
-HOUDINI_EXPORT_STATIC_CACHE_LAYER = {
-    'name': 'houdini_export_static_cache',
-    'layerType': JobTypes.JobTypes.SHELL,
-    'cmd': cmd,
-    # 'layerRange': f_start,
-    'cores': '8',
-    'services': ['houdini']
-}
-
-###################################################################################################
-######################  EXPORT ASS FILES FOR RENDER ################################################
-# NOTE :
-# la_hython /home/neill/.luma_tools/bin/la_houdini_tools/la_houdini_exportassforrender.py act00_sc999_sh0010_render_v01.hip 0005
-cmd = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
-cmd += ' la_hython /mnt/luma_i/_tools/luma_tools/bin/la_houdini_tools/la_houdini_exportass_v02.py'
-cmd += ' %s' % hipfile
-cmd += ' #ZFRAME#'
-cmd += ' %s' % str(1)
-cmd += ' %s' % str(0)
-cmd += ' %s' % str(shot_name)
-HOUDINI_EXPORT_LAYER = {
-    'name': 'houdini_export_ass_files',
-    'layerType': JobTypes.JobTypes.SHELL,
-    'cmd': cmd,
-    'layerRange': f_range,
-    'cores': '8',
-    'services': ['houdini'],
-    'dependType': Layer.DependType.Layer,
-}
-
 #######################################################
 # NOTE :
 # LENTIL FIX OF DEATH
@@ -91,8 +55,10 @@ HOUDINI_EXPORT_LAYER = {
 
 img_path = os.path.join(shot_path, 'img', 'renders', hipname,
                         hipname + '-rop_ar_main.#ZFRAME#.exr')
+print(img_path)
 cp_path = os.path.join(shot_path, 'img', 'renders', hipname, "lentil",
                        hipname + '-rop_ar_main.#ZFRAME#.exr')
+print(cp_path)
 try:
     os.makedirs(os.path.join(shot_path, 'img', 'renders', hipname, 'lentil'))
     #shutil.move(img_path,cp_path)
@@ -222,36 +188,16 @@ for layerData in jobData['layers']:
     layers.append(layer)
 
 layer_count = 0
-layerData = jobData['layers']
 for layer in layers:
     if layer_count > 0:
-        if layerData[layer_count].dependType == 'Layer':
-
-            if 'arnold_denoise' in str(layer):
-                layer.depend_all(layers[layer_count - 1])
-                print(str(layer) + ' is layer')
-
-            if 'arnold_lentil_fix' in str(layer):
-                layer.depend_all(layers[2])
-            else:
-                layer.depend_all(layers[layer_count - 1])
-                print(str(layer) + ' is layer')
-
-        if layerData[layer_count].dependType == 'Frame':
-            if 'arnold_render_ass_files_volume' in str(
-                    layer) or 'arnold_render_ass_files_crypto' in str(layer):
-                layer.depend_on(layers[1])
-                print(str(layer) + ' is FRAME')
-            else:
-                layer.depend_on(layers[layer_count - 1])
-                print(str(layer) + ' is FRAME')
+        layer.depend_all(layers[layer_count - 1])
     layer_count += 1
     outline.add_layer(layer)
 
 jobs = cuerun.launch(outline, use_pycuerun=False, pause=False)
 for job in jobs:
     print(job.name())
-    job.setPriority(priority)
+    job.setPriority(2)
     job.setMaxCores(1500)
     job.setMaxRetries(10)
 print('')
