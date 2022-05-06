@@ -47,6 +47,9 @@ if len(hip_file) < 1:
     print('*' * 80 + '\n')
     print('')
 
+hip_file = sorted(hip_file)
+hip_filenew = hip_file[-1]
+
 print('Total render hip files: ' + str(len(hip_file)))
 
 #Found render files
