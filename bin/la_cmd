@@ -71,7 +71,7 @@ function usage
     echo ""
     echo "  scs | submitscene   : submits whole scene to opencure for final render.";
     echo ""
-    echo "  doav                : submit denoise with aovs.";
+    echo "  daov                : submit denoise with aovs.";
     echo ""
     echo "  ob                  : open assembly file.";
     echo "  oa                  : open latest animation file.";
@@ -358,7 +358,7 @@ if [ "$1" != "" ]; then
           python3.7 $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_collect_scene_cams.py $2;
         ;;
         #############################################################
-        doav | denoiseaov )
+        daov | denoiseaov )
           python $IJ_LOCAL_REPO/bin/lab_cmds/la_submit_shot_denoise_comp.py;
         ;;
         #############################################################
