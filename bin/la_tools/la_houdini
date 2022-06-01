@@ -3,12 +3,12 @@
 source $IJ_LOCAL_REPO/etc/houdini_env
 
 case "$IJ_USER" in 
-    mark  | neill | nvermaak )
-        houdinifx $@
+    mark  | neill | nvermaak | christophe )
+        houdinifx -n $@
         ;;
     * )
 	# LD_LIBRARY_PATH=/opt/glibc-2.29/lib
     # LD_PRELOAD=/opt/glibc-2.29/lib/libm.so.6 
-        houdinicore $@
+        houdinicore -n $@
         ;;
 esac                                                                                           

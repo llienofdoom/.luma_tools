@@ -2,4 +2,4 @@
 
 source $IJ_LOCAL_REPO/etc/arnold_env
 
-kick -dw -dp -nostdin -v 3 $@
+kick -set options.skip_license_check off -set options.abort_on_license_fail -dw -dp -nostdin -v 3 $@
