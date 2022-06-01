@@ -98,7 +98,7 @@ def doClothSim(hip_file_path,parms=[]):
                     except:
                         print "Norman sim error"
                    
-                if char == "ij_chr_charlene":
+                if char == "ij_chr_charlene" or char == "ij_chr_charleneofarc":
                     try:
                         print "_____________Charlene Cloth Sim Begin________________"
                         shot = 'act%s_sc%s_sh%s' % (bits[0], bits[1], bits[2])
@@ -125,11 +125,20 @@ def doClothSim(hip_file_path,parms=[]):
                         
                     except:
                         print "Charlene sim error"
-                        
+                       
                 if char == "ij_chr_anderson":
                     try:
                         print "_____________Anderson Cloth Sim Begin________________"
                         anderson_hda = hou.node('/obj/ij_shot_builder_'+shot+'/shot_render_geo/chr_anderson_master')
+                        print "set parms, if any..."
+                        for parm in parms:
+                            print "current parm: "+parm
+                            if "wz" in parms:
+                                print "world zero parm, set world zero toggle"
+                                anderson_hda.parm("world_zero_sim").set(1)
+                            if "gc" in parms:
+                                print "golf cart parm, set golf cart collision toggle"
+                                anderson_hda.parm("golf_cart_collision") .set(1)
                         print "- shirt sim begin"
                         anderson_hda.parm('shirt_sim').pressButton()
                         print "- dressshirt sim done"
@@ -143,6 +152,15 @@ def doClothSim(hip_file_path,parms=[]):
                 if char == "ij_chr_hernandez":
                     print "_____________Hernandez Cloth Sim Begin________________"
                     hernandez_hda = hou.node('/obj/ij_shot_builder_'+shot+'/shot_render_geo/chr_hernandez_master')
+                    print "set parms, if any..."
+                    for parm in parms:
+                        print "current parm: "+parm
+                        if "wz" in parms:
+                            print "world zero parm, set world zero toggle"
+                            hernandez_hda.parm("world_zero_sim").set(1)
+                        if "gc" in parms:
+                            print "golf cart parm, set golf cart collision toggle"
+                            hernandez_hda.parm("golf_cart_collision") .set(1)
                     print "- jacket sim begin"
                     hernandez_hda.parm('jacket_sim').pressButton()
                     print "- jacket sim done"
