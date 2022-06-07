@@ -12,5 +12,13 @@ if [[ $IJ_OS == "lin" ]];
 then 
     export ocio_root=/opt/OpenColorIO-Configs
     export OCIO=$ocio_root/$aces_version/config.ocio
-    /opt/BlackmagicDesign/Resolve17_Free/bin/resolve $@
+    case "$IJ_USER" in
+        neill | gavin )
+            /opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
+            ;;
+        * )
+            /opt/BlackmagicDesign/Resolve17_Free/bin/resolve $@
+            ;;
+    esac
+
 fi
