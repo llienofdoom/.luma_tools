@@ -9,7 +9,7 @@ then
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    fusion_root=/opt/BlackmagicDesign/Fusion9
+    fusion_root=/opt/BlackmagicDesign/Fusion9_Free
     export ocio_root=/opt/OpenColorIO-Configs
 fi
 
