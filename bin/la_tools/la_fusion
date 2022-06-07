@@ -9,7 +9,14 @@ then
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
-    fusion_root=/opt/BlackmagicDesign/Fusion9_Free
+    case "$IJ_USER" in
+        neill | gavin )
+            fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
+            ;;
+        * )
+            fusion_root=/opt/BlackmagicDesign/Fusion9_Free
+            ;;
+    esac
     export ocio_root=/opt/OpenColorIO-Configs
 fi
 
