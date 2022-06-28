@@ -13,7 +13,7 @@ then
     export ocio_root=/opt/OpenColorIO-Configs
     export OCIO=$ocio_root/$aces_version/config.ocio
     case "$IJ_USER" in
-        vneill | gavin )
+        vneill | gavin | mia | kandyce )
             /opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
             ;;
         * )
