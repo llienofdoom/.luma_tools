@@ -27,8 +27,8 @@ then
     export NUKE_PATH=/opt/nuke_plugs/ffmpeg_write:$NUKE_PATH
     export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
     export OPTICAL_FLARES_LICENSE_PATH=/opt/nuke_plugs/OpticalFlares
-    export OPTICAL_FLARES_PRESET_PATH=/opt/nuke_plugs/OpticalFlares/Textures-And-Presets
-    export OPTICAL_FLARES_PREFERENCE_PATH=/opt/nuke_plugs/OpticalFlares/Textures-And-Presets
+    export OPTICAL_FLARES_PRESET_PATH=/opt/nuke_plugs/OpticalFlares
+    export OPTICAL_FLARES_PREFERENCE_PATH=/opt/nuke_plugs/OpticalFlares
 fi
 
 export peregrinel_LICENSE=5053@192.168.35.1
