@@ -17,7 +17,7 @@ then
             /opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
             ;;
         * )
-            /opt/BlackmagicDesign/Resolve17_Free/bin/resolve $@
+            /opt/BlackmagicDesign/Resolve17.4.6_Free/bin/resolve $@
             ;;
     esac
 
