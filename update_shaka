@@ -1,0 +1,9 @@
+#!/bin/bash
+
+git add .
+git commit
+git checkout master
+git pull
+git merge $IJ_USER
+git push
+git checkout $IJ_USER
