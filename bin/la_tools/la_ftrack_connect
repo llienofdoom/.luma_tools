@@ -1,0 +1,4 @@
+#!/bin/bash
+
+. /opt/ftrack/venv/bin/activate
+ftrack-connect $@
