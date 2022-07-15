@@ -10,8 +10,8 @@ fi
 
 if [[ $IJ_OS == "mac" ]]; 
 then 
-    # export mari_root=/Applications/Mari/$mari_version/mari$mari_version.app/Contents/MacOS
-    # export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
+    export mari_root=/Applications/Mari/$mari_version/mari$mari_version.app/Contents/MacOS
+    export OCIO=/opt/OpenColorIO-Configs/$aces_version/config.ocio
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
