@@ -2,4 +2,4 @@
 
 source $IJ_LOCAL_REPO/etc/mari_env
 
-$nuke_root/mari $@
+$mari_root/mari $@
