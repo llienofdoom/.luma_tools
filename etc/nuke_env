@@ -29,6 +29,7 @@ then
     export OPTICAL_FLARES_PATH=/opt/nuke_plugs/OpticalFlares
     export OPTICAL_FLARES_PRESET_PATH=/opt/nuke_plugs/OpticalFlares/Textures-And-Presets
     export OPTICAL_FLARES_DISPLAY_NAME=:1
+    export OPTICAL_FLARES_LICENSE_SERVER_IP=192.168.35.28
 fi
 
 export peregrinel_LICENSE=5053@192.168.35.1
