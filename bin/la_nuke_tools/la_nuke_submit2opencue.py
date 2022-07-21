@@ -46,6 +46,7 @@ s = shot_num.split('-')[2].lstrip('0')
 shot_str = '%s-%s-%s' % (a, c, s)
 cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
 cmd += ' . la_cmd ss %s;' % shot_str
+cmd += ' export OPTICAL_FLARES_LICENSE_SERVER_IP=192.168.35.28;'
 cmd += ' la_nuke_render'
 cmd += ' AUTO_Write_EXR'
 cmd += ' %s' % nukefile
