@@ -66,6 +66,7 @@ function usage
     echo "  se | seqedit        : generate scene video : lab se (m)(s) (ass)(cam)(ren) 25";
     echo "  editUpdateSources | eus : update shotsources  for edit : lab eu (a)(m)(s)(r) (SCENE or all)";
     echo "  editLatest | el     : update to latest for edit";
+    echo "  newEditLatest | nel : update to latest for edit";
     echo "  fa | fromaces       : convert exr from aces to srgb, lab fa [filename].";
     echo "  usc | update_scene_cams : update the per scene camera exports.";
     echo ""
@@ -348,6 +349,10 @@ if [ "$1" != "" ]; then
         #############################################################
         editLatest | el )
           python $IJ_LOCAL_REPO/bin/la_edit_tools/la_edit_latestversionofshot.py;
+        ;;
+        #############################################################
+        newEditLatest | nel )
+          python3 $IJ_LOCAL_REPO/bin/la_edit_tools/la_edit_collectLatest.py;
         ;;
         #############################################################
         fa | fromaces )
