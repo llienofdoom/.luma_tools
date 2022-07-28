@@ -69,21 +69,18 @@ def findLatestVideo(shot_root):
 def transcodeVideo(in_vid):
     out_vid = in_vid[:-3] + 'mov'
     print('        Output Video = {}'.format(out_vid))
-    if os.path.exists(out_vid):
-        print('        Prores video already exists. Using it.')
-    else:
-        cmd  = 'ffmpeg -y -hide_banner -loglevel panic'
-        cmd += ' -i %s' % in_vid
-        cmd += ' -c:v prores_ks -profile:v 3 -qscale:v 5 -vendor ap10 -pix_fmt yuv422p10le'
-        cmd += ' %s' % out_vid
-        # print(cmd)
-        print('        Encoding...')
-        try:
-            os.system( cmd )
-            print('        Encoding complete.')
-        except Exception as e:
-            print('ERROR')
-            print(e)
+    cmd  = 'ffmpeg -y -hide_banner -loglevel panic'
+    cmd += ' -i %s' % in_vid
+    cmd += ' -c:v prores_ks -profile:v 3 -qscale:v 5 -vendor ap10 -pix_fmt yuv422p10le'
+    cmd += ' %s' % out_vid
+    # print(cmd)
+    print('        Encoding...')
+    try:
+        os.system( cmd )
+        print('        Encoding complete.')
+    except Exception as e:
+        print('ERROR')
+        print(e)
     return out_vid
 
 
