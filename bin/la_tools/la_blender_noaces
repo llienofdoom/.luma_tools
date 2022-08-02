@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source $IJ_LOCAL_REPO/etc/blender_env_noaces
+
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    $blender_root/Blender $@
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    $blender_root/blender $@
+fi
