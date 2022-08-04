@@ -15,7 +15,10 @@ try:
     else:
         dry_run = False
     process_choice = int(raw_input('Do you want to process similar template comps (1), or scenes (2), or both (3) ? : [1/2/3] : '))
-    comp_rebuild_choice = raw_input('Do you also want to rebuild the shots from template? [y/n] : ')
+
+    # NOTE disabled for now.
+    # comp_rebuild_choice = raw_input('Do you also want to rebuild the shots from template? [y/n] : ')
+    comp_rebuild_choice = 'n'
 
     ######################################################################################################################
     if   process_choice is 1:
