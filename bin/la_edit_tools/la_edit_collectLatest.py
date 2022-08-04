@@ -13,8 +13,14 @@ root_of_latest_movs = os.path.join(root_of_ij, 'editorial', 'edit_sources_master
 
 ################################################################################
 def getListOfAllShots():
+    list_of_shots = []
+    question = input('Process current shot, or all [c*, a] : ')
     print('  Getting a list of all viable shots...')
-    list_of_shots = glob.glob( os.path.join(root_of_ij, 'shots', 'act*', 'sc*', 'sh*'))
+    if 'a' in question.lower():
+        list_of_shots = glob.glob( os.path.join(root_of_ij, 'shots', 'act*', 'sc*', 'sh*'))
+    else:
+        current = os.environ['IJ_SHOT_PATH']
+        list_of_shots.append(os.environ['IJ_SHOT_PATH'])
     list_of_shots.sort()
     print('  Done. Found {} shots to process.'.format(len(list_of_shots)))
     return list_of_shots
