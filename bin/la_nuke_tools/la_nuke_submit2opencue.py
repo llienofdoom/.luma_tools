@@ -93,7 +93,7 @@ c = shot_num.split('-')[1].lstrip('0')
 s = shot_num.split('-')[2].lstrip('0')
 shot_str = '%s-%s-%s' % (a, c, s)
 cmd  = 'source /mnt/luma_i/_tools/luma_tools/env/ij_bashrc;'
-cmd += ' . la_cmd cfp %s;' % shot_str
+cmd += ' . la_cmd cfp %s comp;' % shot_str
 NUKE_POST_TO_FTRACK = {
     'name': 'nuke_post_to_ftrack',
     'layerType': JobTypes.JobTypes.SHELL,

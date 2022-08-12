@@ -87,6 +87,7 @@ function usage
     echo "  compRender          : send current shot to OpenCue EXR.";
     echo "  compScene           : send EVERYTHING to OpenCue.";
     echo "  ehc                 : export houdini render camera";
+    echo "  ews                 : export nailbridge windshield";
     echo "  cfp                 : post comp video to ftrack.";
     echo ""
     echo "  h | help            : This message";
@@ -429,8 +430,13 @@ if [ "$1" != "" ]; then
           la_hython $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_exportcamera.py $latest;
         ;;
         #############################################################
+        ews )
+          latest=$(ls -v act*_sc*_sh*_render_v*.hip | tail -1);
+          la_hython $IJ_LOCAL_REPO/bin/la_houdini_tools/la_houdini_exportwindshield.py $latest;
+        ;;
+        #############################################################
         cfp )
-          /opt/ftrack_tools/la_ftrack_post_videos $2;
+          /opt/ftrack_tools/la_ftrack_post_videos_combined $2 $3;
         ;;
         #############################################################
         -h | --help | h | help )
