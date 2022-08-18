@@ -1,5 +1,5 @@
 #!/bin/bash
 
-export speedtree_root=/opt/speedtree/v8.4.2
+export speedtree_root=/opt/speedtree/v9.0.1
 
 $speedtree_root/startSpeedTreeModeler.sh $@
