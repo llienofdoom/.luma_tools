@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source $IJ_LOCAL_REPO/etc/blender_env
+
+if [[ $IJ_OS == "mac" ]]; 
+then 
+    # $blender_root/Blender $@
+fi
+if [[ $IJ_OS == "lin" ]]; 
+then 
+    /opt/fspy/fspy-1.0.3-x86_64.AppImage $@
+fi
+
