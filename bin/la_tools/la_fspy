@@ -5,6 +5,7 @@ source $IJ_LOCAL_REPO/etc/blender_env
 if [[ $IJ_OS == "mac" ]]; 
 then 
     # $blender_root/Blender $@
+    echo "Not for you!"
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
