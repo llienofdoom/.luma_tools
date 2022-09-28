@@ -148,7 +148,7 @@ for layer in layers:
     layer_count += 1
     outline.add_layer(layer)
 
-jobs = cuerun.launch(outline, use_pycuerun=False, pause=True)
+jobs = cuerun.launch(outline, use_pycuerun=False, pause=False)
 for job in jobs:
     print(job.name())
     job.setPriority(10)
