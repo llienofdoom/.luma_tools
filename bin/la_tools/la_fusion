@@ -10,7 +10,7 @@ fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
     case "$IJ_USER" in
-        neill | gavin | mia | kandyce | isabel )
+        neill | gavin | mia | kandyce | isabel | divesh)
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
             ;;
         * )
