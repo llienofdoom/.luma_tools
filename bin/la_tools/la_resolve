@@ -16,7 +16,7 @@ then
         neill | gavin | kandyce | isabel )
             /opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
             ;;
-        mia | divesh | ntokozo )
+        mia | xdivesh | xntokozo )
             export BMD_RESOLVE_LICENSE_DIR=~/.opt/resolve/.license
             ~/.opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
             ;;
