@@ -14,6 +14,8 @@ then
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
             ;;
         mia | divesh | ntokozo )
+            export FUSION_LICENSE_SERVER=$(hostname -i)
+            echo $FUSION_LICENSE_SERVER
             export BMD_FUSION_LICENSE_DIR=~/.opt/fusion/.license
             fusion_root=~/.opt/BlackmagicDesign/Fusion17_Studio
             ;;
