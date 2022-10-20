@@ -14,7 +14,7 @@ then
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
             ;;
         mia | divesh | ntokozo )
-            export BMD_FUSION_LICENSE_DIR=~/.opt/resolve/.license
+            export BMD_FUSION_LICENSE_DIR=~/.opt/fusion/.license
             fusion_root=~/.opt/BlackmagicDesign/Fusion17_Studio
             ;;
         * )
