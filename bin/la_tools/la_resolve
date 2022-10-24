@@ -17,8 +17,9 @@ then
             /opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
             ;;
         mia | xdivesh | xntokozo )
-            export BMD_RESOLVE_LICENSE_DIR=~/.opt/resolve/.license
-            ~/.opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
+            # export BMD_RESOLVE_LICENSE_DIR=~/.opt/resolve/.license
+            # ~/.opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
+            /opt/BlackmagicDesign/Resolve17_Studio/bin/resolve $@
             ;;
         * )
             /opt/BlackmagicDesign/Resolve17.4.6_Free/bin/resolve $@
