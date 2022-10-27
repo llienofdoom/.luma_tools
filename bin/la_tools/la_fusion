@@ -9,24 +9,20 @@ then
 fi
 if [[ $IJ_OS == "lin" ]]; 
 then 
+    export ocio_root=/opt/OpenColorIO-Configs
     case "$IJ_USER" in
-        neill | gavin | kandyce | isabel )
+        gavin | kandyce | isabel | mia )
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
             ;;
-        mia | xdivesh | xntokozo )
-            # export FUSION_LICENSE_SERVER=$(hostname -i)
-            # echo $FUSION_LICENSE_SERVER
-            # export BMD_RESOLVE_LICENSE_DIR=~/.opt/resolve/.license
-            # fusion_root=~/.opt/BlackmagicDesign/Fusion17_Studio
+        neill | xdivesh | ntokozo )
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
+            export FUSION_License_Dir=~/.opt/resolve/.license
             ;;
         * )
             fusion_root=/opt/BlackmagicDesign/Fusion9_Free
             ;;
     esac
-    export ocio_root=/opt/OpenColorIO-Configs
 fi
-
 
 export OCIO=$ocio_root/$aces_version/config.ocio
 export PATH=$fusion_root:$PATH
