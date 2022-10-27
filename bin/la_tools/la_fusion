@@ -16,7 +16,7 @@ then
             ;;
         neill | xdivesh | ntokozo )
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
-            export FUSION_License_Dir=~/.opt/fusion/.license
+            export FUSION_License_Dir=~/.opt/resolve/.license
             ;;
         * )
             fusion_root=/opt/BlackmagicDesign/Fusion9_Free
