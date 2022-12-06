@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source $IJ_LOCAL_REPO/etc/houdini_env
+
+mantra -V a -f $@
+
