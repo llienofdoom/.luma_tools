@@ -11,10 +11,10 @@ if [[ $IJ_OS == "lin" ]];
 then 
     export ocio_root=/opt/OpenColorIO-Configs
     case "$IJ_USER" in
-        gavin | kandyce | isabel | mia )
+        mia | gavin | kandyce | isabel | neill | divesh | kayla | ntokozo )
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
             ;;
-        neill | xdivesh | ntokozo )
+        xneill | xdivesh | ntokozo )
             fusion_root=/opt/BlackmagicDesign/Fusion17_Studio
             export FUSION_License_Dir=~/.opt/fusion/.license
             ;;
