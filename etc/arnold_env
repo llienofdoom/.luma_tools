@@ -4,6 +4,9 @@ aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 if [[ $IJ_TESTING == "1" ]]; 
 then 
     arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version_testing)
+elif [[ $IJ_TESTING == "2" ]];
+then
+    arnold_version=0
 else
     arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version)
 fi

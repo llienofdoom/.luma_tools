@@ -5,6 +5,10 @@ if [[ $IJ_TESTING == "1" ]];
 then 
     nuke_version=$(cat $IJ_LOCAL_REPO/etc/nuke_version_testing)
     nuke_command="Nuke12.2"
+elif [[ $IJ_TESTING == "2" ]];
+then
+    nuke_version=$(cat $IJ_LOCAL_REPO/etc/nuke_version_2)
+    nuke_command="Nuke12.2"
 else
     nuke_version=$(cat $IJ_LOCAL_REPO/etc/nuke_version)
     nuke_command="Nuke12.0"

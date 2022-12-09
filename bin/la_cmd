@@ -94,6 +94,7 @@ function usage
     echo "  wiki                : Opens the luma wiki in a browser.";
     echo "  mon                 : Opens the luma monitor in a browser.";
     echo "  testing             : Enable testing software branch, until terminal close."
+    echo "  testing2            : Enable future software branch, until terminal close."
     echo "#####################################################################"
 }
 
@@ -473,6 +474,12 @@ if [ "$1" != "" ]; then
           echo "Setting software Branch to TESTING. Use with Caution."
           echo "Active until you close THIS terminal, from this terminal only."
           export IJ_TESTING=1;
+        ;;
+        #############################################################
+        testing2 )
+          echo "Setting software Branch to TESTING. Use with Caution."
+          echo "Active until you close THIS terminal, from this terminal only."
+          export IJ_TESTING=2;
         ;;
       * )
           usage;

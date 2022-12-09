@@ -5,6 +5,10 @@ if [[ $IJ_TESTING == "1" ]];
 then 
     arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version_testing)
     houdini_version=$(cat $IJ_LOCAL_REPO/etc/houdini_version_testing)
+elif [[ $IJ_TESTING == "2" ]];
+then
+    arnold_version=0
+    houdini_version=$(cat $IJ_LOCAL_REPO/etc/houdini_version_2)
 else
     arnold_version=$(cat $IJ_LOCAL_REPO/etc/arnold_version)
     houdini_version=$(cat $IJ_LOCAL_REPO/etc/houdini_version)

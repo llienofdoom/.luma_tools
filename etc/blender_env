@@ -5,6 +5,9 @@ aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
 if [[ $IJ_TESTING == "1" ]]; 
 then 
     blender_version=$(cat $IJ_LOCAL_REPO/etc/blender_version_testing)
+elif [[ $IJ_TESTING == "2" ]];
+then
+    blender_version=$(cat $IJ_LOCAL_REPO/etc/blender_version_2)
 else
     blender_version=$(cat $IJ_LOCAL_REPO/etc/blender_version)
 fi
