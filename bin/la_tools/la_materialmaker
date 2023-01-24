@@ -1,0 +1,6 @@
+#!/bin/bash
+
+aces_version=$(cat $IJ_LOCAL_REPO/etc/aces_version)
+export OCIO=$ocio_root/$aces_version/config.ocio
+
+/opt/material_maker/1.2/material_maker.x86_64 $@
