@@ -4,7 +4,7 @@ import json
 import glob
 import nuke
 
-COMP_ROOT = '/Volumes/ij_data/shots'
+COMP_ROOT = '/mnt/luma_i/shots'
 
 def main():
     print('Finding all Nuke Comps...')
