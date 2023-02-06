@@ -144,11 +144,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         ls | list_shots )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_shots_list $2;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_shots_list $2;
         ;;
         #############################################################
         la | list_assets )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_assets_list $2;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_assets_list $2;
         ;;
         #############################################################
         ss | set_shot )
@@ -179,7 +179,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         makevid | mv )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makevid.py $2;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makevid.py $2;
         ;;
         #############################################################
         mp4 )
@@ -205,7 +205,7 @@ if [ "$1" != "" ]; then
           done
           echo "Done. Making prores video one folder above..."
           latest=$(ls -td *.jpg | head -n1)
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makeprores.py $latest
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makeprores.py $latest
           echo "Done. Cleaning up."
           rm *.jpg
           mv *.mov ../
@@ -220,7 +220,7 @@ if [ "$1" != "" ]; then
           done
           echo "Done. Making prores video one folder above..."
           latest=$(ls -td *.jpg | head -n1)
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makeprores.py $latest
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_ffmpeg_makeprores.py $latest
           . la_cmd mv $latest
           echo "Done. Cleaning up."
           rm *.jpg
@@ -239,7 +239,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         maya2hou )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_maya2hou.py $2;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_maya2hou.py $2;
         ;;
         #############################################################
         mayaExportAnim )
@@ -296,7 +296,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         mps | makeprevs )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreviews.py $2 $3 $4;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_houdiniCreatePreviews.py $2 $3 $4;
         ;;
         #############################################################
         # vs | viewstereo )
@@ -330,11 +330,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         vms | viewmonosc )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_mono.py $2;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_mono.py $2;
         ;;
         #############################################################
         vrs | viewrendersc )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_render.py $2;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_mrviewer_scene_render.py $2;
         ;;
         #############################################################
         # vss | viewstereosc )
@@ -342,16 +342,16 @@ if [ "$1" != "" ]; then
         # ;;
         #############################################################
         se | seqedit )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_seqedit.py $2 $3 $4;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_seqedit.py $2 $3 $4;
         ;;
         #############################################################
         eus | editUpdateSources )
           # python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources.py $2 $3;
-          python $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources_02.py $2 $3;
+          python2 $IJ_LOCAL_REPO/bin/la_edit_tools/la_editUpdateSources_02.py $2 $3;
         ;;
         #############################################################
         editLatest | el )
-          python $IJ_LOCAL_REPO/bin/la_edit_tools/la_edit_latestversionofshot.py;
+          python2 $IJ_LOCAL_REPO/bin/la_edit_tools/la_edit_latestversionofshot.py;
         ;;
         #############################################################
         newEditLatest | nel )
@@ -367,11 +367,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         daov | denoiseaov )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_submit_shot_denoise_comp.py;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_submit_shot_denoise_comp.py;
         ;;
         #############################################################
         scs | submitscene )
-          python $IJ_LOCAL_REPO/bin/lab_cmds/la_submit_scene.py;
+          python2 $IJ_LOCAL_REPO/bin/lab_cmds/la_submit_scene.py;
         ;;
         #############################################################
         ob )
@@ -411,11 +411,11 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         ct | compTemplate )
-          python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_update_template.py;
+          python2 $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_update_template.py;
         ;;
         #############################################################
         compPrep )
-          python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;
+          python2 $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp.py;
           la_nukepy $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_autocomp_setup.py $IJ_SHOT_PATH/$IJ_SHOT_NAME\_comp_v00.nk
         ;;
         #############################################################
