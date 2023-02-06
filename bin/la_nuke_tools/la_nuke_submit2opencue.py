@@ -123,11 +123,11 @@ jobData = {
     'show': 'inside_job',
     'username': user,
     'layers': [
-        Layer.LayerData.buildFactory(**NUKE_RENDER_EXR),
-        Layer.LayerData.buildFactory(**FFMPEG_LAYER),
-        Layer.LayerData.buildFactory(**NUKE_POST_TO_DISCORD),
-        Layer.LayerData.buildFactory(**NUKE_POST_TO_FTRACK),
-        Layer.LayerData.buildFactory(**NUKE_UPDATE_EDIT),
+        Layer.LayerData.buildFactory(**NUKE_RENDER_EXR)
+        # Layer.LayerData.buildFactory(**FFMPEG_LAYER),
+        # Layer.LayerData.buildFactory(**NUKE_POST_TO_DISCORD),
+        # Layer.LayerData.buildFactory(**NUKE_POST_TO_FTRACK),
+        # Layer.LayerData.buildFactory(**NUKE_UPDATE_EDIT),
         ]
 }
 
@@ -148,7 +148,7 @@ for layer in layers:
     layer_count += 1
     outline.add_layer(layer)
 
-jobs = cuerun.launch(outline, use_pycuerun=False, pause=False)
+jobs = cuerun.launch(outline, use_pycuerun=False, pause=True)
 for job in jobs:
     print(job.name())
     job.setPriority(10)
