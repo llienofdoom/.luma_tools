@@ -21,7 +21,7 @@ def main():
                 exr_render_node['write_ACES_compliant_EXR'].setValue(0)
 
             print('\tSaving updated script.')
-            # nuke.scriptSave(nk)
+            nuke.scriptSave(nk)
             print('\tDone.\n')
 
 if __name__ == '__main__':
