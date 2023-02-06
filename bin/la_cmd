@@ -424,7 +424,7 @@ if [ "$1" != "" ]; then
         ;;
         #############################################################
         compScene )
-          python $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_submitscene.py
+          python2 $IJ_LOCAL_REPO/bin/la_nuke_tools/la_nuke_submitscene.py
         ;;
         #############################################################
         ehc )
